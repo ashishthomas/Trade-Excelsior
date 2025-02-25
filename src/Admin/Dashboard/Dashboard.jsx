@@ -1,4 +1,4 @@
-
+import React, { useState } from "react";
 import {
   AccountCircle,
   ClassOutlined,
@@ -17,17 +17,13 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import React from "react";
-
-const CardComp = ({ icon, title, buttonText }) => {
-  return (
-    <StyledCard>
-      {React.createElement(icon, { sx: { fontSize: "60px" }, color: "primary" })}
-      <Typography variant="h6">{title}</Typography>
-      <Button variant="contained">{buttonText}</Button>
-    </StyledCard>
-  );
-};
+import AddUser from "./AddUser";
+import AddCheckList from "./AddCheckList";
+import AddBook from "./AddBook";
+import AddCoreWatchList from "./AddCoreWatchList";
+import AddReferences from "./AddReferences";
+import AddSuccess from "./AddSuccess";
+import CustomModal from "../CommonComponents/CustomModal";
 
 const StyledCard = styled(Card)({
   display: "flex",
@@ -36,14 +32,22 @@ const StyledCard = styled(Card)({
   alignItems: "center",
   minHeight: 180,
   textAlign: "center",
+  padding: "16px",
 });
 
 const Dashboard = () => {
+  const [openUser, setOpenUser] = useState(false);
+  const [openCheckList, setOpenCheckList] = useState(false);
+  const [openBook, setOpenBook] = useState(false);
+  const [openCoreWatchList, setOpenCoreWatchList] = useState(false);
+  const [openReference, setOpenReference] = useState(false);
+  const [openSuccess, setOpenSuccess] = useState(false);
+
   return (
-    <Box sx={{ backgroundColor: "#C4D9FF", minHeight: "100vh", padding:2 }}>
-      <AppBar position="sticky" sx={{ backgroundColor: "white" }}>
+    <Box sx={{ backgroundColor: "#C4D9FF", minHeight: "84vh", padding: 2 }}>
+      <AppBar position="static" sx={{ backgroundColor: "white" }}>
         <Toolbar>
-          <Typography variant="h6" sx={{ color: "black", flexGrow: 1, ml: 3 }}>
+          <Typography variant="h6" sx={{ color: "black", flexGrow: 1 }}>
             Dashboard
           </Typography>
         </Toolbar>
@@ -52,30 +56,93 @@ const Dashboard = () => {
       <Box sx={{ marginTop: 3 }}>
         <Grid container spacing={2} justifyContent="flex-start">
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <CardComp icon={AccountCircle} title="Add New User" buttonText="Add User" />
+            <StyledCard>
+              <AccountCircle sx={{ fontSize: 60 }} color="primary" />
+              <Typography variant="h6">Add New User</Typography>
+              <Button variant="contained" onClick={() => setOpenUser(true)}>
+                Add User
+              </Button>
+            </StyledCard>
           </Grid>
 
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <CardComp icon={Grading} title="Add CheckList" buttonText="Add CheckList" />
+            <StyledCard>
+              <Grading sx={{ fontSize: 60 }} color="primary" />
+              <Typography variant="h6">Add CheckList</Typography>
+              <Button variant="contained" onClick={() => setOpenCheckList(true)}>
+                Add CheckList
+              </Button>
+            </StyledCard>
           </Grid>
 
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <CardComp icon={ClassOutlined} title="Add New Book" buttonText="Add Book" />
+            <StyledCard>
+              <ClassOutlined sx={{ fontSize: 60 }} color="primary" />
+              <Typography variant="h6">Add New Book</Typography>
+              <Button variant="contained" onClick={() => setOpenBook(true)}>
+                Add Book
+              </Button>
+            </StyledCard>
           </Grid>
 
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <CardComp icon={TrendingUpOutlined} title="Add Core WatchList" buttonText="Add Corewatchlist" />
+            <StyledCard>
+              <TrendingUpOutlined sx={{ fontSize: 60 }} color="primary" />
+              <Typography variant="h6">Add Core WatchList</Typography>
+              <Button
+                variant="contained"
+                onClick={() => setOpenCoreWatchList(true)}
+              >
+                Add Core WatchList
+              </Button>
+            </StyledCard>
           </Grid>
 
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <CardComp icon={EmojiEvents} title="Add Success Stories" buttonText="Add SuccessStories" />
+            <StyledCard>
+              <EmojiEvents sx={{ fontSize: 60 }} color="primary" />
+              <Typography variant="h6">Add Success Stories</Typography>
+              <Button variant="contained" onClick={() => setOpenSuccess(true)}>
+                Add Success Stories
+              </Button>
+            </StyledCard>
           </Grid>
 
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <CardComp icon={InsertDriveFileSharp} title="Add References" buttonText="Add References" />
+            <StyledCard>
+              <InsertDriveFileSharp sx={{ fontSize: 60 }} color="primary" />
+              <Typography variant="h6">Add References</Typography>
+              <Button variant="contained" onClick={() => setOpenReference(true)}>
+                Add References
+              </Button>
+            </StyledCard>
           </Grid>
         </Grid>
       </Box>
+
+      <CustomModal open={openUser} handleClose={() => setOpenUser(false)} title="Add User">
+        <AddUser />
+      </CustomModal>
+
+      <CustomModal open={openCheckList} handleClose={() => setOpenCheckList(false)} title="Add CheckList">
+        <AddCheckList />
+      </CustomModal>
+
+      <CustomModal open={openBook} handleClose={() => setOpenBook(false)} title="Add Book">
+        <AddBook />
+      </CustomModal>
+
+      <CustomModal open={openCoreWatchList} handleClose={() => setOpenCoreWatchList(false)} title="Add Core WatchList">
+        <AddCoreWatchList />
+      </CustomModal>
+
+      <CustomModal open={openSuccess} handleClose={() => setOpenSuccess(false)} title="Add Success Stories">
+        <AddSuccess />
+      </CustomModal>
+
+      <CustomModal open={openReference} handleClose={() => setOpenReference(false)} title="Add References">
+        <AddReferences />
+      </CustomModal>
     </Box>
   );
 };
