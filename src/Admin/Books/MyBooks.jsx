@@ -1,0 +1,382 @@
+import React, { useState } from "react";
+import { useMediaQuery } from "@mui/material";
+import DeleteConfirmationModal from "./FormModals/DeleteConfirmationModal";
+import EditBookForm from "./FormModals/EditBookForm";
+import AddBookForm from "./FormModals/AddBookForm";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  useTheme,
+  Badge,
+} from "@mui/material";
+
+const BookDescription = ({ text }) => {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <Typography
+      variant="body2"
+      sx={{
+        mt: 1,
+        color: "gray",
+        fontSize: { xs: "14px", sm: "18px", lg: "20px" },
+      }}
+      component="span"
+    >
+      {expanded ? text : `${text.substring(0, 150)}... `}
+      <Typography
+        component="span"
+        sx={{ color: "#3A86FF", cursor: "pointer", fontWeight: "bold" }}
+        onClick={() => setExpanded(!expanded)}
+      >
+        {expanded ? "Read Less" : "Read More"}
+      </Typography>
+    </Typography>
+  );
+};
+
+function MyBooks() {
+  const [books, setBooks] = useState([
+    {
+      id: 1,
+      bookTagline:
+        "Master the Market with Price Action: The Key to Uncovering Hidden Trends and Making Informed Trades",
+      bookName: "Price Action",
+      bookDescription:
+        "This book dives deep into the powerful world of price action trading, offering a straightforward, no-nonsense approach to understanding market behavior. The book is written in a simple and easy to understand language and best suited for people wishing to learn Technical Analysis, especially Price Action.",
+      bookLink:
+        "https://www.amazon.in/Price-Action-Trading-Technical-Simplified/dp/8195261612",
+      buttonName: "Buy Now",
+      image: "https://m.media-amazon.com/images/I/61ruD5Uk7cS._SL1500_.jpg",
+    },
+    {
+      id: 2,
+      bookTagline:
+        "The Art of Stock Market Trading: Mastering the Market with Expert Tips and Strategies",
+      bookName: "Stock Market Wizards",
+      bookDescription:
+        "Learn from the greatest traders in the stock market and understand their strategies for success. The book explores various market conditions, including bull markets and periods of economic uncertainty, and reveals how these traders have consistently outperformed the market.  ",
+      bookLink:
+        "https://www.amazon.in/Stock-Market-Wizards-Interviews-Americas/dp/0066620597",
+      buttonName: "Buy Now",
+      image: "https://m.media-amazon.com/images/I/715j0-LgwbL._SL1360_.jpg",
+    },
+  ]);
+
+  const [openModal, setOpenModal] = useState(false);
+  const [openAddForm, setOpenAddForm] = useState(false);
+  const [openEditForm, setOpenEditForm] = useState(false);
+  const [selectedBook, setSelectedBook] = useState(null);
+  const [bookToDelete, setBookToDelete] = useState(null);
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+
+  const handleEditOpen = (book) => {
+    setSelectedBook(book);
+    setOpenEditForm(true);
+  };
+  const handleEditClose = () => setOpenEditForm(false);
+
+  const handleAddOpen = () => setOpenAddForm(true);
+  const handleAddClose = () => setOpenAddForm(false);
+
+  // edit form for book for update book
+  const handleSave = (updatedBook) => {
+    setBooks((prevBooks) =>
+      prevBooks.map((book) => (book.id === updatedBook.id ? updatedBook : book))
+    );
+    handleEditClose();
+  };
+
+  // Define addBook function
+  const addBook = (newBook) => {
+    setBooks((prevBooks) => [...prevBooks, newBook]);
+  };
+
+  // Open delete confirmation modal with the selected book
+  const handleOpenDeleteModal = (book) => {
+    setBookToDelete(book);
+    setOpenModal(true);
+  };
+
+  // Close delete modal
+  const handleClose = () => {
+    setOpenModal(false);
+    setBookToDelete(null);
+  };
+
+  // Delete book function
+  const handleDeleteBook = () => {
+    if (bookToDelete) {
+      setBooks((prevBooks) =>
+        prevBooks.filter((b) => b.id !== bookToDelete.id)
+      );
+      handleClose();
+    }
+  };
+
+  return (
+    <Box
+      sx={{
+        backgroundColor: "#E6E6FF",
+        padding: "15px",
+        top: 0,
+        width: "100%",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <AppBar position="static" sx={{ backgroundColor: "white" }}>
+        <Toolbar
+          sx={{
+            flexDirection: { xs: "column", sm: "row" },
+            alignItems: { xs: "center", sm: "center" },
+            justifyContent: { xs: "center", sm: "space-between" },
+            textAlign: "center",
+            width: "100%",
+          }}
+        >
+          <Box display="flex" alignItems="center">
+            <Typography
+              variant="h6"
+              sx={{
+                color: "black",
+                flexGrow: { sm: 1 },
+                textAlign: { xs: "center", sm: "left" },
+              }}
+            >
+              <b>MY BOOKS</b>
+            </Typography>
+            <Badge
+              // badgeContent={3}
+              badgeContent={books.length}
+              sx={{
+                ml: 3,
+                "& .MuiBadge-badge": {
+                  height: "1.8rem",
+                  width: "1.8rem",
+                  backgroundColor: "#E6E6FA",
+                  color: "#007BFF",
+                  fontSize: "0.8rem",
+                },
+              }}
+            />
+          </Box>
+
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#3A86FF",
+              textTransform: "none",
+              width: { xs: "auto", sm: "auto" },
+              mt: { xs: 1, sm: 0 },
+              mb: { xs: 2, sm: 0 },
+            }}
+            onClick={handleAddOpen}
+          >
+            <Typography variant="body1"> + Add Book </Typography>
+          </Button>
+        </Toolbar>
+      </AppBar>
+
+      <Grid container spacing={3} sx={{ mt: 3, justifyContent: "center" }}>
+        {books.map((book) => (
+          <Grid item xs={12} md={12} key={book.id}>
+            <Card
+              sx={{
+                display: "flex",
+                flexDirection: isMobile || isTablet ? "column" : "row",
+                alignItems: isMobile || isTablet ? "center" : "flex-start",
+                padding: "20px",
+                borderRadius: "10px",
+                backgroundColor: "white",
+              }}
+            >
+              {/* Image on top only for mobile  */}
+              {isMobile && (
+                <CardMedia
+                  component="img"
+                  sx={{
+                    height: "auto",
+                    maxHeight: { xs: "auto", sm: "500px", md: "600px" },
+                    borderRadius: "5px",
+                    objectFit: "contain",
+                    marginBottom: "15px",
+                    display: "block",
+                  }}
+                  image={book.image}
+                  alt={book.bookName}
+                />
+              )}
+
+              <CardContent
+                sx={{
+                  flex: 1,
+                  paddingRight: "25px",
+                  marginTop: isMobile || isTablet ? "0" : "65px",
+                  textAlign: { xs: "center", sm: "left" },
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: "bold",
+                    fontSize: { xs: "16px", sm: "26px", lg: "28px" },
+                    textAlign: isTablet ? "center" : "left",
+                    // textAlign: isMobile ? "center" : "left",
+                    mb: { sm: 2 },
+                  }}
+                >
+                  {book.bookTagline}
+                </Typography>
+
+                {/* Image after title for tablet */}
+                {isTablet && (
+                  <CardMedia
+                    component="img"
+                    sx={{
+                      maxWidth: { xs: "100%", sm: "100%", md: "80%" }, // Limits size on tablets
+                      maxHeight: { xs: "auto", sm: "500px", md: "450px" }, // Reduce height for tabets
+                      height: "auto",
+                      borderRadius: "5px",
+                      objectFit: "contain",
+                      marginBottom: "15px",
+                      display: "block",
+                    }}
+                    image={book.image}
+                    alt={book.bookName}
+                  />
+                )}
+
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "#3A86FF",
+                    mt: 1,
+                    fontSize: { xs: "16px", sm: "26px", lg: "28px" },
+                    fontWeight: "bold",
+                  }}
+                >
+                  {/* Price Action */}
+                  {book.bookName}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    mt: 1,
+                    color: "gray",
+                    fontSize: { xs: "14px", sm: "18px", lg: "20px" },
+                  }}
+                >
+                  <Typography
+                    component="span"
+                    sx={{
+                      color: "#3A86FF",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {/* Read More */}
+                    <BookDescription text={book.bookDescription} />
+                  </Typography>
+                </Typography>
+
+                {/* Buttons */}
+                <Box sx={{ mt: 2 }}>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "#3A86FF",
+                      textTransform: "none",
+                      borderRadius: "8px",
+                      width: { xs: "100%", sm: "auto" },
+                      mb: 2,
+                      mr: { xs: 0, sm: 2 },
+                    }}
+                    href="https://www.amazon.in/Price-Action-Trading-Technical-Simplified/dp/8195261612"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {/* Buy Now */}
+                    {book.buttonName}
+                  </Button>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "#3A86FF",
+                      borderRadius: "6px",
+                      textTransform: "none",
+                      fontWeight: "bold",
+                      width: { xs: "100%", sm: "auto" },
+                      mb: 2,
+                      mr: { xs: 0, sm: 2 },
+                    }}
+                    onClick={() => handleEditOpen(book)}
+                  >
+                    Edit
+                  </Button>
+
+                  <EditBookForm
+                    open={openEditForm}
+                    onClose={handleEditClose}
+                    bookData={selectedBook}
+                    handleUpdate={handleSave}
+                  />
+
+                  <Button
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "#9FA6B2",
+                      borderRadius: "8px",
+                      textTransform: "none",
+                      width: { xs: "100%", sm: "auto" },
+                      mb: 2,
+                    }}
+                    onClick={() => handleOpenDeleteModal(book)}
+                  >
+                    Delete
+                  </Button>
+                </Box>
+              </CardContent>
+
+              {/* Image on right for desktop */}
+              {!isMobile && !isTablet && (
+                <CardMedia
+                  component="img"
+                  sx={{
+                    width: "300px",
+                    height: "450px",
+                    borderRadius: "5px",
+                  }}
+                  image={book.image}
+                  alt={book.bookName}
+                />
+              )}
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+
+      <AddBookForm
+        open={openAddForm}
+        onClose={handleAddClose}
+        handleAdd={addBook}
+      />
+      <DeleteConfirmationModal
+        open={openModal}
+        handleClose={handleClose}
+        onConfirm={handleDeleteBook}
+      />
+    </Box>
+  );
+}
+
+export default MyBooks;

@@ -2,12 +2,12 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App.jsx";
 import Users from "./Admin/Users.jsx";
 import CoreWatchlist from "./Admin/CoreWatchlist.jsx";
 import Onboarding from "./Admin/Onboarding.jsx";
-import MyBooks from "./Admin/MyBooks.jsx";
+import MyBooks from "./Admin/Books/MyBooks.jsx";
 import SuccessStory from "./Admin/SuccessStory.jsx";
 import Support from "./Admin/Support.jsx";
 import Dashboard from "./Admin/Dashboard/Dashboard.jsx";
@@ -19,10 +19,10 @@ import AddSuccess from "./Admin/Dashboard/AddSuccess.jsx";
 const approute = createBrowserRouter([
   {
     path: "/",
-    element: <App />, 
+    element: <App />,
     children: [
       {
-        // index: true, 
+        // index: true,
         path: "/",
         element: <Dashboard />,
       },
@@ -51,9 +51,9 @@ const approute = createBrowserRouter([
         element: <Support />,
       },
       {
-        path:"references",
-        element:<References/>
-      }
+        path: "references",
+        element: <References />,
+      },
     ],
   },
 ]);
