@@ -217,7 +217,7 @@ function AddUser() {
         <Button type="submit" sx={{ mr: 2, width: "40%" }} variant="contained">
           Register
         </Button>
-        <Button type="submit"  onClick={() => formik.resetForm()}  variant="contained" sx={{ bgcolor: "#9e9e9e", width: "40%" }}>
+         <Button type="submit"  onClick={() => formik.resetForm()}  variant="contained" sx={{ bgcolor: "#9e9e9e", width: "40%" }}>
           Cancel
         </Button>
       </Box>

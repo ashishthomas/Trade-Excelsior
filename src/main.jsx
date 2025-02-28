@@ -1,10 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Users from "./Users/Users.jsx";
 import "./index.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from "./App.jsx";
-import Users from "./Admin/Users.jsx";
 import CoreWatchlist from "./Admin/CoreWatchlist.jsx";
 import Onboarding from "./Admin/Onboarding.jsx";
 import MyBooks from "./Admin/MyBooks.jsx";
