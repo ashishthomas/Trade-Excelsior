@@ -24,6 +24,8 @@ const Users = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  //To fetch user data from an external API and format it for use in the app.
+
   useEffect(() => {
     fetch(API_URL)
       .then((response) => response.json())
@@ -34,7 +36,7 @@ const Users = () => {
           email: user.email,
           phone: user.phone,
           address: `${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}`,
-          occupation: user.company.name, 
+          occupation: user.company.name,
           license: "Active",
           memberSince: "2020",
           yearsOfMembership: "3",
@@ -45,6 +47,7 @@ const Users = () => {
       });
   }, []);
 
+  //To control the visibility of dialogs and drawers (e.g., edit, delete, info, library)
   const handleOpenDeleteDialog = (id) => {
     setDeleteId(id);
     setOpenDeleteDialog(true);
@@ -55,11 +58,12 @@ const Users = () => {
     setDeleteId(null);
   };
 
+  //To delete a user from the users state when confirmed in the delete dialog.
   const handleConfirmDelete = () => {
     setUsers((prevUsers) =>
       prevUsers
-        .filter((user) => user.id !== deleteId) 
-        .map((user, index) => ({ ...user, id: index + 1 })) 
+        .filter((user) => user.id !== deleteId)
+        .map((user, index) => ({ ...user, id: index + 1 }))
     );
     handleCloseDeleteDialog();
   };
@@ -75,7 +79,7 @@ const Users = () => {
   };
 
   const handleOpenEditDrawer = (user) => {
-    setEditUser(user); 
+    setEditUser(user);
     setOpenEditDrawer(true);
   };
 
@@ -94,12 +98,24 @@ const Users = () => {
     setLibraryUser(null);
   };
 
+  //To update the user data in the users state when changes are made in the edit drawer.
   const handleUpdateUser = (updatedUser) => {
     const updatedUsers = users.map((user) =>
-      user.id === updatedUser.id ? updatedUser : user
+      user.id === updatedUser.id
+        ? {
+            ...user,
+            name: `${updatedUser.firstName} ${updatedUser.lastName}`,
+            email: updatedUser.email,
+            phone: updatedUser.phoneNumber,
+            address: updatedUser.address,
+            occupation: updatedUser.occupation,
+            subscriptionStart: updatedUser.subscriptionStart,
+            subscriptionEnd: updatedUser.subscriptionEnd,
+          }
+        : user
     );
-    setUsers(updatedUsers); 
-    handleCloseEditDrawer(); 
+    setUsers(updatedUsers);
+    handleCloseEditDrawer();
   };
 
   const handleUpdateLibraryDetails = () => {
@@ -110,6 +126,7 @@ const Users = () => {
     handleCloseLibraryDrawer();
   };
 
+  // To filter users based on the search query and highlight matching text.
   const highlightText = (text) => {
     if (!searchQuery) return text;
     const regex = new RegExp(`(${searchQuery})`, "gi");
@@ -150,14 +167,12 @@ const Users = () => {
           openEditDrawer={openEditDrawer}
           handleCloseEditDrawer={handleCloseEditDrawer}
           editUser={editUser}
-          setEditUser={setEditUser}
           handleUpdateUser={handleUpdateUser}
         />
         <LibraryDrawer
           openLibraryDrawer={openLibraryDrawer}
           handleCloseLibraryDrawer={handleCloseLibraryDrawer}
           libraryUser={libraryUser}
-          setLibraryUser={setLibraryUser}
           handleUpdateLibraryDetails={handleUpdateLibraryDetails}
         />
       </Box>

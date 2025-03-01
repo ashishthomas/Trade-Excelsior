@@ -31,7 +31,7 @@ const AppBarComponent = ({ searchQuery, setSearchQuery, userCount }) => {
             flexDirection: { xs: "column", sm: "row" },
             gap: { xs: 2, sm: 0 },
             alignItems: { xs: "flex-start", sm: "center" },
-            padding: { xs: 1, sm: 2 }, 
+            padding: { xs: 1, sm: 2 },
           }}
         >
           {/* User List Title with User Count */}
@@ -77,7 +77,7 @@ const AppBarComponent = ({ searchQuery, setSearchQuery, userCount }) => {
           >
             <TextField
               variant="outlined"
-              placeholder="Search..."
+              placeholder="Search By Name or Email or "
               size="small"
               sx={{
                 backgroundColor: "#F0F0F0",
@@ -125,32 +125,43 @@ const AppBarComponent = ({ searchQuery, setSearchQuery, userCount }) => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "start",
+          justifyContent: "flex-start", 
           gap: 2,
-          mt: 2,
+          mt: 3,
           flexDirection: { xs: "column", sm: "row" },
           alignItems: { xs: "stretch", sm: "center" },
-          px: { xs: 2, sm: 0 }, 
+          px: { xs: 2, sm: 0 },
+          mr: 2, 
         }}
       >
         <Button
           variant="contained"
-          color="success"
           sx={{
-            px: 4,
-            width: { xs: "100%", sm: "auto" },
+            px: 3, 
+            py: 1, 
+            backgroundColor: "lightgreen",
+            color: "darkgreen", 
+            "&:hover": {
+              backgroundColor: "lightgreen", 
+            },
             fontSize: { xs: "12px", sm: "14px", md: "16px" },
+            width: { xs: "100%", sm: "auto" },
           }}
         >
           Active License
         </Button>
         <Button
           variant="contained"
-          color="error"
           sx={{
-            px: 4,
-            width: { xs: "100%", sm: "auto" },
+            px: 3, // Reduce padding to make the button smaller
+            py: 1, // Reduce padding to make the button smaller
+            backgroundColor: "#ffcccb", // Light red background
+            color: "red", // Red font color
+            "&:hover": {
+              backgroundColor: "#ffcccb", // Keep the same color on hover
+            },
             fontSize: { xs: "12px", sm: "14px", md: "16px" },
+            width: { xs: "100%", sm: "auto" },
           }}
         >
           Inactive License
