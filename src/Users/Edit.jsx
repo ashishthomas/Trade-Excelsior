@@ -51,31 +51,19 @@ const EditDrawer = ({
 
   useEffect(() => {
     if (editUser) {
-      const transformedUser = transformUserData(editUser);
-      formik.setValues(transformedUser);
+      const [firstName, lastName] = editUser.name ? editUser.name.split(" ") : ["", ""];
+      formik.setValues({
+        id: editUser.id,
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        email: editUser.email || "", 
+        password: editUser.password || "", 
+        phoneNumber: editUser.phone || "",
+        address: editUser.address || "",
+        occupation: editUser.occupation || "",
+      });
     }
   }, [editUser]);
-
-  const transformUserData = (user) => {
-    if (!user) return {};
-
-    const [firstName, lastName] = user.name ? user.name.split(" ") : ["", ""];
-
-    const address = user.address || "";
-
-    const occupation = user.occupation || "";
-
-    return {
-      id: user.id,
-      firstName: firstName.trim(),
-      lastName: lastName.trim(),
-      email: user.email || "",
-      password: user.password || "", 
-      phoneNumber: user.phone || "",
-      address: address.trim(),
-      occupation: occupation.trim(),
-    };
-  };
 
   return (
     <Drawer
@@ -86,7 +74,7 @@ const EditDrawer = ({
         zIndex: 1300,
         "& .MuiDrawer-paper": {
           width: "400px",
-          zIndex: 1301,   
+          zIndex: 1301,
         },
       }}
     >
@@ -118,12 +106,12 @@ const EditDrawer = ({
         {[
           { label: "First Name", field: "firstName" },
           { label: "Last Name", field: "lastName" },
-          { label: "Email", field: "email" },
-          { label: "Password", field: "password", type: "password" }, 
+          { label: "Email", field: "email", disabled: true }, // Email field is static
+          { label: "Password", field: "password", type: "password" }, // New password field
           { label: "Phone Number", field: "phoneNumber" },
           { label: "Address", field: "address" },
           { label: "Occupation", field: "occupation" },
-        ].map(({ label, field, type = "text" }) => (
+        ].map(({ label, field, type = "text", disabled = false }) => (
           <TextField
             key={field}
             label={label}
@@ -135,9 +123,10 @@ const EditDrawer = ({
             error={formik.touched[field] && Boolean(formik.errors[field])}
             helperText={formik.touched[field] && formik.errors[field]}
             fullWidth
-            required
+            required={!disabled} // Email field is not required since it's static
+            disabled={disabled} // Disable the email field
             InputLabelProps={{
-              required: true,
+              required: !disabled,
               sx: {
                 "& .MuiFormLabel-asterisk": {
                   color: "red",

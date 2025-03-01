@@ -35,7 +35,7 @@ const UserTable = ({
         padding: isMobile ? 1 : 2,
         borderRadius: 2,
         marginTop: "30px",
-        overflowX: "auto", 
+        overflowX: "auto",
       }}
     >
       {isMobile ? (
