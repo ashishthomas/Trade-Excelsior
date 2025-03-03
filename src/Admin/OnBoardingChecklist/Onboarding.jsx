@@ -77,7 +77,7 @@ function Onboarding() {
   });
 
   return (
-    <Box sx={{ backgroundColor: "#C4D9FF", padding: "15px", height: "100vh" }}>
+    <Box sx={{ backgroundColor: "#C4D9FF", padding: "15px", minHeight: "100vh" }}>
 
 <AppBar position="static" sx={{ backgroundColor: "white", mb: 2, padding: { xs: 1, sm: 2 } }}>
   <Toolbar sx={{ 
@@ -125,7 +125,7 @@ function Onboarding() {
             flexWrap: { xs: "wrap", md: "nowrap" },
           }}
         >
-          <Typography sx={{ flex: 1 }} fontSize={{xs:"15px",sm:"20px"}}>{item.id}. {item.title}</Typography>
+          <Typography sx={{ flex: 1 }} fontSize={{xs:"15px",sm:"18px",md:"19px",lg:"20px"}}>{item.id}. {item.title}</Typography>
           <Box sx={{ 
                     display: "flex",  
                     alignItems: "center", 
@@ -134,11 +134,10 @@ function Onboarding() {
                     marginTop: { xs: "10px", sm: "0px" } 
                   }} >
             <Button variant="contained" href={item.link} target="_blank"  sx={{
-          // minWidth: { xs: "80px", sm: "120px", md: "140px" },
-          height: { xs: "36px", sm: "40px" },
-          fontSize: { xs: "0.7rem", sm: "1rem"} ,
+          minWidth: { xs: "80px", sm: "120px", md: "180px" },
+          fontSize: { xs: "0.7rem", sm: "0.8rem",md:"1rem"} ,
           padding: "7px 10px",
-          height: {sm:"50px",lg:"50px"},
+          height: {sm:"40px",lg:"40px"},
           width:{xs:"80px",md:"100px",lg:"150px"}
           }}>{item.buttonName}</Button>
             <IconButton onClick={() => handleEdit(item)} sx={{fontSize:{xs:"0.8rem",sm:"1rem"},width:{xs:"2em"}}} ><Edit color="primary" /></IconButton>
