@@ -1,47 +1,43 @@
-import { Box, Button, Modal, Typography } from "@mui/material";
+import {
+  Box,
+  Drawer,
+  Typography,
+  useTheme,
+  useMediaQuery,
+  IconButton,
+} from "@mui/material";
 import { Close } from "@mui/icons-material";
 
-const modalStyle = {
-  position: "absolute",
-  top: 20,
-  right: 20,
-  width: 350,
-  maxHeight: "100vh",
-  overflowY: "auto",
-  bgcolor: "white",
-  boxShadow: 24,
-  p: 3,
-  borderRadius: 2,
-};
+const CustomModal = ({ open, handleClose, title, children }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
-const CustomModal = ({ open, handleClose, title, children }) => (
-  <Modal open={open} onClose={handleClose}>
-    <Box sx={modalStyle}>
+  return (
+    <Drawer anchor="right" open={open} onClose={handleClose} sx={{ zIndex: 1300 }}>
       <Box
         sx={{
-          bgcolor: "#e0e0e0",
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          p: 1,
+          width: isMobile ? "80vw" : isTablet ? "60vw" : "400px",
+          p: isMobile ? 1 : 0,
         }}
       >
-        <Typography variant="h6">{title}</Typography>
-        <Button
-          onClick={handleClose}
-          sx={{
-            width: "30px",
-            "&:hover": { bgcolor: "red", color: "white" },
-          }}
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          sx={{ bgcolor: "#E6E6FA", mb: 5, p: 1 }}
         >
-          <Close fontSize="small" />
-        </Button>
+          <Typography variant="h6">
+            <b>{title}</b>
+          </Typography>
+          <IconButton onClick={handleClose} aria-label="Close">
+            <Close />
+          </IconButton>
+        </Box>
+        <Box p={2}>{children}</Box>
       </Box>
-      <br />
-      <br />
-      {children}
-    </Box>
-  </Modal>
-);
+    </Drawer>
+  );
+};
 
 export default CustomModal;
