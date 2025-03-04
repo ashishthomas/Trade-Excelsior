@@ -8,12 +8,10 @@ import {
   Button,
   Box,
   Avatar,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import { Search, Add } from "@mui/icons-material";
-import CustomModal from "../Admin/CommonComponents/CustomModal";
-import AddUser from "../Admin/Dashboard/forms/AddUser";
+import CustomModal from "../CommonComponents/CustomModal";
+import AddUser from "../Dashboard/forms/AddUser";
 
 const AppBarComponent = ({ searchQuery, setSearchQuery, userCount }) => {
   const [openUser, setOpenUser] = useState(false);
