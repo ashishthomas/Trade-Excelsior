@@ -23,7 +23,6 @@ import {
   HelpRounded,
   CopyrightSharp,
 } from "@mui/icons-material";
-
 const Sidebar = ({ isCollapsed }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -104,7 +103,6 @@ const Sidebar = ({ isCollapsed }) => {
                 >
                   {icon}
                 </ListItemIcon>
-
                 {/* Properly hide the text and show it only on hover */}
                 <ListItemText
                   primary={text}
@@ -127,7 +125,6 @@ const Sidebar = ({ isCollapsed }) => {
           </ListItem>
         ))}
       </List>
-
       {!isCollapsed && !isMobile && (
         <Typography
           variant="body2"
