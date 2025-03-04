@@ -17,12 +17,12 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import AddUser from "./AddUser";
-import AddCheckList from "./AddCheckList";
-import AddBook from "./AddBook";
-import AddCoreWatchList from "./AddCoreWatchList";
-import AddReferences from "./AddReferences";
-import AddSuccess from "./AddSuccess";
+import AddUser from "./forms/AddUser";
+import AddCheckList from "./forms/AddCheckList";
+import AddBook from "./forms/AddBook";
+import AddCoreWatchList from "./forms/AddCoreWatchList";
+import AddReferences from "./forms/AddReferences";
+import AddSuccess from "./forms/AddSuccess";
 import CustomModal from "../CommonComponents/CustomModal";
 
 const StyledCard = styled(Card)({
@@ -69,7 +69,10 @@ const Dashboard = () => {
             <StyledCard>
               <Grading sx={{ fontSize: 60 }} color="primary" />
               <Typography variant="h6">Add CheckList</Typography>
-              <Button variant="contained" onClick={() => setOpenCheckList(true)}>
+              <Button
+                variant="contained"
+                onClick={() => setOpenCheckList(true)}
+              >
                 Add CheckList
               </Button>
             </StyledCard>
@@ -112,7 +115,10 @@ const Dashboard = () => {
             <StyledCard>
               <InsertDriveFileSharp sx={{ fontSize: 60 }} color="primary" />
               <Typography variant="h6">Add References</Typography>
-              <Button variant="contained" onClick={() => setOpenReference(true)}>
+              <Button
+                variant="contained"
+                onClick={() => setOpenReference(true)}
+              >
                 Add References
               </Button>
             </StyledCard>
@@ -120,27 +126,51 @@ const Dashboard = () => {
         </Grid>
       </Box>
 
-      <CustomModal open={openUser} handleClose={() => setOpenUser(false)} title="Add User">
+      <CustomModal
+        open={openUser}
+        handleClose={() => setOpenUser(false)}
+        title="Add User"
+      >
         <AddUser />
       </CustomModal>
 
-      <CustomModal open={openCheckList} handleClose={() => setOpenCheckList(false)} title="Add CheckList">
+      <CustomModal
+        open={openCheckList}
+        handleClose={() => setOpenCheckList(false)}
+        title="Add CheckList"
+      >
         <AddCheckList />
       </CustomModal>
 
-      <CustomModal open={openBook} handleClose={() => setOpenBook(false)} title="Add Book">
+      <CustomModal
+        open={openBook}
+        handleClose={() => setOpenBook(false)}
+        title="Add Book"
+      >
         <AddBook />
       </CustomModal>
 
-      <CustomModal open={openCoreWatchList} handleClose={() => setOpenCoreWatchList(false)} title="Add Core WatchList">
+      <CustomModal
+        open={openCoreWatchList}
+        handleClose={() => setOpenCoreWatchList(false)}
+        title="Add Core WatchList"
+      >
         <AddCoreWatchList />
       </CustomModal>
 
-      <CustomModal open={openSuccess} handleClose={() => setOpenSuccess(false)} title="Add Success Stories">
+      <CustomModal
+        open={openSuccess}
+        handleClose={() => setOpenSuccess(false)}
+        title="Add Success Stories"
+      >
         <AddSuccess />
       </CustomModal>
 
-      <CustomModal open={openReference} handleClose={() => setOpenReference(false)} title="Add References">
+      <CustomModal
+        open={openReference}
+        handleClose={() => setOpenReference(false)}
+        title="Add References"
+      >
         <AddReferences />
       </CustomModal>
     </Box>

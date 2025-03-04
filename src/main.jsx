@@ -5,7 +5,7 @@ import Users from "./Admin/Users/Users.jsx";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App.jsx";
-import CoreWatchlist from "./Admin/CoreWatchlist.jsx";
+import CoreWatchlist from "./Admin/CoreWatchlist/CoreWatchlist.jsx";
 import MyBooks from "./Admin/Books/MyBooks.jsx";
 import Onboarding from "./Admin/OnBoardingChecklist/Onboarding.jsx";
 import SuccessStory from "./SuccessStories/SuccessStory.jsx";

@@ -8,12 +8,10 @@ import {
   Button,
   Box,
   Avatar,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import { Search, Add } from "@mui/icons-material";
 import CustomModal from "../CommonComponents/CustomModal";
-import AddUser from "../Dashboard/AddUser";
+import AddUser from "../Dashboard/forms/AddUser";
 
 const AppBarComponent = ({ searchQuery, setSearchQuery, userCount }) => {
   const [openUser, setOpenUser] = useState(false);
@@ -125,24 +123,24 @@ const AppBarComponent = ({ searchQuery, setSearchQuery, userCount }) => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "flex-start", 
+          justifyContent: "flex-start",
           gap: 2,
           mt: 3,
           flexDirection: { xs: "column", sm: "row" },
           alignItems: { xs: "stretch", sm: "center" },
           px: { xs: 2, sm: 0 },
-          mr: 2, 
+          mr: 2,
         }}
       >
         <Button
           variant="contained"
           sx={{
-            px: 3, 
-            py: 1, 
+            px: 3,
+            py: 1,
             backgroundColor: "lightgreen",
-            color: "darkgreen", 
+            color: "darkgreen",
             "&:hover": {
-              backgroundColor: "lightgreen", 
+              backgroundColor: "lightgreen",
             },
             fontSize: { xs: "12px", sm: "14px", md: "16px" },
             width: { xs: "100%", sm: "auto" },
