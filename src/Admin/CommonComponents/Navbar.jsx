@@ -9,6 +9,8 @@ import {
   styled,
   Toolbar,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -23,7 +25,7 @@ const StyledToolbar = styled(Toolbar)({
 const Icons = styled(Box)({
   display: "flex",
   alignItems: "center",
-  gap: "20px",
+  gap: "1.5%",
 });
 
 const StyledAppbar = styled(AppBar)({
@@ -36,9 +38,8 @@ const StyledAppbar = styled(AppBar)({
 const StyledBox = styled(Box)({
   display: "flex",
   alignItems: "center",
-  columnGap: 6,
   backgroundColor: "#e0e0e0",
-  padding: "8px",
+  padding: "3.5%",
   borderRadius: "30px",
   cursor: "pointer",
 });
@@ -60,12 +61,20 @@ const UserMenu = ({ anchorEl, setAnchorEl }) => (
 
 const Navbar = ({ toggleSidebar }) => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <StyledAppbar elevation={0}>
       <StyledToolbar>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <MenuIcon onClick={toggleSidebar} sx={{ mr: 4, cursor: "pointer" }} />
+          {/* Disable Sidebar Toggle in Mobile View */}
+          {!isMobile && (
+            <MenuIcon
+              onClick={toggleSidebar}
+              sx={{ mr: 4, cursor: "pointer" }}
+            />
+          )}
           <Typography variant="h6">Excelsior</Typography>
         </Box>
 
