@@ -101,12 +101,12 @@ const UserTable = ({
           <Table size="medium" sx={{ minWidth: 650 }}>
             <TableHead>
               <TableRow sx={{ backgroundColor: "blue" }}>
-                <TableCell sx={{ color: "white", fontWeight: "bold" }}>Sl. No</TableCell>
+                <TableCell sx={{ color: "white", fontWeight: "bold" }}>#</TableCell>
                 <TableCell sx={{ color: "white", fontWeight: "bold" }}>Name</TableCell>
                 <TableCell sx={{ color: "white", fontWeight: "bold" }}>Email</TableCell>
                 <TableCell sx={{ color: "white", fontWeight: "bold" }}>Phone</TableCell>
-                <TableCell sx={{ color: "white", fontWeight: "bold" }}>Subscription Start</TableCell>
-                <TableCell sx={{ color: "white", fontWeight: "bold" }}>Subscription End</TableCell>
+                <TableCell sx={{ color: "white", fontWeight: "bold" }}>Subscription Start Date</TableCell>
+                <TableCell sx={{ color: "white", fontWeight: "bold" }}>Subscription End Date</TableCell>
                 <TableCell sx={{ color: "white", fontWeight: "bold", textAlign: "center" }}>Actions</TableCell>
               </TableRow>
             </TableHead>
