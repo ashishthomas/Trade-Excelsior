@@ -13,9 +13,9 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import DeletePopup from "./Form/DeletePopup";
-import SuccessStoryForm from "./Form/SuccessStoryForm"; // Import the form component
+import SuccessStoryForm from "./Form/EditForm"; // Import the form component
 
-function SuccessStories() {
+function SuccessStory() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
@@ -159,14 +159,14 @@ function SuccessStories() {
               fontSize: isExtraSmall
                 ? "0.7rem"
                 : isMobile || isTablet
-                ? "0.8rem"
-                : "1rem",
+                  ? "0.8rem"
+                  : "1rem",
               whiteSpace: "nowrap",
               padding: isExtraSmall
                 ? "4px 8px"
                 : isMobile || isTablet
-                ? "6px 12px"
-                : "8px 16px",
+                  ? "6px 12px"
+                  : "8px 16px",
               mt: { xs: 1, sm: 0 },
             }}
           >
@@ -234,8 +234,8 @@ function SuccessStories() {
                       fontSize: isExtraSmall
                         ? "0.9rem"
                         : isMobile || isTablet
-                        ? "1rem"
-                        : "28px",
+                          ? "1rem"
+                          : "28px",
                     }}
                   >
                     {story.tagline}
@@ -248,8 +248,8 @@ function SuccessStories() {
                       fontSize: isExtraSmall
                         ? "0.9rem"
                         : isMobile || isTablet
-                        ? "1rem"
-                        : "28px",
+                          ? "1rem"
+                          : "28px",
                     }}
                   >
                     {story.name}
@@ -263,8 +263,8 @@ function SuccessStories() {
                       fontSize: isExtraSmall
                         ? "10px"
                         : isMobile || isTablet
-                        ? "12px"
-                        : "20px",
+                          ? "12px"
+                          : "20px",
                     }}
                   >
                     {expandedId === story.id
@@ -279,8 +279,8 @@ function SuccessStories() {
                         fontSize: isExtraSmall
                           ? "0.7rem"
                           : isMobile || isTablet
-                          ? "0.8rem"
-                          : "1rem",
+                            ? "0.8rem"
+                            : "1rem",
                         color: "#3A86FF",
                         fontWeight: "bold",
                       }}
@@ -309,24 +309,24 @@ function SuccessStories() {
                         width: isExtraSmall
                           ? "auto"
                           : isMobile || isTablet
-                          ? "auto"
-                          : "100px",
+                            ? "auto"
+                            : "100px",
                         minWidth: isExtraSmall
                           ? "70px"
                           : isMobile || isTablet
-                          ? "80px"
-                          : "100px",
+                            ? "80px"
+                            : "100px",
                         fontSize: isExtraSmall
                           ? "0.7rem"
                           : isMobile || isTablet
-                          ? "0.8rem"
-                          : "1rem",
+                            ? "0.8rem"
+                            : "1rem",
                         whiteSpace: "nowrap",
                         padding: isExtraSmall
                           ? "4px 8px"
                           : isMobile || isTablet
-                          ? "6px 12px"
-                          : "8px 16px",
+                            ? "6px 12px"
+                            : "8px 16px",
                       }}
                       onClick={() => window.open(story.video, "_blank")}
                     >
@@ -340,24 +340,24 @@ function SuccessStories() {
                         width: isExtraSmall
                           ? "auto"
                           : isMobile || isTablet
-                          ? "auto"
-                          : "100px",
+                            ? "auto"
+                            : "100px",
                         minWidth: isExtraSmall
                           ? "70px"
                           : isMobile || isTablet
-                          ? "80px"
-                          : "100px",
+                            ? "80px"
+                            : "100px",
                         fontSize: isExtraSmall
                           ? "0.7rem"
                           : isMobile || isTablet
-                          ? "0.8rem"
-                          : "1rem",
+                            ? "0.8rem"
+                            : "1rem",
                         whiteSpace: "nowrap",
                         padding: isExtraSmall
                           ? "4px 8px"
                           : isMobile || isTablet
-                          ? "6px 12px"
-                          : "8px 16px",
+                            ? "6px 12px"
+                            : "8px 16px",
                         backgroundColor: "primary.main", // Primary background color
                         color: "white", // White font color
                         "&:hover": {
@@ -375,24 +375,24 @@ function SuccessStories() {
                         width: isExtraSmall
                           ? "auto"
                           : isMobile || isTablet
-                          ? "auto"
-                          : "100px",
+                            ? "auto"
+                            : "100px",
                         minWidth: isExtraSmall
                           ? "70px"
                           : isMobile || isTablet
-                          ? "80px"
-                          : "100px",
+                            ? "80px"
+                            : "100px",
                         fontSize: isExtraSmall
                           ? "0.7rem"
                           : isMobile || isTablet
-                          ? "0.8rem"
-                          : "1rem",
+                            ? "0.8rem"
+                            : "1rem",
                         whiteSpace: "nowrap",
                         padding: isExtraSmall
                           ? "4px 8px"
                           : isMobile || isTablet
-                          ? "6px 12px"
-                          : "8px 16px",
+                            ? "6px 12px"
+                            : "8px 16px",
                         backgroundColor: "grey", // Grey background color
                         color: "white", // White font color
                         "&:hover": {
@@ -458,4 +458,4 @@ function SuccessStories() {
   );
 }
 
-export default SuccessStories;
+export default SuccessStory;

@@ -18,7 +18,7 @@ const CustomModal = ({ open, handleClose, title, children }) => {
       <Box
         sx={{
           width: isMobile ? "80vw" : isTablet ? "60vw" : "400px",
-          p: isMobile ? 1 : 0,
+          p: isMobile ? 0 : 0,
         }}
       >
         <Box

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Paper, Typography, IconButton, Button, TextField, Box, Drawer, Dialog, DialogActions, DialogContent, DialogTitle, AppBar, Toolbar, Avatar, useTheme, useMediaQuery, Divider } from "@mui/material";
-import { Edit, Delete, Close } from "@mui/icons-material";
+import { Paper, Typography, IconButton, Button,  Box,  AppBar, Toolbar,  useTheme, useMediaQuery, Badge } from "@mui/material";
+import { Edit, Delete } from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import EditChecklistDrawer from "./EditChecklistDrawer";
@@ -78,14 +78,14 @@ function Onboarding() {
 
   return (
     <Box
-      sx={{ backgroundColor: "#C4D9FF", padding: "15px", minHeight: "100vh" }}
+      sx={{ backgroundColor: "#E6E6FF", padding: "15px", minHeight: "84vh" }}
     >
       <AppBar
         position="static"
         sx={{
           backgroundColor: "white",
           mb: 2,
-          padding: { xs: 1, sm: 2 },
+          padding: { xs: 0.5, sm: 0.5 },
         }}
       >
         <Toolbar
@@ -106,24 +106,24 @@ function Onboarding() {
           >
             <Typography
               variant="h6"
-              fontSize={{ xs: "14px", sm: "18px" }}
               width={{ xs: "auto" }}
               sx={{ color: "black", display: "flex", alignItems: "center" }}
             >
               <b>ON BOARDING CHECKLIST</b>
             </Typography>
-            <Avatar
+            <Badge
+              badgeContent={items.length}
               sx={{
-                bgcolor: "grey.300",
-                color: "blue",
-                fontWeight: "bold",
-                fontSize: { xs: "0.9rem", lg: "1rem" },
-                width: { xs: "25px", lg: "30px" },
-                height: { xs: "25px", lg: "30px" },
+                ml: 3,
+                "& .MuiBadge-badge": {
+                  height: "1.8rem",
+                  width: "1.8rem",
+                  backgroundColor: "#E6E6FA",
+                  color: "#1976d2",
+                  fontSize: "0.8rem",
+                },
               }}
-            >
-              {items.length}
-            </Avatar>
+            />
           </Box>
 
           <Button
@@ -219,4 +219,3 @@ function Onboarding() {
 }
 
 export default Onboarding;
-    

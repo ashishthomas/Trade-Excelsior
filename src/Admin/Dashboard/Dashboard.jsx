@@ -44,11 +44,14 @@ const Dashboard = () => {
   const [openSuccess, setOpenSuccess] = useState(false);
 
   return (
-    <Box sx={{ backgroundColor: "#C4D9FF", minHeight: "84vh", padding: 2 }}>
-      <AppBar position="static" sx={{ backgroundColor: "white" }}>
+    <Box sx={{ backgroundColor: "#E6E6FF", minHeight: "84vh", padding: 2 }}>
+      <AppBar
+        position="static"
+        sx={{ backgroundColor: "white", padding: { xs: 0.5, sm: 0.5 } }}
+      >
         <Toolbar>
           <Typography variant="h6" sx={{ color: "black", flexGrow: 1 }}>
-            Dashboard
+            <b>DASHBOARD</b>
           </Typography>
         </Toolbar>
       </AppBar>
