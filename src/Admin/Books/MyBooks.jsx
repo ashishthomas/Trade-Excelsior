@@ -135,7 +135,10 @@ function MyBooks() {
         flexDirection: "column",
       }}
     >
-      <AppBar position="static" sx={{ backgroundColor: "white" }}>
+      <AppBar
+        position="static"
+        sx={{ backgroundColor: "white", padding: { xs: 0.5, sm: 0.5 } }}
+      >
         <Toolbar
           sx={{
             flexDirection: { xs: "column", sm: "row" },
@@ -165,7 +168,7 @@ function MyBooks() {
                   height: "1.8rem",
                   width: "1.8rem",
                   backgroundColor: "#E6E6FA",
-                  color: "#007BFF",
+                  color: "#1976d2",
                   fontSize: "0.8rem",
                 },
               }}
@@ -173,18 +176,16 @@ function MyBooks() {
           </Box>
 
           <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#3A86FF",
-              textTransform: "none",
-              width: { xs: "auto", sm: "auto" },
-              mt: { xs: 1, sm: 0 },
-              mb: { xs: 2, sm: 0 },
-            }}
-            onClick={handleAddOpen}
-          >
-            <Typography variant="body1"> + Add Book </Typography>
-          </Button>
+                      variant="contained"
+                      onClick={handleAddOpen}
+                      sx={{
+                        fontSize: { xs: "0.7rem", sm: "1rem" },
+                        mt: { xs: 1, sm: 0 },
+                        width: { xs: "100%", sm: "auto" }, // Full width on mobile
+                      }}
+                    >
+                      + Add Book
+                    </Button>
         </Toolbar>
       </AppBar>
 

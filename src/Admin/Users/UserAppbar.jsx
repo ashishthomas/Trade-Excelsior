@@ -7,7 +7,7 @@ import {
   InputAdornment,
   Button,
   Box,
-  Avatar,
+  Badge,
 } from "@mui/material";
 import { Search, Add } from "@mui/icons-material";
 import CustomModal from "../CommonComponents/CustomModal";
@@ -19,8 +19,13 @@ const AppBarComponent = ({ searchQuery, setSearchQuery, userCount }) => {
   return (
     <>
       <AppBar
-        position="sticky"
-        sx={{ backgroundColor: "white", mb: 2, boxShadow: "none" }}
+        position="static"
+        sx={{
+          backgroundColor: "white",
+          mb: 2,
+          boxShadow: "none",
+          padding: "4px 8px",
+        }}
       >
         <Toolbar
           sx={{
@@ -29,7 +34,6 @@ const AppBarComponent = ({ searchQuery, setSearchQuery, userCount }) => {
             flexDirection: { xs: "column", sm: "row" },
             gap: { xs: 2, sm: 0 },
             alignItems: { xs: "flex-start", sm: "center" },
-            padding: { xs: 1, sm: 2 },
           }}
         >
           {/* User List Title with User Count */}
@@ -44,23 +48,24 @@ const AppBarComponent = ({ searchQuery, setSearchQuery, userCount }) => {
               variant="h6"
               sx={{
                 color: "black",
-                fontSize: { xs: "16px", sm: "18px", md: "20px", lg: "22px" },
                 fontWeight: "bold",
               }}
             >
-              User List
+              USER LIST
             </Typography>
-            <Avatar
+            <Badge
+              badgeContent={userCount}
               sx={{
-                fontSize: "15px",
-                bgcolor: "#e0e0e0",
-                color: "#4fc3f7",
-                width: 32,
-                height: 32,
+                ml: 2,
+                "& .MuiBadge-badge": {
+                  height: "1.8rem",
+                  width: "1.8rem",
+                  backgroundColor: "#E6E6FA",
+                  color: "#1976d2",
+                  fontSize: "0.8rem",
+                },
               }}
-            >
-              {userCount}
-            </Avatar>
+            />
           </Box>
 
           {/* Search Bar & Add User Button */}
@@ -98,15 +103,13 @@ const AppBarComponent = ({ searchQuery, setSearchQuery, userCount }) => {
               color="primary"
               startIcon={<Add />}
               sx={{
-                fontSize: { xs: "12px", sm: "14px", md: "16px" },
-                textTransform: "none",
-                width: { xs: "100%", sm: "auto" },
-                px: { xs: 2, sm: 3, md: 4 },
-                py: { xs: 1, sm: 1.5 },
+                fontSize: { xs: "0.7rem", sm: "1rem" },
+                mt: { xs: 1, sm: 0 },
+                width: { xs: "100%", sm: "auto" }, // Full width on mobile
               }}
               onClick={() => setOpenUser(true)}
             >
-              Add User
+              ADD USER
             </Button>
           </Box>
           <CustomModal
@@ -142,7 +145,6 @@ const AppBarComponent = ({ searchQuery, setSearchQuery, userCount }) => {
             "&:hover": {
               backgroundColor: "lightgreen",
             },
-            fontSize: { xs: "12px", sm: "14px", md: "16px" },
             width: { xs: "100%", sm: "auto" },
           }}
         >
@@ -158,7 +160,6 @@ const AppBarComponent = ({ searchQuery, setSearchQuery, userCount }) => {
             "&:hover": {
               backgroundColor: "#ffcccb", // Keep the same color on hover
             },
-            fontSize: { xs: "12px", sm: "14px", md: "16px" },
             width: { xs: "100%", sm: "auto" },
           }}
         >

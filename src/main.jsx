@@ -1,9 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Users from "./Admin/Users/Users.jsx";
 import "./index.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App.jsx";
 import CoreWatchlist from "./Admin/CoreWatchlist/CoreWatchlist.jsx";
 import MyBooks from "./Admin/Books/MyBooks.jsx";
