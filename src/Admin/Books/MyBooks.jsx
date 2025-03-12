@@ -148,19 +148,26 @@ function MyBooks() {
             width: "100%",
           }}
         >
-          <Box display="flex" alignItems="center">
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
             <Typography
               variant="h6"
+              fontSize={{ xs: "14px", sm: "18px" }}
+              width={{ xs: "auto" }}
               sx={{
                 color: "black",
                 flexGrow: { sm: 1 },
                 textAlign: { xs: "center", sm: "left" },
               }}
             >
-              <b>MY BOOKS</b>
+              <b> MY BOOKS </b>
             </Typography>
             <Badge
-              // badgeContent={3}
               badgeContent={books.length}
               sx={{
                 ml: 3,
@@ -170,6 +177,7 @@ function MyBooks() {
                   backgroundColor: "#E6E6FA",
                   color: "#1976d2",
                   fontSize: "0.8rem",
+                  fontWeight: "bold",
                 },
               }}
             />
@@ -202,23 +210,6 @@ function MyBooks() {
                 backgroundColor: "white",
               }}
             >
-              {/* Image on top only for mobile  */}
-              {isMobile && (
-                <CardMedia
-                  component="img"
-                  sx={{
-                    height: "auto",
-                    maxHeight: { xs: "auto", sm: "500px", md: "600px" },
-                    borderRadius: "5px",
-                    objectFit: "contain",
-                    marginBottom: "15px",
-                    display: "block",
-                  }}
-                  image={book.image}
-                  alt={book.bookName}
-                />
-              )}
-
               <CardContent
                 sx={{
                   flex: 1,
@@ -232,21 +223,37 @@ function MyBooks() {
                   sx={{
                     fontWeight: "bold",
                     fontSize: { xs: "16px", sm: "26px", lg: "28px" },
-                    textAlign: isTablet ? "center" : "left",
-                    // textAlign: isMobile ? "center" : "left",
-                    mb: { sm: 2 },
+                    textAlign: isMobile || isTablet ? "center" : "left",
+                    mb: { xs: 2, sm: 2 },
                   }}
                 >
                   {book.bookTagline}
                 </Typography>
+
+                {/* Image after title for mobile  */}
+                {isMobile && (
+                  <CardMedia
+                    component="img"
+                    sx={{
+                      height: "auto",
+                      maxHeight: { xs: "auto", sm: "500px", md: "600px" },
+                      borderRadius: "5px",
+                      objectFit: "contain",
+                      marginBottom: "15px",
+                      display: "block",
+                    }}
+                    image={book.image}
+                    alt={book.bookName}
+                  />
+                )}
 
                 {/* Image after title for tablet */}
                 {isTablet && (
                   <CardMedia
                     component="img"
                     sx={{
-                      maxWidth: { xs: "100%", sm: "100%", md: "80%" }, // Limits size on tablets
-                      maxHeight: { xs: "auto", sm: "500px", md: "450px" }, // Reduce height for tabets
+                      maxWidth: { xs: "100%", sm: "100%", md: "80%" },
+                      maxHeight: { xs: "auto", sm: "500px", md: "450px" },
                       height: "auto",
                       borderRadius: "5px",
                       objectFit: "contain",
@@ -285,7 +292,6 @@ function MyBooks() {
                       cursor: "pointer",
                     }}
                   >
-                    {/* Read More */}
                     <BookDescription text={book.bookDescription} />
                   </Typography>
                 </Typography>
@@ -306,7 +312,6 @@ function MyBooks() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {/* Buy Now */}
                     {book.buttonName}
                   </Button>
                   <Button
