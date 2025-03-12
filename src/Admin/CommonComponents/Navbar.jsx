@@ -95,6 +95,8 @@ const Navbar = ({ toggleSidebar }) => {
           <Badge
             badgeContent={2}
             color="error"
+            gap="10px"
+            
             sx={{
               "& .MuiBadge-badge": {
                 height: "1.2rem",
@@ -105,13 +107,14 @@ const Navbar = ({ toggleSidebar }) => {
                 fontSize: "0.75rem",
                 fontWeight: "bold",
                 lineHeight: "1.2rem",
+                mr:2
               },
             }}
           >
-            <NotificationsIcon color="primary" sx={{ fontSize: "1.8rem" }} />
+            <NotificationsIcon  color="primary" sx={{ fontSize: "1.8rem",mr:2 }} />
           </Badge>
 
-          <StyledBox onClick={(e) => setAnchorEl(e.currentTarget)}>
+          <StyledBox  onClick={(e) => setAnchorEl(e.currentTarget)}>
             <Avatar sx={{ fontSize: "15px" }}>M</Avatar>
             <Badge color="error">
               <SettingsIcon color="primary" />
