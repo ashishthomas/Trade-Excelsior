@@ -12,6 +12,8 @@ import SuccessStory from "./Admin/SuccessStories/SuccessStory.jsx";
 import Support from "./Admin/Support.jsx";
 import Dashboard from "./Admin/Dashboard/Dashboard.jsx";
 import References from "./Admin/References.jsx";
+import Profilemain from "./Admin/Profile/Profilemain.jsx"
+import ChangePassword from "./Admin/Profile/ChangePassword.jsx"
 
 const approute = createBrowserRouter([
   {
@@ -50,9 +52,21 @@ const approute = createBrowserRouter([
       {
         path: "references",
         element: <References />,
+
       },
+
+
     ],
+
   },
+  {
+    path: "profilemain",
+    element: <Profilemain />
+  },
+  {
+    path: "changepassword",
+    element: <ChangePassword></ChangePassword>
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
