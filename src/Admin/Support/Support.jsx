@@ -10,6 +10,7 @@ import {
   CardContent,
   Avatar,
 } from "@mui/material";
+import { useOutletContext } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import SupportDetails from "./ReusableSupportCard/SupportDetails";
 
@@ -65,6 +66,17 @@ function Support() {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
+  // Access setUnresolvedCount from the Outlet context
+  const { setUnresolvedCount } = useOutletContext();
+
+  // Calculate unresolved count based on the entire dataset
+  useMemo(() => {
+    const unresolved = data.filter(
+      (ticket) => ticket.status === "unresolved"
+    ).length;
+    setUnresolvedCount(unresolved);
+  }, [data, setUnresolvedCount]);
+
   const filteredData = useMemo(
     () =>
       filter === "all"
@@ -76,7 +88,9 @@ function Support() {
   const updateTicketStatus = useCallback((ticket, newStatus) => {
     setData((prevData) =>
       prevData.map((ticketupdate) =>
-        ticketupdate.name === ticket.name ? { ...ticketupdate, status: newStatus } : ticketupdate
+        ticketupdate.name === ticket.name
+          ? { ...ticketupdate, status: newStatus }
+          : ticketupdate
       )
     );
   }, []);
@@ -132,7 +146,10 @@ function Support() {
               <b> SUPPORT </b>
             </Typography>
             <Badge
-              badgeContent={filteredData.length}
+              badgeContent={
+                data.filter((ticket) => ticket.status === "unresolved").length
+              }
+              color="error"
               sx={{
                 ml: 3,
                 "& .MuiBadge-badge": {
