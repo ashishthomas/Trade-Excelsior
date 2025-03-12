@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { CompactTable } from "@table-library/react-table-library/compact";
 import { useTheme } from "@table-library/react-table-library/theme";
 import { getTheme } from "@table-library/react-table-library/baseline";
@@ -12,171 +12,50 @@ import {
   Typography,
   useMediaQuery,
   Avatar,
-  Badge,
 } from "@mui/material";
-import { Add, Search } from "@mui/icons-material";
-import CustomModal from "../CommonComponents/CustomModal"; // Modal Component
-import AddCoreWatchList from "../Dashboard/forms/AddCoreWatchList"; // Form inside Modal
+import { Add, Search, Edit } from "@mui/icons-material";
+import CustomModal from "../CommonComponents/CustomModal";
+import AddCoreWatchList from "../Dashboard/forms/AddCoreWatchList";
+import EditTrendDialog from "./EditTrend";
+import watchlistData from "./WatchlistData"; // Import the data
+import "./CoreWatchlist.css";
 
-// Simulated API Fetch (mock data)
-const fetchDummyData = async () => {
-  return new Promise((resolve) =>
-    setTimeout(() => {
-      resolve([
-        {
-          id: 1,
-          company: "Reliance",
-          sector: "Energy",
-          marketCap: "Large",
-          trend: "medium",
-        },
-        {
-          id: 2,
-          company: "Tata",
-          sector: "IT",
-          marketCap: "Large",
-          trend: "weak",
-        },
-        {
-          id: 3,
-          company: "HDFC",
-          sector: "Finance",
-          marketCap: "Large",
-          trend: "strong",
-        },
-        {
-          id: 4,
-          company: "Bharti Airtel",
-          sector: "Telecom",
-          marketCap: "Large",
-          trend: "weak",
-        },
-        {
-          id: 5,
-          company: "Adani Ent",
-          sector: "Energy",
-          marketCap: "Large",
-          trend: "strong",
-        },
-        {
-          id: 6,
-          company: "Wipro",
-          sector: "IT",
-          marketCap: "Large",
-          trend: "medium",
-        },
-        {
-          id: 7,
-          company: "Biocon",
-          sector: "Healthcare",
-          marketCap: "Mid",
-          trend: "weak",
-        },
-        {
-          id: 8,
-          company: "GAIL",
-          sector: "Energy",
-          marketCap: "Mid",
-          trend: "strong",
-        },
-        {
-          id: 9,
-          company: "The India Cements",
-          sector: "Cement",
-          marketCap: "Small",
-          trend: "medium",
-        },
-        {
-          id: 10,
-          company: "Infosys",
-          sector: "IT",
-          marketCap: "Large",
-          trend: "strong",
-        },
-        {
-          id: 11,
-          company: "Reliance",
-          sector: "Energy",
-          marketCap: "Large",
-          trend: "medium",
-        },
-        {
-          id: 12,
-          company: "Tata",
-          sector: "IT",
-          marketCap: "Large",
-          trend: "weak",
-        },
-        {
-          id: 13,
-          company: "HDFC",
-          sector: "Finance",
-          marketCap: "Large",
-          trend: "strong",
-        },
-        {
-          id:14,
-          company: "Bharti Airtel",
-          sector: "Telecom",
-          marketCap: "Large",
-          trend: "weak",
-        },
-        {
-          id: 15,
-          company: "Adani Ent",
-          sector: "Energy",
-          marketCap: "Large",
-          trend: "strong",
-        },
-        {
-          id: 16,
-          company: "Wipro",
-          sector: "IT",
-          marketCap: "Large",
-          trend: "medium",
-        },
-        {
-          id: 17,
-          company: "Biocon",
-          sector: "Healthcare",
-          marketCap: "Mid",
-          trend: "weak",
-        },
-        {
-          id: 18,
-          company: "GAIL",
-          sector: "Energy",
-          marketCap: "Mid",
-          trend: "strong",
-        },
-        {
-          id: 19,
-          company: "The India Cements",
-          sector: "Cement",
-          marketCap: "Small",
-          trend: "medium",
-        },
-        {
-          id: 20,
-          company: "Infosys",
-          sector: "IT",
-          marketCap: "Large",
-          trend: "strong",
-        },
-      ]);
-    }, 1000)
+// Constants
+const TREND_COLORS = { strong: "green", medium: "blue", weak: "red" };
+const MONTHS = Array.from({ length: 24 }, (_, index) => {
+  const date = new Date();
+  date.setMonth(date.getMonth() - index);
+  return date.toLocaleString("default", { month: "short", year: "numeric" });
+});
+
+// Highlight Text Function
+const highlightText = (text, highlight) => {
+  if (!highlight.trim()) return text;
+
+  const regex = new RegExp(`(${highlight})`, "gi");
+  return text.split(regex).map((part, index) =>
+    regex.test(part) ? (
+      <span key={index} style={{ backgroundColor: "yellow" }}>
+        {part}
+      </span>
+    ) : (
+      part
+    )
   );
 };
 
-const trendColors = { strong: "green", medium: "blue", weak: "red" };
-
-// Core Watchlist Table
-
+// Core Watchlist Table Component
 const CoreWatchlistTable = () => {
   const [data, setData] = useState({ nodes: [] });
   const [openUser, setOpenUser] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const isMobile = useMediaQuery("(max-width: 600px)"); // Check for mobile screen
+  const [editableTrend, setEditableTrend] = useState({
+    companyId: null,
+    month: null,
+    initialTrend: null,
+  });
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 600px)");
 
   const theme = useTheme([
     getTheme(),
@@ -221,12 +100,15 @@ const CoreWatchlistTable = () => {
         }
       `,
       HeaderRow: `
-        background-color: rgb(20, 109, 182);
+        background-color: rgb(20, 109, 182) !important;
         color: white !important;
         font-weight: bold !important;
         white-space: normal;
         word-wrap: break-word;
         text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 3;
       `,
       HeaderCell: `
         padding: 10px;
@@ -247,58 +129,58 @@ const CoreWatchlistTable = () => {
     },
   ]);
 
+  // Use the imported data
   useEffect(() => {
-    fetchDummyData().then((response) => setData({ nodes: response }));
+    setData({ nodes: watchlistData });
   }, []);
 
-  // Generate previous 24 months dynamically, with the most recent month first
-  const months = Array.from({ length: 24 }, (_, index) => {
-    const date = new Date();
-    date.setMonth(date.getMonth() - index); // Subtract months to get previous months
-    return date.toLocaleString("default", { month: "short", year: "numeric" });
-  });
+  const filteredData = useMemo(
+    () => ({
+      nodes: data.nodes
+        .filter((item) =>
+          item.company.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        .sort((a, b) => {
+          const aMatch = a.company
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase());
+          const bMatch = b.company
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase());
+          if (aMatch && !bMatch) return -1;
+          if (!aMatch && bMatch) return 1;
+          return 0;
+        }),
+    }),
+    [data.nodes, searchQuery]
+  );
 
-  // Highlight matching text in the Company column
-  const highlightText = (text, highlight) => {
-    if (!highlight.trim()) return text;
-
-    const regex = new RegExp(`(${highlight})`, "gi");
-    return text.split(regex).map((part, index) =>
-      regex.test(part) ? (
-        <span key={index} style={{ backgroundColor: "yellow" }}>
-          {part}
-        </span>
-      ) : (
-        part
-      )
-    );
+  const handleOpenEditModal = (item, month) => {
+    setEditableTrend({
+      companyId: item.id,
+      month,
+      initialTrend: item.trends?.[month] || null,
+    });
+    setOpenEditModal(true);
   };
 
-  // Filter and sort data based on search query
-  const filteredData = {
-    nodes: data.nodes
-      .filter((item) =>
-        item.company.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-      .sort((a, b) => {
-        const aMatch = a.company
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase());
-        const bMatch = b.company
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase());
-        if (aMatch && !bMatch) return -1; // a comes first
-        if (!aMatch && bMatch) return 1; // b comes first
-        return 0; // no change in order
-      }),
+  const handleEditTrend = (newTrend) => {
+    const updatedNodes = data.nodes.map((node) => {
+      if (node.id === editableTrend.companyId) {
+        return {
+          ...node,
+          trends: { ...node.trends, [editableTrend.month]: newTrend },
+        };
+      }
+      return node;
+    });
+
+    setData({ nodes: updatedNodes });
+    setOpenEditModal(false);
   };
 
   const COLUMNS = [
-    {
-      label: "#",
-      renderCell: (item) => item.id,
-      pinLeft: true,
-    },
+    { label: "#", renderCell: (item) => item.id, pinLeft: true },
     {
       label: "Company",
       renderCell: (item) => highlightText(item.company, searchQuery),
@@ -306,11 +188,7 @@ const CoreWatchlistTable = () => {
     },
     ...(!isMobile
       ? [
-          {
-            label: "Sector",
-            renderCell: (item) => item.sector,
-            pinLeft: true,
-          },
+          { label: "Sector", renderCell: (item) => item.sector, pinLeft: true },
           {
             label: "Market Cap",
             renderCell: (item) => item.marketCap,
@@ -318,47 +196,60 @@ const CoreWatchlistTable = () => {
           },
         ]
       : [
-          {
-            label: "Sector",
-            renderCell: (item) => item.sector,
-          },
-          {
-            label: "Market Cap",
-            renderCell: (item) => item.marketCap,
-          },
+          { label: "Sector", renderCell: (item) => item.sector },
+          { label: "Market Cap", renderCell: (item) => item.marketCap },
         ]),
-    ...months.map((month) => ({
+    ...MONTHS.map((month) => ({
       label: month,
-      renderCell: (item) => (
-        <Box
-          sx={{
-            display: "inline-block",
-            width: 12,
-            height: 12,
-            borderRadius: "50%",
-            backgroundColor: trendColors[item.trend],
-          }}
-        />
-      ),
+      renderCell: (item) => {
+        const trend = item.trends?.[month];
+        return (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center", // Center content horizontally
+              gap: 1,
+            }}
+          >
+            {/* Trend Indicator */}
+            {trend ? (
+              <Box
+                sx={{
+                  width: 12,
+                  height: 12,
+                  borderRadius: "50%",
+                  backgroundColor: TREND_COLORS[trend] || "transparent",
+                }}
+              />
+            ) : (
+              <Typography variant="body2">_</Typography> // Placeholder for empty trends
+            )}
+            {/* Edit Pencil (only for the most recent month) */}
+            {month === MONTHS[0] && (
+              <Box
+                sx={{
+                  display: "inline-block",
+                  cursor: "pointer",
+                }}
+                onClick={() => handleOpenEditModal(item, month)}
+              >
+                <Edit fontSize="small" /> {/* No additional color styling */}
+              </Box>
+            )}
+          </Box>
+        );
+      },
     })),
   ];
 
   return (
     <Box
-      sx={{
-        backgroundColor: "#E6E6FF",
-        padding: "16px",
-        minHeight: "84vh",
-      }}
+      sx={{ backgroundColor: "#C4D9FF", padding: "15px", minHeight: "84vh" }}
     >
       <AppBar
         position="static"
-        sx={{
-          backgroundColor: "white",
-          mb: 2,
-          boxShadow: "none",
-          padding: "4px 8px",
-        }}
+        sx={{ backgroundColor: "white", mb: 2, boxShadow: "none" }}
       >
         <Toolbar
           sx={{
@@ -367,6 +258,7 @@ const CoreWatchlistTable = () => {
             flexDirection: { xs: "column", sm: "row" },
             gap: { xs: 2, sm: 0 },
             alignItems: { xs: "flex-start", sm: "center" },
+            padding: { xs: 1, sm: 2 },
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -376,29 +268,23 @@ const CoreWatchlistTable = () => {
             >
               CORE WATCHLIST
             </Typography>
-
-            <Badge
-              // badgeContent={3}
-              badgeContent={filteredData.nodes.length}
+            <Avatar
               sx={{
-                ml: { xs: 0, sm: 0, md: 1 },
-                "& .MuiBadge-badge": {
-                  height: "1.8rem",
-                  width: "1.8rem",
-                  backgroundColor: "#E6E6FA",
-                  color: "#1976d2",
-                  fontSize: "0.8rem",
-                },
+                bgcolor: "e0e0e0",
+                color: "#4fc3f7",
+                width: 30,
+                height: 30,
+                fontSize: "0.875rem",
               }}
-            />
+            >
+              {filteredData.nodes.length}
+            </Avatar>
           </Box>
-
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               gap: { xs: 1, sm: 2 },
-              width: { xs: "100%", sm: "auto" },
               flexDirection: { xs: "column", sm: "row" },
             }}
           >
@@ -422,23 +308,52 @@ const CoreWatchlistTable = () => {
                 ),
               }}
             />
-          
+            <Button
+              variant="contained"
+              color="primary"
+              startIcon={<Add />}
+              sx={{
+                fontSize: { xs: "12px", sm: "14px", md: "16px" },
+                textTransform: "none",
+                width: { xs: "100%", sm: "auto" },
+                px: { xs: 2, sm: 3, md: 4 },
+                py: { xs: 1, sm: 1.5 },
+              }}
+              onClick={() => setOpenUser(true)}
+            >
+              Add Core Watchlist
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
-
-
-      {/* Trend Indicator Section */}
+      <CustomModal
+        open={openUser}
+        handleClose={() => setOpenUser(false)}
+        title="Add Core Watchlist"
+      >
+        <AddCoreWatchList />
+      </CustomModal>
+      <EditTrendDialog
+        open={openEditModal}
+        handleClose={() => setOpenEditModal(false)}
+        company={
+          data.nodes.find((node) => node.id === editableTrend.companyId)
+            ?.company
+        }
+        month={editableTrend.month}
+        handleEditTrend={handleEditTrend}
+        // initialTrend={editableTrend.initialTrend}
+      />
       <Box
         sx={{
           mt: 2,
           mb: 2,
-          width: "50%", // Full width for responsiveness
+          width: { xs: "10%", sx: "20%", md: "30%", lg: "40%" },
           display: "flex",
-          flexDirection: { xs: "column", sm: "row" }, // Column on small screens, row on larger screens
-          alignItems: { xs: "flex-start", sm: "center" }, // Align items to the start on small screens
-          justifyContent: "space-evenly",
-          gap: { xs: 1, sm: 2 }, // Add gap for better spacing
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: { xs: "flex-start", sm: "center" },
+          justifyContent: "space-between",
+          gap: { xs: 1, sm: 2 },
         }}
       >
         <Typography
@@ -450,8 +365,6 @@ const CoreWatchlistTable = () => {
         >
           <b>Trend Indicator:</b>
         </Typography>
-
-        {/* Strong Trend */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Typography
             variant="p"
@@ -464,12 +377,10 @@ const CoreWatchlistTable = () => {
               width: 12,
               height: 12,
               borderRadius: "50%",
-              backgroundColor: "green", // Strong trend color
+              backgroundColor: "green",
             }}
           />
         </Box>
-
-        {/* Medium Trend */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Typography
             variant="p"
@@ -482,12 +393,10 @@ const CoreWatchlistTable = () => {
               width: 12,
               height: 12,
               borderRadius: "50%",
-              backgroundColor: "blue", // Medium trend color
+              backgroundColor: "blue",
             }}
           />
         </Box>
-
-        {/* Weak Trend */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Typography
             variant="p"
@@ -500,24 +409,22 @@ const CoreWatchlistTable = () => {
               width: 12,
               height: 12,
               borderRadius: "50%",
-              backgroundColor: "red", // Weak trend color
+              backgroundColor: "red",
             }}
           />
         </Box>
       </Box>
-
-      {/* Table with Fixed Height and Vertical Scrolling */}
       <Box
         sx={{
           width: "100%",
-          overflowX: "auto", // Enable horizontal scrolling
-          height: "calc(9 * 50px)", // Fixed height for 5 rows
-          overflowY: "auto", // Enable vertical scrolling
+          overflowX: "auto",
+          height: "calc(10 * 50px)", // Adjusted to display 10 rows
+          overflowY: "auto",
         }}
       >
         <CompactTable
           columns={COLUMNS}
-          data={filteredData} // Use filtered and sorted data
+          data={filteredData}
           theme={theme}
           layout={{ custom: true, horizontalScroll: true }}
         />
