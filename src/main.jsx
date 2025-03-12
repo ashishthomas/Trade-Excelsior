@@ -8,12 +8,16 @@ import App from "./App.jsx";
 import CoreWatchlist from "./Admin/CoreWatchlist/CoreWatchlist.jsx";
 import MyBooks from "./Admin/Books/MyBooks.jsx";
 import Onboarding from "./Admin/OnBoardingChecklist/Onboarding.jsx";
+
 import SuccessStory from "./Admin/SuccessStories/SuccessStory.jsx";
-import Support from "./Admin/Support.jsx";
+
 import Dashboard from "./Admin/Dashboard/Dashboard.jsx";
-import References from "./Admin/References.jsx";
-import Profilemain from "./Admin/Profile/Profilemain.jsx"
-import ChangePassword from "./Admin/Profile/ChangePassword.jsx"
+
+import Profilemain from "./Admin/Profile/Profilemain.jsx";
+import ChangePassword from "./Admin/Profile/ChangePassword.jsx";
+
+import References from "./Admin/References/References.jsx";
+import Support from "./Admin/Support/Support.jsx";
 
 const approute = createBrowserRouter([
   {
@@ -52,21 +56,17 @@ const approute = createBrowserRouter([
       {
         path: "references",
         element: <References />,
-
       },
-
-
     ],
-
   },
   {
     path: "profilemain",
-    element: <Profilemain />
+    element: <Profilemain />,
   },
   {
     path: "changepassword",
-    element: <ChangePassword></ChangePassword>
-  }
+    element: <ChangePassword></ChangePassword>,
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
