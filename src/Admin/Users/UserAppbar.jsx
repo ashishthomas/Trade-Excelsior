@@ -7,7 +7,6 @@ import {
   InputAdornment,
   Button,
   Box,
-  Avatar,
   Badge,
 } from "@mui/material";
 import { Search, Add } from "@mui/icons-material";

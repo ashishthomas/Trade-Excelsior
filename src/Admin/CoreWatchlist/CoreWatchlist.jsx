@@ -422,31 +422,11 @@ const CoreWatchlistTable = () => {
                 ),
               }}
             />
-            {/* <Button
-              variant="contained"
-              color="primary"
-              startIcon={<Add />}
-              sx={{
-                fontSize: { xs: "0.7rem", sm: "1rem" },
-                mt: { xs: 1, sm: 0 },
-                width: { xs: "100%", sm: "auto" }, // Full width on mobile
-              }}
-              onClick={() => setOpenUser(true)}
-            >
-              ADD COREWATCHLIST
-            </Button> */}
+          
           </Box>
         </Toolbar>
       </AppBar>
 
-      {/* Modal Component */}
-      {/* <CustomModal
-        open={openUser}
-        handleClose={() => setOpenUser(false)}
-        title="Add Core Watchlist"
-      >
-        <AddCoreWatchList />
-      </CustomModal> */}
 
       {/* Trend Indicator Section */}
       <Box
