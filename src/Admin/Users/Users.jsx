@@ -137,7 +137,7 @@ const Users = () => {
   };
 
   return (
-    <Box sx={{ width: "100%", minHeight: "100vh", backgroundColor: "#C4D9FF" }}>
+    <Box sx={{ width: "100%", minHeight: "100vh", backgroundColor: "#E6E6FF" }}>
       <Box sx={{ flexGrow: 1, p: isMobile ? 1 : 2, overflowX: "auto" }}>
         <AppBarComponent
           searchQuery={searchQuery}
