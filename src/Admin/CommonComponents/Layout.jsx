@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 import { Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
-const Layout = () => {
+const Layout = ({ unresolvedCount, setUnresolvedCount }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -13,7 +13,8 @@ const Layout = () => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-      <Navbar toggleSidebar={toggleSidebar} />
+      {/* Pass unresolvedCount and toggleSidebar to Navbar */}
+      <Navbar unresolvedCount={unresolvedCount} toggleSidebar={toggleSidebar} />
 
       <Box sx={{ display: "flex", flexGrow: 1, overflow: "hidden" }}>
         <Sidebar isCollapsed={!isSidebarOpen} />
@@ -28,7 +29,8 @@ const Layout = () => {
             overflowY: "auto", // Allow scrolling for content
           }}
         >
-          <Outlet />
+          {/* Use Outlet to render the current route */}
+          <Outlet context={{ setUnresolvedCount }} />
         </Box>
       </Box>
     </Box>
