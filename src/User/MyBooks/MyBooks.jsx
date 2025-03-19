@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useMediaQuery } from "@mui/material";
-import DeleteConfirmationModal from "./FormModals/DeleteConfirmationModal";
-import EditBookForm from "./FormModals/EditBookForm";
-import AddBookForm from "./FormModals/AddBookForm";
+
 import {
   AppBar,
   Box,
@@ -69,59 +67,9 @@ function MyBooks() {
     },
   ]);
 
-  const [openModal, setOpenModal] = useState(false);
-  const [openAddForm, setOpenAddForm] = useState(false);
-  const [openEditForm, setOpenEditForm] = useState(false);
-  const [selectedBook, setSelectedBook] = useState(null);
-  const [bookToDelete, setBookToDelete] = useState(null);
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-
-  const handleEditOpen = (book) => {
-    setSelectedBook(book);
-    setOpenEditForm(true);
-  };
-  const handleEditClose = () => setOpenEditForm(false);
-
-  const handleAddOpen = () => setOpenAddForm(true);
-  const handleAddClose = () => setOpenAddForm(false);
-
-  // edit form for book for update book
-  const handleSave = (updatedBook) => {
-    setBooks((prevBooks) =>
-      prevBooks.map((book) => (book.id === updatedBook.id ? updatedBook : book))
-    );
-    handleEditClose();
-  };
-
-  // Define addBook function
-  const addBook = (newBook) => {
-    setBooks((prevBooks) => [...prevBooks, newBook]);
-  };
-
-  // Open delete confirmation modal with the selected book
-  const handleOpenDeleteModal = (book) => {
-    setBookToDelete(book);
-    setOpenModal(true);
-  };
-
-  // Close delete modal
-  const handleClose = () => {
-    setOpenModal(false);
-    setBookToDelete(null);
-  };
-
-  // Delete book function
-  const handleDeleteBook = () => {
-    if (bookToDelete) {
-      setBooks((prevBooks) =>
-        prevBooks.filter((b) => b.id !== bookToDelete.id)
-      );
-      handleClose();
-    }
-  };
 
   return (
     <Box
@@ -135,10 +83,7 @@ function MyBooks() {
         flexDirection: "column",
       }}
     >
-      <AppBar
-        position="static"
-        sx={{ backgroundColor: "white", padding: { xs: 0.5, sm: 0.5 } }}
-      >
+      <AppBar position="static" sx={{ backgroundColor: "white" }}>
         <Toolbar
           sx={{
             flexDirection: { xs: "column", sm: "row" },
@@ -148,26 +93,19 @@ function MyBooks() {
             width: "100%",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-            }}
-          >
+          <Box display="flex" alignItems="center">
             <Typography
               variant="h6"
-              fontSize={{ xs: "14px", sm: "18px" }}
-              width={{ xs: "auto" }}
               sx={{
                 color: "black",
                 flexGrow: { sm: 1 },
                 textAlign: { xs: "center", sm: "left" },
               }}
             >
-              <b> MY BOOKS </b>
+              <b>MY BOOKS</b>
             </Typography>
             <Badge
+              // badgeContent={3}
               badgeContent={books.length}
               sx={{
                 ml: 3,
@@ -175,25 +113,12 @@ function MyBooks() {
                   height: "1.8rem",
                   width: "1.8rem",
                   backgroundColor: "#E6E6FA",
-                  color: "#1976d2",
+                  color: "#007BFF",
                   fontSize: "0.8rem",
-                  fontWeight: "bold",
                 },
               }}
             />
           </Box>
-
-          <Button
-                      variant="contained"
-                      onClick={handleAddOpen}
-                      sx={{
-                        fontSize: { xs: "0.7rem", sm: "1rem" },
-                        mt: { xs: 1, sm: 0 },
-                        width: { xs: "100%", sm: "auto" }, // Full width on mobile
-                      }}
-                    >
-                      + Add Book
-                    </Button>
         </Toolbar>
       </AppBar>
 
@@ -210,6 +135,23 @@ function MyBooks() {
                 backgroundColor: "white",
               }}
             >
+              {/* Image on top only for mobile  */}
+              {isMobile && (
+                <CardMedia
+                  component="img"
+                  sx={{
+                    height: "auto",
+                    maxHeight: { xs: "auto", sm: "500px", md: "600px" },
+                    borderRadius: "5px",
+                    objectFit: "contain",
+                    marginBottom: "15px",
+                    display: "block",
+                  }}
+                  image={book.image}
+                  alt={book.bookName}
+                />
+              )}
+
               <CardContent
                 sx={{
                   flex: 1,
@@ -223,37 +165,21 @@ function MyBooks() {
                   sx={{
                     fontWeight: "bold",
                     fontSize: { xs: "16px", sm: "26px", lg: "28px" },
-                    textAlign: isMobile || isTablet ? "center" : "left",
-                    mb: { xs: 2, sm: 2 },
+                    textAlign: isTablet ? "center" : "left",
+                    // textAlign: isMobile ? "center" : "left",
+                    mb: { sm: 2 },
                   }}
                 >
                   {book.bookTagline}
                 </Typography>
-
-                {/* Image after title for mobile  */}
-                {isMobile && (
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      height: "auto",
-                      maxHeight: { xs: "auto", sm: "500px", md: "600px" },
-                      borderRadius: "5px",
-                      objectFit: "contain",
-                      marginBottom: "15px",
-                      display: "block",
-                    }}
-                    image={book.image}
-                    alt={book.bookName}
-                  />
-                )}
 
                 {/* Image after title for tablet */}
                 {isTablet && (
                   <CardMedia
                     component="img"
                     sx={{
-                      maxWidth: { xs: "100%", sm: "100%", md: "80%" },
-                      maxHeight: { xs: "auto", sm: "500px", md: "450px" },
+                      maxWidth: { xs: "100%", sm: "100%", md: "80%" }, // Limits size on tablets
+                      maxHeight: { xs: "auto", sm: "500px", md: "450px" }, // Reduce height for tabets
                       height: "auto",
                       borderRadius: "5px",
                       objectFit: "contain",
@@ -292,6 +218,7 @@ function MyBooks() {
                       cursor: "pointer",
                     }}
                   >
+                    {/* Read More */}
                     <BookDescription text={book.bookDescription} />
                   </Typography>
                 </Typography>
@@ -312,43 +239,8 @@ function MyBooks() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
+                    {/* Buy Now */}
                     {book.buttonName}
-                  </Button>
-                  <Button
-                    variant="contained"
-                    sx={{
-                      backgroundColor: "#3A86FF",
-                      borderRadius: "6px",
-                      textTransform: "none",
-                      fontWeight: "bold",
-                      width: { xs: "100%", sm: "auto" },
-                      mb: 2,
-                      mr: { xs: 0, sm: 2 },
-                    }}
-                    onClick={() => handleEditOpen(book)}
-                  >
-                    Edit
-                  </Button>
-
-                  <EditBookForm
-                    open={openEditForm}
-                    onClose={handleEditClose}
-                    bookData={selectedBook}
-                    handleUpdate={handleSave}
-                  />
-
-                  <Button
-                    variant="contained"
-                    sx={{
-                      backgroundColor: "#9FA6B2",
-                      borderRadius: "8px",
-                      textTransform: "none",
-                      width: { xs: "100%", sm: "auto" },
-                      mb: 2,
-                    }}
-                    onClick={() => handleOpenDeleteModal(book)}
-                  >
-                    Delete
                   </Button>
                 </Box>
               </CardContent>
@@ -370,17 +262,6 @@ function MyBooks() {
           </Grid>
         ))}
       </Grid>
-
-      <AddBookForm
-        open={openAddForm}
-        onClose={handleAddClose}
-        handleAdd={addBook}
-      />
-      <DeleteConfirmationModal
-        open={openModal}
-        handleClose={handleClose}
-        onConfirm={handleDeleteBook}
-      />
     </Box>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Paper, Typography, IconButton, Button, TextField, Box, Drawer, Dialog, DialogActions, DialogContent, DialogTitle, AppBar, Toolbar, Avatar, useTheme, useMediaQuery, Divider } from "@mui/material";
-import { Edit, Delete, Close } from "@mui/icons-material";
+import { Paper, Typography, IconButton, Button,  Box,  AppBar, Toolbar,  useTheme, useMediaQuery, Badge } from "@mui/material";
+import { Edit, Delete } from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import EditChecklistDrawer from "./EditChecklistDrawer";
@@ -77,39 +77,68 @@ function Onboarding() {
   });
 
   return (
-    <Box sx={{ backgroundColor: "#C4D9FF", padding: "15px", height: "100vh" }}>
+    <Box
+      sx={{ backgroundColor: "#E6E6FF", padding: "15px", minHeight: "84vh" }}
+    >
+      <AppBar
+        position="static"
+        sx={{
+          backgroundColor: "white",
+          mb: 2,
+          padding: { xs: 0.5, sm: 0.5 },
+        }}
+      >
+        <Toolbar
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+            alignItems: { xs: "center", sm: "center" },
+            justifyContent: "space-between",
+            gap: { xs: 1, sm: 0 },
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
+            <Typography
+              variant="h6"
+              width={{ xs: "auto" }}
+              sx={{ color: "black", display: "flex", alignItems: "center" }}
+            >
+              <b>ON BOARDING CHECKLIST</b>
+            </Typography>
+            <Badge
+              badgeContent={items.length}
+              sx={{
+                ml: 3,
+                "& .MuiBadge-badge": {
+                  height: "1.8rem",
+                  width: "1.8rem",
+                  backgroundColor: "#E6E6FA",
+                  color: "#1976d2",
+                  fontSize: "0.8rem",
+                },
+              }}
+            />
+          </Box>
 
-<AppBar position="static" sx={{ backgroundColor: "white", mb: 2, padding: { xs: 1, sm: 2 } }}>
-  <Toolbar sx={{ 
-    display: "flex", 
-    flexDirection: { xs: "column", sm: "row" }, 
-    alignItems: { xs: "center", sm: "center" }, 
-    justifyContent: "space-between", 
-    gap: { xs: 1, sm: 0 }
-  }}>
-    <Box sx={{ display: "flex", alignItems: "center", gap: "8px" }}>
-      <Typography variant="h6" fontSize={{ xs: "12px", sm: "18px" }} sx={{ color: "black", display: "flex", alignItems: "center" }}>
-        <b>ON BOARDING CHECKLIST</b>
-      </Typography>
-      <Avatar 
-        sx={{ bgcolor: "grey.300", color: "blue", fontWeight: "bold", fontSize: { xs: "0.9rem", lg: "1rem" }, width: { xs: "25px", lg: "30px" }, height: { xs: "25px", lg: "30px" } }}>
-        {items.length}
-      </Avatar>
-    </Box>
-    
-    <Button 
-      variant="contained" 
-      onClick={handleAddChecklist} 
-      sx={{ 
-        fontSize: { xs: "0.8rem", sm: "1rem" }, 
-        mt: { xs: 1, sm: 0 }, 
-        width: { xs: "100%", sm: "auto" }  // Full width on mobile
-      }}>
-      + Add Checklist
-    </Button>
-  </Toolbar>
-</AppBar>
-
+          <Button
+            variant="contained"
+            onClick={handleAddChecklist}
+            sx={{
+              fontSize: { xs: "0.7rem", sm: "1rem" },
+              mt: { xs: 1, sm: 0 },
+              width: { xs: "100%", sm: "auto" }, // Full width on mobile
+            }}
+          >
+            + Add Checklist
+          </Button>
+        </Toolbar>
+      </AppBar>
 
       {items.map((item) => (
         <Paper
@@ -119,38 +148,74 @@ function Onboarding() {
             padding: 2,
             marginBottom: 2,
             display: "flex",
-            // alignItems: "center",
             justifyContent: "space-between",
             flexDirection: isMobile ? "column" : "row",
             flexWrap: { xs: "wrap", md: "nowrap" },
           }}
         >
-          <Typography sx={{ flex: 1 }} fontSize={{xs:"15px",sm:"20px"}}>{item.id}. {item.title}</Typography>
-          <Box sx={{ 
-                    display: "flex",  
-                    alignItems: "center", 
-                    justifyContent:"center",
-                    gap: { xs: "0.5rem", sm: "0.6rem", md: "1rem", lg: "1.5rem" }, 
-                    marginTop: { xs: "10px", sm: "0px" } 
-                  }} >
-            <Button variant="contained" href={item.link} target="_blank"  sx={{
-          // minWidth: { xs: "80px", sm: "120px", md: "140px" },
-          height: { xs: "36px", sm: "40px" },
-          fontSize: { xs: "0.7rem", sm: "1rem"} ,
-          padding: "7px 10px",
-          height: {sm:"50px",lg:"50px"},
-          width:{xs:"80px",md:"100px",lg:"150px"}
-          }}>{item.buttonName}</Button>
-            <IconButton onClick={() => handleEdit(item)} sx={{fontSize:{xs:"0.8rem",sm:"1rem"},width:{xs:"2em"}}} ><Edit color="primary" /></IconButton>
-            <IconButton onClick={() => handleDeleteClick(item.id)} sx={{fontSize:{xs:"0.8rem",sm:"1rem"},width:{xs:"2em"}}}  ><Delete color="primary" /></IconButton>
+          <Typography
+            sx={{ flex: 1 }}
+            fontSize={{ xs: "15px", sm: "18px", md: "19px", lg: "20px" }}
+          >
+            {item.id}. {item.title}
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: { xs: "0.5rem", sm: "0.6rem", md: "1rem", lg: "1.5rem" },
+              marginTop: { xs: "10px", sm: "0px" },
+            }}
+          >
+            <Button
+              variant="contained"
+              href={item.link}
+              target="_blank"
+              sx={{
+                minWidth: { xs: "80px", sm: "120px", md: "180px" },
+                fontSize: { xs: "0.7rem", sm: "0.8rem", md: "1rem" },
+                padding: "7px 10px",
+                height: { sm: "40px", lg: "40px" },
+                width: { xs: "80px", md: "100px", lg: "150px" },
+              }}
+            >
+              {item.buttonName}
+            </Button>
+            <IconButton
+              onClick={() => handleEdit(item)}
+              sx={{
+                fontSize: { xs: "0.8rem", sm: "1rem" },
+                width: { xs: "2em" },
+              }}
+            >
+              <Edit color="primary" />
+            </IconButton>
+            <IconButton
+              onClick={() => handleDeleteClick(item.id)}
+              sx={{
+                fontSize: { xs: "0.8rem", sm: "1rem" },
+                width: { xs: "2em" },
+              }}
+            >
+              <Delete color="primary" />
+            </IconButton>
           </Box>
         </Paper>
       ))}
-       <EditChecklistDrawer open={openDrawer} onClose={() => setOpenDrawer(false)} formik={formik} editItem={editItem} />
-      <DeleteConfirmationDialog open={openDeleteDialog} onClose={() => setOpenDeleteDialog(false)} onConfirm={handleConfirmDelete} />
+      <EditChecklistDrawer
+        open={openDrawer}
+        onClose={() => setOpenDrawer(false)}
+        formik={formik}
+        editItem={editItem}
+      />
+      <DeleteConfirmationDialog
+        open={openDeleteDialog}
+        onClose={() => setOpenDeleteDialog(false)}
+        onConfirm={handleConfirmDelete}
+      />
     </Box>
   );
 }
 
 export default Onboarding;
-    

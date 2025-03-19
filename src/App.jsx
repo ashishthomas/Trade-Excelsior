@@ -1,37 +1,18 @@
-// import "./App.css";
-// import { Box, Stack } from "@mui/material";
-// import { Outlet } from "react-router-dom";
-// import Navbar from "./Admin/CommonComponents/Navbar";
-// import Sidebar from "./Admin/CommonComponents/Sidebar";
-
-// function App() {
-//   return (
-//     <Box>
-      
-//       <Navbar />
-//       <Stack direction="row">
-//         <Sidebar />
-//         <Box flex={9} sx={{ p: 2 }}> 
-//           <Outlet />  
-//         </Box>
-//       </Stack>
-//     </Box>
-//   );
-// }
-
-// export default App;
-
+import React, { useState } from "react";
 import "./App.css";
-import { Box, Stack } from "@mui/material";
-import { Outlet } from "react-router-dom";
-import Navbar from "./Admin/CommonComponents/Navbar";
-import Sidebar from "./Admin/CommonComponents/Sidebar";
+import { Box } from "@mui/material";
 import Layout from "./Admin/CommonComponents/Layout";
 
 function App() {
+  // Add state for unresolved ticket count
+  const [unresolvedCount, setUnresolvedCount] = useState(0);
   return (
     <Box>
-      <Layout/>
+      {/* Pass unresolvedCount and setUnresolvedCount to Layout */}
+      <Layout
+        unresolvedCount={unresolvedCount}
+        setUnresolvedCount={setUnresolvedCount}
+      />
     </Box>
   );
 }

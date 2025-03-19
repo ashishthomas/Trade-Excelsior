@@ -4,7 +4,7 @@ import { Close } from "@mui/icons-material";
 const EditChecklistDrawer = ({ open, onClose, formik, editItem }) => {
   return (
     <Drawer anchor="right" open={open} onClose={onClose} sx={{ zIndex: 1300 }}>
-      <Box sx={{ width: "100vw", maxWidth: "400px" }}>
+      <Box sx={{ width: "100vw", maxWidth: "350px" }}>
         <Box display="flex" justifyContent="space-between" sx={{ bgcolor: "#F7F7F7", mb: 5 }}>
           <Typography variant="h6" sx={{ p: 1 }}>
             {editItem ? "Edit Checklist" : "Add Checklist"}
@@ -52,7 +52,7 @@ const EditChecklistDrawer = ({ open, onClose, formik, editItem }) => {
           />
         </Box>
 
-        <Box display="flex" justifyContent="space-between" mt={20} ml={5} mr={5} mb={5}>
+        <Box display="flex" justifyContent="space-between" mt={20} ml={17} mr={3} mb={5}>
           <Button onClick={formik.handleSubmit} variant="contained" color="primary" sx={{ width: "48%" }}>
             {editItem ? "Update" : "Add"}
           </Button>
