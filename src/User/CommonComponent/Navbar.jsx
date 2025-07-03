@@ -16,6 +16,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Info, Logout, PersonTwoTone } from "@mui/icons-material";
+import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -52,20 +53,31 @@ const StyledBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-const UserMenu = ({ anchorEl, setAnchorEl }) => (
-  <Menu
-    anchorEl={anchorEl}
-    open={Boolean(anchorEl)}
-    onClose={() => setAnchorEl(null)}
-  >
-    <MenuItem onClick={() => setAnchorEl(null)} sx={{ mb: 1.5 }}>
-      <PersonTwoTone sx={{ mr: 1 }} /> My Profile
-    </MenuItem>
-    <MenuItem onClick={() => setAnchorEl(null)}>
-      <Logout sx={{ mr: 1 }} /> Logout
-    </MenuItem>
-  </Menu>
-);
+const UserMenu = ({ anchorEl, setAnchorEl }) => {
+  const handleSwitchToAdmin = () => {
+    setAnchorEl(null);
+    localStorage.setItem("role", "admin");
+    window.location.reload(); // reload to re-initialize router
+  };
+
+  return (
+    <Menu
+      anchorEl={anchorEl}
+      open={Boolean(anchorEl)}
+      onClose={() => setAnchorEl(null)}
+    >
+      <MenuItem onClick={() => setAnchorEl(null)} sx={{ mb: 1.5 }}>
+        <PersonTwoTone sx={{ mr: 1 }} /> My Profile
+      </MenuItem>
+      <MenuItem onClick={handleSwitchToAdmin} sx={{ mb: 1.5 }}>
+        <SwapHorizIcon sx={{ mr: 1 }} /> Switch to Admin
+      </MenuItem>
+      <MenuItem onClick={() => setAnchorEl(null)}>
+        <Logout sx={{ mr: 1 }} /> Logout
+      </MenuItem>
+    </Menu>
+  );
+};
 
 const Navbar = ({ toggleSidebar }) => {
   const [anchorEl, setAnchorEl] = useState(null);

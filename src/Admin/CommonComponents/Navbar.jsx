@@ -18,6 +18,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { Logout, PersonTwoTone } from "@mui/icons-material";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
+
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
   justifyContent: "space-between",
@@ -52,6 +54,13 @@ const UserMenu = ({ anchorEl, setAnchorEl }) => {
     setAnchorEl(null); // Close the menu
     navigate("/profilemain"); // Navigate to the Profile page
   };
+
+  const handleSwitchToUser = () => {
+    setAnchorEl(null);
+    localStorage.setItem("role", "user");
+    window.location.reload(); // reload to re-initialize router
+  };
+
   return (
     <Menu
       anchorEl={anchorEl}
@@ -60,6 +69,9 @@ const UserMenu = ({ anchorEl, setAnchorEl }) => {
     >
       <MenuItem onClick={handleProfileClick} sx={{ mb: 1.5 }}>
         <PersonTwoTone sx={{ mr: 1 }} /> My Profile
+      </MenuItem>
+      <MenuItem onClick={handleSwitchToUser} sx={{ mb: 1.5 }}>
+        <SwapHorizIcon sx={{ mr: 1 }} /> Switch to User
       </MenuItem>
       <MenuItem onClick={() => setAnchorEl(null)}>
         <Logout sx={{ mr: 1 }} /> Logout
@@ -94,7 +106,6 @@ const Navbar = ({ toggleSidebar, unresolvedCount }) => {
             badgeContent={unresolvedCount}
             color="error"
             gap="10px"
-            
             sx={{
               "& .MuiBadge-badge": {
                 height: "1.2rem",
@@ -105,14 +116,17 @@ const Navbar = ({ toggleSidebar, unresolvedCount }) => {
                 fontSize: "0.75rem",
                 fontWeight: "bold",
                 lineHeight: "1.2rem",
-                mr:2
+                mr: 2,
               },
             }}
           >
-            <NotificationsIcon  color="primary" sx={{ fontSize: "1.8rem",mr:2 }} />
+            <NotificationsIcon
+              color="primary"
+              sx={{ fontSize: "1.8rem", mr: 2 }}
+            />
           </Badge>
 
-          <StyledBox  onClick={(e) => setAnchorEl(e.currentTarget)}>
+          <StyledBox onClick={(e) => setAnchorEl(e.currentTarget)}>
             <Avatar sx={{ fontSize: "15px" }}>M</Avatar>
             <Badge color="error">
               <SettingsIcon color="primary" />

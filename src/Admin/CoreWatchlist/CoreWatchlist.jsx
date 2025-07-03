@@ -11,7 +11,7 @@ import {
   TextField,
   Typography,
   useMediaQuery,
-  Avatar,
+  Badge,
 } from "@mui/material";
 import { Add, Search, Edit } from "@mui/icons-material";
 import CustomModal from "../CommonComponents/CustomModal";
@@ -261,24 +261,33 @@ const CoreWatchlistTable = () => {
             padding: { xs: 1, sm: 2 },
           }}
         >
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
             <Typography
               variant="h6"
-              sx={{ color: "black", fontWeight: "bold" }}
+              width={{ xs: "auto" }}
+              sx={{ color: "black", display: "flex", alignItems: "center" }}
             >
-              CORE WATCHLIST
+              <b>CORE WATCHLIST</b>
             </Typography>
-            <Avatar
+            <Badge
+              badgeContent={filteredData.nodes.length}
               sx={{
-                bgcolor: "e0e0e0",
-                color: "#4fc3f7",
-                width: 30,
-                height: 30,
-                fontSize: "0.875rem",
+                ml: 3,
+                "& .MuiBadge-badge": {
+                  height: "1.8rem",
+                  width: "1.8rem",
+                  backgroundColor: "#E6E6FA",
+                  color: "#1976d2",
+                  fontSize: "0.8rem",
+                },
               }}
-            >
-              {filteredData.nodes.length}
-            </Avatar>
+            />
           </Box>
           <Box
             sx={{

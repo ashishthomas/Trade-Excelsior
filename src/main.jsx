@@ -6,9 +6,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Userapproute } from "./Routes/UserRoute.jsx";
 import { Adminapproute } from "./Routes/AdminRoutes.jsx";
 
+const role = localStorage.getItem("role") || "admin";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={ true ? Adminapproute : Userapproute} />
+    <RouterProvider router={role === "admin" ? Adminapproute : Userapproute} />
   </StrictMode>
 );

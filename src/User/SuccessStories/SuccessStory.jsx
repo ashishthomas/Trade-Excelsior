@@ -23,33 +23,33 @@ function SuccessStory() {
   const [stories] = useState([
     {
       id: 0,
-      name: "Emily Davis",
+      name: "William Smith",
       tagline: "Risk to Reward Master",
       feedback:
         "This trader demonstrates exceptional market foresight and a steady hand under pressure. Their clear communication and step-by-step breakdown of trades make complex strategies easy to understand.",
       image:
-        "https://www.wplt20.com/static-assets/images/players/59956.png?v=50.85",
-      video: "https://www.youtube.com/watch?v=zsJpUCWfyPE",
+        "https://cdn.pixabay.com/photo/2023/04/28/07/16/man-7956041_1280.jpg",
+      video: "https://www.youtube.com/watch?v=REFQ2_d_Gyo",
     },
     {
       id: 1,
-      name: "Robert Lee",
-      tagline: "Explore Robert's Journey",
+      name: "James Lucas",
+      tagline: "Explore James Journey",
       feedback:
         "This trader stands out for their proactive market analysis and sharp execution. Their ability to identify profitable opportunities while maintaining a balanced approach is commendable.",
       image:
-        "https://mediaindia.eu/wp-content/uploads/2016/03/Virat-Kohli-Royal-Challengers-Bangalore-2015.jpg",
-      video: "https://www.youtube.com/watch?v=zsJpUCWfyPE",
+        "https://cdn.pixabay.com/photo/2020/11/30/17/21/businessman-5791566_1280.jpg",
+      video: "https://www.youtube.com/watch?v=4gaaGDldQwY",
     },
     {
       id: 2,
-      name: "Karl Marx",
-      tagline: "Explore Marx's Journey",
+      name: "Mary Jane",
+      tagline: "Explore Mary's Journey",
       feedback:
         "This trader demonstrates exceptional market foresight and a steady hand under pressure. Their clear communication and step-by-step breakdown of trades make complex strategies easy to understand.",
       image:
-        "https://www.globalindian.com/youth//wp-content/uploads/2022/07/card_smriti_india.jpg",
-      video: "https://www.youtube.com/watch?v=zsJpUCWfyPE",
+        "https://cdn.pixabay.com/photo/2023/12/29/10/39/woman-8475958_1280.jpg",
+      video: "https://www.youtube.com/watch?v=weD2tVLaIEQ",
     },
   ]);
 
