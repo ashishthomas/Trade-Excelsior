@@ -1,7 +1,7 @@
 # Trade Excelsior
 
 <div align="center">
-    <img src="./public/Trade-Excelsior-Banner.png" alt="Trade Excelsior Banner" width="200">
+    <img src="./public/Trade-Excelsior-Banner.png" alt="Trade Excelsior Banner" >
 </div>
 
 ## 📋 Table of Contents
