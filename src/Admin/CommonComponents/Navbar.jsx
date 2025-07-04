@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   AppBar,
   Avatar,
@@ -13,10 +13,11 @@ import {
   useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import PropTypes from "prop-types";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Logout, PersonTwoTone } from "@mui/icons-material";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 
@@ -61,6 +62,12 @@ const UserMenu = ({ anchorEl, setAnchorEl }) => {
     window.location.reload(); // reload to re-initialize router
   };
 
+  const handleLogout = () => {
+    setAnchorEl(null);
+    localStorage.clear();
+    navigate("/Profilemain");
+  };
+
   return (
     <Menu
       anchorEl={anchorEl}
@@ -73,7 +80,7 @@ const UserMenu = ({ anchorEl, setAnchorEl }) => {
       <MenuItem onClick={handleSwitchToUser} sx={{ mb: 1.5 }}>
         <SwapHorizIcon sx={{ mr: 1 }} /> Switch to User
       </MenuItem>
-      <MenuItem onClick={() => setAnchorEl(null)}>
+      <MenuItem onClick={handleLogout}>
         <Logout sx={{ mr: 1 }} /> Logout
       </MenuItem>
     </Menu>
@@ -84,8 +91,6 @@ const Navbar = ({ toggleSidebar, unresolvedCount }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
-  const location = useLocation(); // Get the current route
 
   return (
     <StyledAppbar elevation={0}>
@@ -139,5 +144,12 @@ const Navbar = ({ toggleSidebar, unresolvedCount }) => {
     </StyledAppbar>
   );
 };
-
+Navbar.propTypes = {
+  toggleSidebar: PropTypes.func.isRequired,
+  unresolvedCount: PropTypes.number,
+};
+UserMenu.propTypes = {
+  anchorEl: PropTypes.any,
+  setAnchorEl: PropTypes.func.isRequired,
+};
 export default Navbar;
