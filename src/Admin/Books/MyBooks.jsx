@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import { useMediaQuery } from "@mui/material";
 import DeleteConfirmationModal from "./FormModals/DeleteConfirmationModal";
 import EditBookForm from "./FormModals/EditBookForm";
@@ -16,7 +17,6 @@ import {
   useTheme,
   Badge,
 } from "@mui/material";
-
 const BookDescription = ({ text }) => {
   const [expanded, setExpanded] = useState(false);
   return (
@@ -39,6 +39,10 @@ const BookDescription = ({ text }) => {
       </Typography>
     </Typography>
   );
+};
+
+BookDescription.propTypes = {
+  text: PropTypes.string.isRequired,
 };
 
 function MyBooks() {
@@ -184,16 +188,16 @@ function MyBooks() {
           </Box>
 
           <Button
-                      variant="contained"
-                      onClick={handleAddOpen}
-                      sx={{
-                        fontSize: { xs: "0.7rem", sm: "1rem" },
-                        mt: { xs: 1, sm: 0 },
-                        width: { xs: "100%", sm: "auto" }, // Full width on mobile
-                      }}
-                    >
-                      + Add Book
-                    </Button>
+            variant="contained"
+            onClick={handleAddOpen}
+            sx={{
+              fontSize: { xs: "0.7rem", sm: "1rem" },
+              mt: { xs: 1, sm: 0 },
+              width: { xs: "100%", sm: "auto" }, // Full width on mobile
+            }}
+          >
+            + Add Book
+          </Button>
         </Toolbar>
       </AppBar>
 
