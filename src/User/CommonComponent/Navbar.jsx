@@ -57,7 +57,7 @@ const UserMenu = ({ anchorEl, setAnchorEl }) => {
   const handleSwitchToAdmin = () => {
     setAnchorEl(null);
     localStorage.setItem("role", "admin");
-    window.location.reload(); // reload to re-initialize router
+    window.location.reload(); 
   };
 
   return (
@@ -89,7 +89,7 @@ const Navbar = ({ toggleSidebar }) => {
     <StyledAppbar>
       <StyledToolbar>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          {/* MenuIcon - Hidden on Mobile */}
+          
           {!isMobile && (
             <MenuIcon
               onClick={toggleSidebar}

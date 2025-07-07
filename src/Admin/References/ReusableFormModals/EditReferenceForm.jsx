@@ -154,7 +154,7 @@ const EditReferenceForm = ({ open, onClose, reference, handleUpdate }) => {
                     src={selectedImage}
                     alt="Selected"
                     onError={(e) => {
-                      e.target.style.display = "none"; // Hide broken image
+                      e.target.style.display = "none";
                     }}
                     style={{
                       width: "100px",

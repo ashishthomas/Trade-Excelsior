@@ -7,7 +7,6 @@ import {
   Box,
   AppBar,
   Toolbar,
-  // Avatar,
   useTheme,
   useMediaQuery,
   Divider,

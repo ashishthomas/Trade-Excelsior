@@ -1,4 +1,3 @@
-// data/watchlistData.js
 const watchlistData = [
   {
     id: 1,
@@ -22,7 +21,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -47,7 +46,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -72,7 +71,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -97,7 +96,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -122,7 +121,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -147,7 +146,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -172,7 +171,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -197,7 +196,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -222,7 +221,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -247,7 +246,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -272,7 +271,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -297,7 +296,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -322,7 +321,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -347,7 +346,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -372,7 +371,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -397,7 +396,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -422,7 +421,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -447,7 +446,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -472,7 +471,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -497,7 +496,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -522,7 +521,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -547,7 +546,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -572,7 +571,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -597,7 +596,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -622,7 +621,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -647,7 +646,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -672,7 +671,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -697,7 +696,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -722,7 +721,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -747,7 +746,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -772,7 +771,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -797,7 +796,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -822,7 +821,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -847,7 +846,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -872,7 +871,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -897,7 +896,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -922,7 +921,7 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
   {
@@ -947,10 +946,9 @@ const watchlistData = [
       "Jan 2024": "medium",
       "Dec 2023": "strong",
       "Nov 2023": "weak",
-      "Mar 2025": null, // March 2025 is empty
+      "Mar 2025": null,
     },
   },
-  // Add more companies as needed
 ];
 
 export default watchlistData;

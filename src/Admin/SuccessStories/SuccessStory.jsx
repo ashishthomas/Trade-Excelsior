@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import DeletePopup from "./Form/DeletePopup";
-import SuccessStoryForm from "./Form/EditForm"; // Import the form component
+import SuccessStoryForm from "./Form/EditForm";
 
 function SuccessStory() {
   const theme = useTheme();
@@ -23,8 +23,8 @@ function SuccessStory() {
   const [expandedId, setExpandedId] = useState(null);
   const [deleteItemId, setDeleteItemId] = useState(null);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
-  const [openForm, setOpenForm] = useState(false); // State to control form visibility
-  const [selectedStory, setSelectedStory] = useState(null); // State to store the story being edited
+  const [openForm, setOpenForm] = useState(false);
+  const [selectedStory, setSelectedStory] = useState(null);
 
   const [stories, setStories] = useState([
     {
@@ -65,8 +65,8 @@ function SuccessStory() {
 
   const handleEdit = (id) => {
     const storyToEdit = stories.find((story) => story.id === id);
-    setSelectedStory(storyToEdit); // Set the story to edit
-    setOpenForm(true); // Open the form
+    setSelectedStory(storyToEdit);
+    setOpenForm(true);
   };
 
   const handleDeleteClick = (id) => {
@@ -77,7 +77,6 @@ function SuccessStory() {
   const handleConfirmDelete = () => {
     const updatedStories = stories.filter((story) => story.id !== deleteItemId);
 
-    // Reassign IDs sequentially
     const reorderedStories = updatedStories.map((story, index) => ({
       ...story,
       id: index,
@@ -88,23 +87,21 @@ function SuccessStory() {
   };
 
   const handleAddSuccessStory = () => {
-    setSelectedStory(null); // Clear selected story for adding a new one
-    setOpenForm(true); // Open the form
+    setSelectedStory(null);
+    setOpenForm(true);
   };
 
   const handleFormSubmit = (values) => {
     if (selectedStory) {
-      // Update existing story
       const updatedStories = stories.map((story) =>
         story.id === selectedStory.id ? { ...story, ...values } : story
       );
       setStories(updatedStories);
     } else {
-      // Add new story
       const newStory = { ...values, id: stories.length };
       setStories([...stories, newStory]);
     }
-    setOpenForm(false); // Close the form
+    setOpenForm(false);
   };
 
   return (
@@ -293,13 +290,13 @@ function SuccessStory() {
                   <Box
                     sx={{
                       display: "flex",
-                      flexDirection: isMobile || isTablet ? "column" : "row", // Stack vertically for mobile/tablet
+                      flexDirection: isMobile || isTablet ? "column" : "row",
                       justifyContent:
-                        isMobile || isTablet ? "center" : "flex-start", // Center-align for mobile/tablet
+                        isMobile || isTablet ? "center" : "flex-start",
                       alignItems:
-                        isMobile || isTablet ? "center" : "flex-start", // Center-align for mobile/tablet
+                        isMobile || isTablet ? "center" : "flex-start",
                       mt: isExtraSmall ? 0.8 : isMobile || isTablet ? 1 : 2,
-                      gap: isExtraSmall ? "4px" : "8px", // Add gap between buttons
+                      gap: isExtraSmall ? "4px" : "8px",
                     }}
                   >
                     <Button
@@ -359,10 +356,10 @@ function SuccessStory() {
                           : isMobile || isTablet
                           ? "6px 12px"
                           : "8px 16px",
-                        backgroundColor: "primary.main", // Primary background color
-                        color: "white", // White font color
+                        backgroundColor: "primary.main",
+                        color: "white",
                         "&:hover": {
-                          backgroundColor: "primary.dark", // Darker shade on hover
+                          backgroundColor: "primary.dark",
                         },
                       }}
                       onClick={() => handleEdit(story.id)}
@@ -394,13 +391,13 @@ function SuccessStory() {
                           : isMobile || isTablet
                           ? "6px 12px"
                           : "8px 16px",
-                        backgroundColor: "grey", // Grey background color
-                        color: "white", // White font color
+                        backgroundColor: "grey",
+                        color: "white",
                         "&:hover": {
-                          backgroundColor: "darkgrey", // Darker shade on hover
+                          backgroundColor: "darkgrey",
                         },
                       }}
-                      onClick={() => handleDeleteClick(story.id)} // Corrected here
+                      onClick={() => handleDeleteClick(story.id)}
                     >
                       Delete
                     </Button>

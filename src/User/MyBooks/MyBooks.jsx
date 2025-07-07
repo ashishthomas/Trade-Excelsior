@@ -166,20 +166,20 @@ function MyBooks() {
                     fontWeight: "bold",
                     fontSize: { xs: "16px", sm: "26px", lg: "28px" },
                     textAlign: isTablet ? "center" : "left",
-                    // textAlign: isMobile ? "center" : "left",
+                    
                     mb: { sm: 2 },
                   }}
                 >
                   {book.bookTagline}
                 </Typography>
 
-                {/* Image after title for tablet */}
+                
                 {isTablet && (
                   <CardMedia
                     component="img"
                     sx={{
-                      maxWidth: { xs: "100%", sm: "100%", md: "80%" }, // Limits size on tablets
-                      maxHeight: { xs: "auto", sm: "500px", md: "450px" }, // Reduce height for tabets
+                      maxWidth: { xs: "100%", sm: "100%", md: "80%" }, 
+                      maxHeight: { xs: "auto", sm: "500px", md: "450px" }, 
                       height: "auto",
                       borderRadius: "5px",
                       objectFit: "contain",
@@ -200,7 +200,7 @@ function MyBooks() {
                     fontWeight: "bold",
                   }}
                 >
-                  {/* Price Action */}
+                  
                   {book.bookName}
                 </Typography>
                 <Typography
@@ -218,12 +218,12 @@ function MyBooks() {
                       cursor: "pointer",
                     }}
                   >
-                    {/* Read More */}
+                   
                     <BookDescription text={book.bookDescription} />
                   </Typography>
                 </Typography>
 
-                {/* Buttons */}
+                
                 <Box sx={{ mt: 2 }}>
                   <Button
                     variant="contained"
@@ -239,13 +239,13 @@ function MyBooks() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {/* Buy Now */}
+                    
                     {book.buttonName}
                   </Button>
                 </Box>
               </CardContent>
 
-              {/* Image on right for desktop */}
+             
               {!isMobile && !isTablet && (
                 <CardMedia
                   component="img"

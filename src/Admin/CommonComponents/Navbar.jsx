@@ -52,14 +52,14 @@ const UserMenu = ({ anchorEl, setAnchorEl }) => {
   const navigate = useNavigate();
 
   const handleProfileClick = () => {
-    setAnchorEl(null); // Close the menu
-    navigate("/profilemain"); // Navigate to the Profile page
+    setAnchorEl(null);
+    navigate("/profilemain");
   };
 
   const handleSwitchToUser = () => {
     setAnchorEl(null);
     localStorage.setItem("role", "user");
-    window.location.reload(); // reload to re-initialize router
+    window.location.reload();
   };
 
   const handleLogout = () => {
@@ -96,7 +96,6 @@ const Navbar = ({ toggleSidebar, unresolvedCount }) => {
     <StyledAppbar elevation={0}>
       <StyledToolbar>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          {/* Disable Sidebar Toggle in Mobile View */}
           {!isMobile && (
             <MenuIcon
               onClick={toggleSidebar}

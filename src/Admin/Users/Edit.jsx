@@ -19,7 +19,7 @@ const EditDrawer = ({
   editUser,
   handleUpdateUser,
 }) => {
-  const isMobile = useMediaQuery("(max-width:768px)"); // Detect mobile & tablet view
+  const isMobile = useMediaQuery("(max-width:768px)");
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -82,7 +82,6 @@ const EditDrawer = ({
       component="form"
       onSubmit={formik.handleSubmit}
     >
-      {/* Header with Close Button */}
       <Box
         sx={{
           display: "flex",
@@ -101,12 +100,11 @@ const EditDrawer = ({
         </IconButton>
       </Box>
 
-      {/* Form Fields */}
       {[
         { label: "First Name", field: "firstName" },
         { label: "Last Name", field: "lastName" },
-        { label: "Email", field: "email", disabled: true }, // Email field is static
-        { label: "Password", field: "password", type: "password" }, // New password field
+        { label: "Email", field: "email", disabled: true },
+        { label: "Password", field: "password", type: "password" },
         { label: "Phone Number", field: "phoneNumber" },
         { label: "Address", field: "address" },
         { label: "Occupation", field: "occupation" },
@@ -122,8 +120,8 @@ const EditDrawer = ({
           error={formik.touched[field] && Boolean(formik.errors[field])}
           helperText={formik.touched[field] && formik.errors[field]}
           fullWidth
-          required={!disabled} // Email field is not required since it's static
-          disabled={disabled} // Disable the email field
+          required={!disabled}
+          disabled={disabled}
           InputLabelProps={{
             required: !disabled,
             sx: {
@@ -135,7 +133,6 @@ const EditDrawer = ({
         />
       ))}
 
-      {/* Action Buttons */}
       <Box
         sx={{
           display: "flex",
@@ -170,7 +167,6 @@ const EditDrawer = ({
 
   return (
     <>
-      {/* Desktop & Large Screen View - Drawer */}
       {!isMobile && (
         <Drawer
           anchor="right"
@@ -188,7 +184,6 @@ const EditDrawer = ({
         </Drawer>
       )}
 
-      {/* Mobile & Tablet View - Modal */}
       {isMobile && (
         <Modal open={modalOpen} onClose={handleCloseEditDrawer}>
           <Box

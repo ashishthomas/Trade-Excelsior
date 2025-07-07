@@ -56,7 +56,7 @@ const Sidebar = ({ isCollapsed }) => {
     >
       <List>
         {menuItems.map(({ text, icon, path }) => {
-          const isActive = location.pathname === path; // Matches only the exact path
+          const isActive = location.pathname === path; 
 
           return (
             <ListItem disablePadding key={path}>

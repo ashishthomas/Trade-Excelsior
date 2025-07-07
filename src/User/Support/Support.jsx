@@ -11,7 +11,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import React from "react";
 
-// Validation Schema using Yup
 const validationSchema = Yup.object({
   name: Yup.string().required("Name is required"),
   email: Yup.string()
@@ -26,7 +25,6 @@ function Support() {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
-  // Formik setup
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -148,7 +146,7 @@ function Support() {
                     mb: isMobile ? 1 : 2,
                     "& .MuiOutlinedInput-root": {
                       ...(field !== "message" && {
-                        height: isMobile ? "56px" : "56px", // ✅ Only apply for non-multiline
+                        height: isMobile ? "56px" : "56px",
                       }),
                       "& input": {
                         textAlign: isMobile ? "center" : "left",

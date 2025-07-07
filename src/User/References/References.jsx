@@ -109,7 +109,6 @@ function References() {
     setSelectedIndex(null);
   }, []);
 
-  // Render each reference card
   const renderReferenceCard = useCallback(
     (ref, i) => (
       <Grid item xs={12} sm={6} md={3} key={ref.id}>

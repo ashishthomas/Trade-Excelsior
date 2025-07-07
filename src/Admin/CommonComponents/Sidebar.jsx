@@ -43,7 +43,7 @@ const Sidebar = ({ isCollapsed }) => {
         p: 1,
         mt: 9,
         ml: 1,
-        borderRadius: "10px", // Rounded edges for a sleek look
+        borderRadius: "10px", 
       }}
     >
       <List>
@@ -68,7 +68,7 @@ const Sidebar = ({ isCollapsed }) => {
               arrow
               componentsProps={{
                 tooltip: {
-                  sx: { fontSize: "14px", bgcolor: "#3A86FF", color: "#fff" }, // Modern tooltip style
+                  sx: { fontSize: "14px", bgcolor: "#3A86FF", color: "#fff" }, 
                 },
               }}
             >
@@ -83,10 +83,10 @@ const Sidebar = ({ isCollapsed }) => {
                   "&:hover": {
                     bgcolor: "#3A86FF",
                     color: "#fff",
-                    transform: "scale(1.02)", // Slight scale-up on hover
+                    transform: "scale(1.02)", 
                   },
                   transition: "all 0.3s ease-in-out",
-                  borderRadius: "8px", // Rounded button edges
+                  borderRadius: "8px",
                 }}
                 onMouseEnter={() => setHovered(text)}
                 onMouseLeave={() => setHovered(null)}

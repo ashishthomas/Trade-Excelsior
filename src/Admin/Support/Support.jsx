@@ -66,10 +66,8 @@ function Support() {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
-  // Access setUnresolvedCount from the Outlet context
   const { setUnresolvedCount } = useOutletContext();
 
-  // Calculate unresolved count based on the entire dataset
   useMemo(() => {
     const unresolved = data.filter(
       (ticket) => ticket.status === "unresolved"
@@ -164,7 +162,6 @@ function Support() {
             />
           </Box>
 
-          {/* Filter Toggle Buttons */}
           <Box
             sx={{
               display: "flex",
@@ -205,7 +202,6 @@ function Support() {
         </Toolbar>
       </AppBar>
 
-      {/* Show selected ticket details */}
       {selectedTicket ? (
         <SupportDetails
           ticket={selectedTicket}

@@ -180,23 +180,23 @@ const AddBookForm = ({ open, onClose, handleAdd }) => {
                 display="flex"
                 justifyContent="space-between"
                 sx={{
-                  mt: { xs: 1 }, // Smaller margin for mobile, larger for desktop
-                  p: { xs: 2, sm: 5 }, // Adjust padding for different screens
-                  ml: { xs: 0, sm: 14, md: 18 }, // No margin-left for mobile, gradually increasing for larger screens
+                  mt: { xs: 1 },
+                  p: { xs: 2, sm: 5 },
+                  ml: { xs: 0, sm: 14, md: 18 },
                 }}
               >
                 <Button
                   type="submit"
                   variant="contained"
                   color="primary"
-                  sx={{ width: { xs: "100%", sm: "48%" } }} // Full width on mobile, 48% on larger screens
+                  sx={{ width: { xs: "100%", sm: "48%" } }}
                 >
                   Add
                 </Button>
                 <Button
                   onClick={onClose}
                   sx={{
-                    width: { xs: "100%", sm: "48%" }, // Same width adjustment
+                    width: { xs: "100%", sm: "48%" },
                     bgcolor: "grey",
                     color: "white",
                     ml: { xs: 2, sm: 2 },

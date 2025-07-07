@@ -24,7 +24,7 @@ const Users = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  //To fetch user data from an external API and format it for use in the app.
+ 
 
   useEffect(() => {
     fetch(API_URL)
@@ -47,7 +47,7 @@ const Users = () => {
       });
   }, []);
 
-  //To control the visibility of dialogs and drawers (e.g., edit, delete, info, library)
+  
   const handleOpenDeleteDialog = (id) => {
     setDeleteId(id);
     setOpenDeleteDialog(true);
@@ -58,7 +58,7 @@ const Users = () => {
     setDeleteId(null);
   };
 
-  //To delete a user from the users state when confirmed in the delete dialog.
+ 
   const handleConfirmDelete = () => {
     setUsers((prevUsers) =>
       prevUsers
@@ -98,7 +98,7 @@ const Users = () => {
     setLibraryUser(null);
   };
 
-  //To update the user data in the users state when changes are made in the edit drawer.
+  
   const handleUpdateUser = (updatedUser) => {
     const updatedUsers = users.map((user) =>
       user.id === updatedUser.id
@@ -126,7 +126,7 @@ const Users = () => {
     handleCloseLibraryDrawer();
   };
 
-  // To filter users based on the search query and highlight matching text.
+ 
   const highlightText = (text) => {
     if (!searchQuery) return text;
     const regex = new RegExp(`(${searchQuery})`, "gi");

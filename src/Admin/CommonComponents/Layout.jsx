@@ -13,7 +13,6 @@ const Layout = ({ unresolvedCount, setUnresolvedCount }) => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-      {/* Pass unresolvedCount and toggleSidebar to Navbar */}
       <Navbar unresolvedCount={unresolvedCount} toggleSidebar={toggleSidebar} />
 
       <Box sx={{ display: "flex", flexGrow: 1, overflow: "hidden" }}>
@@ -24,12 +23,11 @@ const Layout = ({ unresolvedCount, setUnresolvedCount }) => {
           sx={{
             flexGrow: 1,
             p: 3,
-            marginLeft: isSidebarOpen ? "220px" : "60px", // Adjust based on Sidebar width
+            marginLeft: isSidebarOpen ? "220px" : "60px",
             transition: "margin-left 0.3s ease",
-            overflowY: "auto", // Allow scrolling for content
+            overflowY: "auto",
           }}
         >
-          {/* Use Outlet to render the current route */}
           <Outlet context={{ setUnresolvedCount }} />
         </Box>
       </Box>

@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-import { Paper, Typography, IconButton, Button,  Box,  AppBar, Toolbar,  useTheme, useMediaQuery, Badge } from "@mui/material";
+import {
+  Paper,
+  Typography,
+  IconButton,
+  Button,
+  Box,
+  AppBar,
+  Toolbar,
+  useTheme,
+  useMediaQuery,
+  Badge,
+} from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -8,10 +19,30 @@ import DeleteConfirmationDialog from "./DeleteConfirmationDialog";
 
 function Onboarding() {
   const [items, setItems] = useState([
-    { id: 1, title: "An extra layer of security to your trading account", link: "https://example.com/stocks", buttonName: "Join Now" },
-    { id: 2, title: "Link your bank account for seamless deposits and withdrawals", link: "https://example.com/news", buttonName: "Link Account" },
-    { id: 3, title: "Join prime whatsapp group", link: "https://example.com/portfolio", buttonName: "Join Now" },
-    { id: 4, title: "Demo", link: "https://example.com/alerts", buttonName: "Check Demo" }
+    {
+      id: 1,
+      title: "An extra layer of security to your trading account",
+      link: "https://example.com/stocks",
+      buttonName: "Join Now",
+    },
+    {
+      id: 2,
+      title: "Link your bank account for seamless deposits and withdrawals",
+      link: "https://example.com/news",
+      buttonName: "Link Account",
+    },
+    {
+      id: 3,
+      title: "Join prime whatsapp group",
+      link: "https://example.com/portfolio",
+      buttonName: "Join Now",
+    },
+    {
+      id: 4,
+      title: "Demo",
+      link: "https://example.com/alerts",
+      buttonName: "Check Demo",
+    },
   ]);
 
   const [editItem, setEditItem] = useState(null);
@@ -24,7 +55,11 @@ function Onboarding() {
 
   const handleEdit = (item) => {
     setEditItem(item);
-    formik.setValues({ title: item.title, link: item.link, buttonName: item.buttonName });
+    formik.setValues({
+      title: item.title,
+      link: item.link,
+      buttonName: item.buttonName,
+    });
     setOpenDrawer(true);
   };
 
@@ -35,13 +70,12 @@ function Onboarding() {
 
   const handleConfirmDelete = () => {
     const updatedItems = items.filter((item) => item.id !== deleteItemId);
-    
-    // Reassign IDs sequentially
+
     const reorderedItems = updatedItems.map((item, index) => ({
       ...item,
       id: index + 1,
     }));
-    
+
     setItems(reorderedItems);
     setOpenDeleteDialog(false);
   };
@@ -67,10 +101,16 @@ function Onboarding() {
     validationSchema,
     onSubmit: (values) => {
       if (editItem) {
-        setItems(items.map((item) => (item.id === editItem.id ? { ...item, ...values } : item)));
+        setItems(
+          items.map((item) =>
+            item.id === editItem.id ? { ...item, ...values } : item
+          )
+        );
       } else {
         const newItem = { id: items.length + 1, ...values };
-        setItems([...items, newItem].map((item, index) => ({ ...item, id: index + 1 }))); // Re-index after adding
+        setItems(
+          [...items, newItem].map((item, index) => ({ ...item, id: index + 1 }))
+        );
       }
       setOpenDrawer(false);
     },
@@ -133,7 +173,7 @@ function Onboarding() {
             sx={{
               fontSize: { xs: "0.7rem", sm: "1rem" },
               mt: { xs: 1, sm: 0 },
-              width: { xs: "100%", sm: "auto" }, // Full width on mobile
+              width: { xs: "100%", sm: "auto" },
             }}
           >
             + Add Checklist
