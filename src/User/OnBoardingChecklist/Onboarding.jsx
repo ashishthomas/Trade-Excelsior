@@ -7,10 +7,11 @@ import {
   Box,
   AppBar,
   Toolbar,
-  Avatar,
+  // Avatar,
   useTheme,
   useMediaQuery,
   Divider,
+  Badge,
 } from "@mui/material";
 
 function Onboarding() {
@@ -80,18 +81,20 @@ function Onboarding() {
             >
               <b>ON BOARDING CHECKLIST</b>
             </Typography>
-            <Avatar
+            <Badge
+              badgeContent={items.length}
               sx={{
-                bgcolor: "grey.300",
-                color: "blue",
-                fontWeight: "bold",
-                fontSize: { xs: "0.9rem", lg: "1rem" },
-                width: { xs: "25px", lg: "30px" },
-                height: { xs: "25px", lg: "30px" },
+                ml: 3,
+                "& .MuiBadge-badge": {
+                  height: "1.8rem",
+                  width: "1.8rem",
+                  backgroundColor: "#E6E6FA",
+                  color: "#1976d2",
+                  fontSize: "0.8rem",
+                  fontWeight: "bold",
+                },
               }}
-            >
-              {items.length}
-            </Avatar>
+            />
           </Box>
         </Toolbar>
       </AppBar>

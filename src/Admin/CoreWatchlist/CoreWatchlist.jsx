@@ -285,6 +285,7 @@ const CoreWatchlistTable = () => {
                   backgroundColor: "#E6E6FA",
                   color: "#1976d2",
                   fontSize: "0.8rem",
+                  fontWeight: "bold",
                 },
               }}
             />

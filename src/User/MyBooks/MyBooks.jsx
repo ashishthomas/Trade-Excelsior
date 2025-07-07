@@ -105,7 +105,6 @@ function MyBooks() {
               <b>MY BOOKS</b>
             </Typography>
             <Badge
-              // badgeContent={3}
               badgeContent={books.length}
               sx={{
                 ml: 3,
@@ -115,6 +114,7 @@ function MyBooks() {
                   backgroundColor: "#E6E6FA",
                   color: "#007BFF",
                   fontSize: "0.8rem",
+                  fontWeight: "bold",
                 },
               }}
             />

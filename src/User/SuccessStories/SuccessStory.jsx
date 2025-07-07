@@ -89,13 +89,14 @@ function SuccessStory() {
             <Badge
               badgeContent={stories.length}
               sx={{
-                ml: 2,
+                ml: 3,
                 "& .MuiBadge-badge": {
                   height: isExtraSmall ? "1.2rem" : "1.8rem",
                   width: isExtraSmall ? "1.2rem" : "1.8rem",
                   backgroundColor: "#E6E6FA",
                   color: "#007BFF",
                   fontSize: isExtraSmall ? "0.6rem" : "0.8rem",
+                  fontWeight: "bold",
                 },
               }}
             />

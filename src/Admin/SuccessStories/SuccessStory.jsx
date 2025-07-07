@@ -139,13 +139,14 @@ function SuccessStory() {
             <Badge
               badgeContent={stories.length}
               sx={{
-                ml: 2,
+                ml: 3,
                 "& .MuiBadge-badge": {
                   height: isExtraSmall ? "1.2rem" : "1.8rem",
                   width: isExtraSmall ? "1.2rem" : "1.8rem",
                   backgroundColor: "#E6E6FA",
                   color: "#007BFF",
                   fontSize: isExtraSmall ? "0.6rem" : "0.8rem",
+                  fontWeight: "bold",
                 },
               }}
             />
@@ -159,14 +160,14 @@ function SuccessStory() {
               fontSize: isExtraSmall
                 ? "0.7rem"
                 : isMobile || isTablet
-                  ? "0.8rem"
-                  : "1rem",
+                ? "0.8rem"
+                : "1rem",
               whiteSpace: "nowrap",
               padding: isExtraSmall
                 ? "4px 8px"
                 : isMobile || isTablet
-                  ? "6px 12px"
-                  : "8px 16px",
+                ? "6px 12px"
+                : "8px 16px",
               mt: { xs: 1, sm: 0 },
             }}
           >
@@ -234,8 +235,8 @@ function SuccessStory() {
                       fontSize: isExtraSmall
                         ? "0.9rem"
                         : isMobile || isTablet
-                          ? "1rem"
-                          : "28px",
+                        ? "1rem"
+                        : "28px",
                     }}
                   >
                     {story.tagline}
@@ -248,8 +249,8 @@ function SuccessStory() {
                       fontSize: isExtraSmall
                         ? "0.9rem"
                         : isMobile || isTablet
-                          ? "1rem"
-                          : "28px",
+                        ? "1rem"
+                        : "28px",
                     }}
                   >
                     {story.name}
@@ -263,8 +264,8 @@ function SuccessStory() {
                       fontSize: isExtraSmall
                         ? "10px"
                         : isMobile || isTablet
-                          ? "12px"
-                          : "20px",
+                        ? "12px"
+                        : "20px",
                     }}
                   >
                     {expandedId === story.id
@@ -279,8 +280,8 @@ function SuccessStory() {
                         fontSize: isExtraSmall
                           ? "0.7rem"
                           : isMobile || isTablet
-                            ? "0.8rem"
-                            : "1rem",
+                          ? "0.8rem"
+                          : "1rem",
                         color: "#3A86FF",
                         fontWeight: "bold",
                       }}
@@ -309,24 +310,24 @@ function SuccessStory() {
                         width: isExtraSmall
                           ? "auto"
                           : isMobile || isTablet
-                            ? "auto"
-                            : "100px",
+                          ? "auto"
+                          : "100px",
                         minWidth: isExtraSmall
                           ? "70px"
                           : isMobile || isTablet
-                            ? "80px"
-                            : "100px",
+                          ? "80px"
+                          : "100px",
                         fontSize: isExtraSmall
                           ? "0.7rem"
                           : isMobile || isTablet
-                            ? "0.8rem"
-                            : "1rem",
+                          ? "0.8rem"
+                          : "1rem",
                         whiteSpace: "nowrap",
                         padding: isExtraSmall
                           ? "4px 8px"
                           : isMobile || isTablet
-                            ? "6px 12px"
-                            : "8px 16px",
+                          ? "6px 12px"
+                          : "8px 16px",
                       }}
                       onClick={() => window.open(story.video, "_blank")}
                     >
@@ -340,24 +341,24 @@ function SuccessStory() {
                         width: isExtraSmall
                           ? "auto"
                           : isMobile || isTablet
-                            ? "auto"
-                            : "100px",
+                          ? "auto"
+                          : "100px",
                         minWidth: isExtraSmall
                           ? "70px"
                           : isMobile || isTablet
-                            ? "80px"
-                            : "100px",
+                          ? "80px"
+                          : "100px",
                         fontSize: isExtraSmall
                           ? "0.7rem"
                           : isMobile || isTablet
-                            ? "0.8rem"
-                            : "1rem",
+                          ? "0.8rem"
+                          : "1rem",
                         whiteSpace: "nowrap",
                         padding: isExtraSmall
                           ? "4px 8px"
                           : isMobile || isTablet
-                            ? "6px 12px"
-                            : "8px 16px",
+                          ? "6px 12px"
+                          : "8px 16px",
                         backgroundColor: "primary.main", // Primary background color
                         color: "white", // White font color
                         "&:hover": {
@@ -375,24 +376,24 @@ function SuccessStory() {
                         width: isExtraSmall
                           ? "auto"
                           : isMobile || isTablet
-                            ? "auto"
-                            : "100px",
+                          ? "auto"
+                          : "100px",
                         minWidth: isExtraSmall
                           ? "70px"
                           : isMobile || isTablet
-                            ? "80px"
-                            : "100px",
+                          ? "80px"
+                          : "100px",
                         fontSize: isExtraSmall
                           ? "0.7rem"
                           : isMobile || isTablet
-                            ? "0.8rem"
-                            : "1rem",
+                          ? "0.8rem"
+                          : "1rem",
                         whiteSpace: "nowrap",
                         padding: isExtraSmall
                           ? "4px 8px"
                           : isMobile || isTablet
-                            ? "6px 12px"
-                            : "8px 16px",
+                          ? "6px 12px"
+                          : "8px 16px",
                         backgroundColor: "grey", // Grey background color
                         color: "white", // White font color
                         "&:hover": {

@@ -16,7 +16,6 @@ import {
 } from "@mui/material";
 import { Add, Search } from "@mui/icons-material";
 
-
 // Simulated API Fetch (mock data)
 const fetchDummyData = async () => {
   return new Promise((resolve) =>
@@ -114,7 +113,7 @@ const fetchDummyData = async () => {
           trend: "strong",
         },
         {
-          id:14,
+          id: 14,
           company: "Bharti Airtel",
           sector: "Telecom",
           marketCap: "Large",
@@ -387,6 +386,7 @@ const CoreWatchlistTable = () => {
                   backgroundColor: "#E6E6FA",
                   color: "#1976d2",
                   fontSize: "0.8rem",
+                  fontWeight: "bold",
                 },
               }}
             />
@@ -421,7 +421,6 @@ const CoreWatchlistTable = () => {
                 ),
               }}
             />
-          
           </Box>
         </Toolbar>
       </AppBar>

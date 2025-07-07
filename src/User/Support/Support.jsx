@@ -36,19 +36,25 @@ function Support() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2)); 
+      alert(JSON.stringify(values, null, 2));
     },
   });
 
   return (
-    <Box sx={{ backgroundColor: "white", padding: isMobile ? "10px" : "15px", minHeight: "84vh" }}>
+    <Box
+      sx={{
+        backgroundColor: "white",
+        padding: isMobile ? "10px" : "15px",
+        minHeight: "84vh",
+      }}
+    >
       {/* Centered "How Can I Help?" Box */}
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          mt: isMobile ? 1 : 4, 
+          mt: isMobile ? 1 : 4,
         }}
       >
         <Typography
@@ -69,9 +75,9 @@ function Support() {
       {/* Main Content */}
       <Grid
         container
-        spacing={isMobile ? 1 : 4} 
+        spacing={isMobile ? 1 : 4}
         sx={{
-          mt: isMobile ? 1 : 4, 
+          mt: isMobile ? 1 : 4,
           px: isMobile ? 1 : 4,
           justifyContent: "center",
           textAlign: "center",
@@ -88,7 +94,7 @@ function Support() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "100%", 
+            height: "100%",
           }}
         >
           <Box
@@ -96,11 +102,11 @@ function Support() {
             src="src\User\assets\women contact support.png"
             alt="Support Image"
             sx={{
-              width: isMobile ? "70%" : isTablet ? "50%" : "80%", 
+              width: isMobile ? "70%" : isTablet ? "50%" : "80%",
               height: "auto",
               borderRadius: "8px",
-              mb: isMobile ? 1 : 0, 
-              alignSelf: "center", 
+              mb: isMobile ? 1 : 0,
+              alignSelf: "center",
             }}
           />
         </Grid>
@@ -111,11 +117,11 @@ function Support() {
             sx={{
               display: "flex",
               flexDirection: "column",
-              gap: isMobile ? 1 : 2, 
+              gap: isMobile ? 1 : 2,
               borderRadius: "8px",
-              padding: isMobile ? "12px" : "24px", 
-              height: "100%", 
-              justifyContent: "center", 
+              padding: isMobile ? "12px" : "24px",
+              height: "100%",
+              justifyContent: "center",
             }}
           >
             {/* Formik Form */}
@@ -139,28 +145,24 @@ function Support() {
                   error={formik.touched[field] && Boolean(formik.errors[field])}
                   helperText={formik.touched[field] && formik.errors[field]}
                   sx={{
-                    mb: isMobile ? 1 : 2, 
+                    mb: isMobile ? 1 : 2,
                     "& .MuiOutlinedInput-root": {
-                      height: isMobile ? "56px" : "56px", 
+                      ...(field !== "message" && {
+                        height: isMobile ? "56px" : "56px", // ✅ Only apply for non-multiline
+                      }),
                       "& input": {
-                        textAlign: isMobile ? "center" : "left", 
-                        fontSize: isMobile ? "0.8rem" : isTablet ? "0.9rem" : "1rem", 
+                        textAlign: isMobile ? "center" : "left",
+                        fontSize: isMobile
+                          ? "0.8rem"
+                          : isTablet
+                          ? "0.9rem"
+                          : "1rem",
                         padding: isMobile ? "8px" : "16px",
-                      },
-                      "& .MuiInputLabel-root": {
-                        textAlign: isMobile ? "center" : "left", 
-                        fontSize: isMobile ? "0.8rem" : isTablet ? "0.9rem" : "1rem", 
-                        transformOrigin: isMobile ? "center" : "top left", 
-                        "&.Mui-focused": {
-                          transform: isMobile
-                            ? "translate(0, -50%) scale(0.75)"
-                            : "translate(14px, -9px) scale(0.75)", 
-                        },
                       },
                     },
                   }}
                   multiline={field === "message"}
-                  rows={field === "message" ? 3 : 1} 
+                  rows={field === "message" ? 3 : 1}
                 />
               ))}
 
@@ -169,11 +171,11 @@ function Support() {
                 variant="contained"
                 color="primary"
                 sx={{
-                  mt: isMobile ? 1 : 2, 
-                  padding: isMobile ? "6px 12px" : "12px 48px", 
-                  fontSize: isMobile ? "0.8rem" : isTablet ? "1rem" : "1.2rem", 
+                  mt: isMobile ? 1 : 2,
+                  padding: isMobile ? "6px 12px" : "12px 48px",
+                  fontSize: isMobile ? "0.8rem" : isTablet ? "1rem" : "1.2rem",
                   width: "100%",
-                  height: isMobile ? "36px" : "48px", 
+                  height: isMobile ? "36px" : "48px",
                 }}
               >
                 SUBMIT
