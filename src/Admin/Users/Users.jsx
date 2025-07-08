@@ -24,8 +24,6 @@ const Users = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
- 
-
   useEffect(() => {
     fetch(API_URL)
       .then((response) => response.json())
@@ -47,7 +45,6 @@ const Users = () => {
       });
   }, []);
 
-  
   const handleOpenDeleteDialog = (id) => {
     setDeleteId(id);
     setOpenDeleteDialog(true);
@@ -58,7 +55,6 @@ const Users = () => {
     setDeleteId(null);
   };
 
- 
   const handleConfirmDelete = () => {
     setUsers((prevUsers) =>
       prevUsers
@@ -98,7 +94,6 @@ const Users = () => {
     setLibraryUser(null);
   };
 
-  
   const handleUpdateUser = (updatedUser) => {
     const updatedUsers = users.map((user) =>
       user.id === updatedUser.id
@@ -126,7 +121,6 @@ const Users = () => {
     handleCloseLibraryDrawer();
   };
 
- 
   const highlightText = (text) => {
     if (!searchQuery) return text;
     const regex = new RegExp(`(${searchQuery})`, "gi");

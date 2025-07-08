@@ -50,6 +50,8 @@ const EditDrawer = ({
       phoneNumber: "",
       address: "",
       occupation: "",
+      subscriptionStart: "",
+      subscriptionEnd: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -72,6 +74,8 @@ const EditDrawer = ({
         phoneNumber: editUser.phone || "",
         address: editUser.address || "",
         occupation: editUser.occupation || "",
+        subscriptionStart: editUser.subscriptionStart || "",
+        subscriptionEnd: editUser.subscriptionEnd || "",
       });
     }
   }, [editUser]);
@@ -108,6 +112,8 @@ const EditDrawer = ({
         { label: "Phone Number", field: "phoneNumber" },
         { label: "Address", field: "address" },
         { label: "Occupation", field: "occupation" },
+        { label: "Subscription Start Date", field: "subscriptionStart" },
+        { label: "Subscription End Date", field: "subscriptionEnd" },
       ].map(({ label, field, type = "text", disabled = false }) => (
         <TextField
           key={field}
