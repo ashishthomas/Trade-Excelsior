@@ -19,7 +19,7 @@ const SuccessStoryForm = ({ open, onClose, onSubmit, selectedStory }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-  const isEditMode = Boolean(selectedStory); // Check if we're editing
+  const isEditMode = Boolean(selectedStory);
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("User Name is required"),
@@ -37,7 +37,7 @@ const SuccessStoryForm = ({ open, onClose, onSubmit, selectedStory }) => {
       sx={{ zIndex: 1300 }}
       PaperProps={{
         sx: {
-          width: isMobile ? "80%" : isTablet ? "70%" : "500px", // Responsive width
+          width: isMobile ? "80%" : isTablet ? "70%" : "500px",
         },
       }}
     >
@@ -68,7 +68,7 @@ const SuccessStoryForm = ({ open, onClose, onSubmit, selectedStory }) => {
             image: selectedStory?.image || "",
           }}
           validationSchema={validationSchema}
-          enableReinitialize={true} // Ensures form updates when selectedStory changes
+          enableReinitialize={true}
           onSubmit={(values) => {
             onSubmit({ ...values, id: selectedStory?.id || Date.now() });
             onClose();

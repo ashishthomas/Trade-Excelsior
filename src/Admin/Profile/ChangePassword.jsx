@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   AppBar,
@@ -15,7 +14,7 @@ import {
 import LockIcon from "@mui/icons-material/Lock";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useNavigate } from "react-router-dom";
 
 export default function ChangePassword() {
@@ -24,7 +23,10 @@ export default function ChangePassword() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState({ newPassword: "", confirmPassword: "" });
+  const [errors, setErrors] = useState({
+    newPassword: "",
+    confirmPassword: "",
+  });
 
   const validatePasswords = () => {
     let newErrors = { newPassword: "", confirmPassword: "" };
@@ -54,10 +56,17 @@ export default function ChangePassword() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: "white" }}>
           <Toolbar>
-            
-            <img src="/public/icon/Excelsior.jpeg" alt=""  height={"40px"}  width={"40px"}/>
-           
-            <Typography variant="h6" sx={{ flexGrow: 1, color: "#007BFF" , ml:2}}>
+            <img
+              src="/icon/Excelsior.jpeg"
+              alt=""
+              height={"40px"}
+              width={"40px"}
+            />
+
+            <Typography
+              variant="h6"
+              sx={{ flexGrow: 1, color: "#007BFF", ml: 2 }}
+            >
               <b>Excelsior</b>
             </Typography>
             <Button
@@ -72,7 +81,14 @@ export default function ChangePassword() {
       </Box>
 
       {/* Change Password Form (Card Instead of Modal) */}
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "80vh" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "80vh",
+        }}
+      >
         <Paper
           elevation={10}
           sx={{
@@ -91,7 +107,11 @@ export default function ChangePassword() {
           </Typography>
 
           {/* Instructional Text */}
-          <Typography variant="body2" color="textSecondary" sx={{ marginBottom: 2 }}>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            sx={{ marginBottom: 2 }}
+          >
             Please enter your new password
           </Typography>
 
@@ -100,10 +120,10 @@ export default function ChangePassword() {
             fullWidth
             type={showPassword ? "text" : "password"}
             label={
-                            <>
-                              New Password <span style={{ color: "red" }}>*</span>
-                            </>
-                          }
+              <>
+                New Password <span style={{ color: "red" }}>*</span>
+              </>
+            }
             variant="outlined"
             sx={{ marginBottom: 2 }}
             value={newPassword}
@@ -125,7 +145,11 @@ export default function ChangePassword() {
           <TextField
             fullWidth
             type={showConfirmPassword ? "text" : "password"}
-            label={<>Confirm Password <span style={{color:"red"}}>*</span></>}
+            label={
+              <>
+                Confirm Password <span style={{ color: "red" }}>*</span>
+              </>
+            }
             variant="outlined"
             sx={{ marginBottom: 2 }}
             value={confirmPassword}
@@ -135,7 +159,9 @@ export default function ChangePassword() {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                  <IconButton
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
                     {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
@@ -148,12 +174,18 @@ export default function ChangePassword() {
             fullWidth
             variant="contained"
             sx={{
-              backgroundColor: newPassword && newPassword === confirmPassword ? "#007BFF" : "lightgray",
+              backgroundColor:
+                newPassword && newPassword === confirmPassword
+                  ? "#007BFF"
+                  : "lightgray",
               color: "white",
-              textTransform:"none",
+              textTransform: "none",
               marginTop: 2,
               "&:hover": {
-                backgroundColor: newPassword && newPassword === confirmPassword ? "#0056b3" : "gray",
+                backgroundColor:
+                  newPassword && newPassword === confirmPassword
+                    ? "#0056b3"
+                    : "gray",
               },
             }}
             onClick={handleSubmit}

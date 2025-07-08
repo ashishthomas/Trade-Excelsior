@@ -102,7 +102,7 @@ export default function Profilemain() {
         <AppBar position="static" sx={{ backgroundColor: "white" }}>
           <Toolbar>
             <img
-              src="/public/icon/Excelsior.jpeg"
+              src="/icon/Excelsior.jpeg"
               alt=""
               height={"40px"}
               width={"40px"}
@@ -145,7 +145,6 @@ export default function Profilemain() {
             justifyContent="center"
             alignItems="stretch"
           >
-            {/* First Card */}
             <Grid item xs={12} sm={6} md={4} sx={{ display: "flex" }}>
               <Card
                 sx={{
@@ -300,7 +299,6 @@ export default function Profilemain() {
               </Card>
             </Grid>
 
-            {/* Second Card */}
             <Grid item xs={12} sm={6} md={8} sx={{ display: "flex" }}>
               <Card
                 sx={{
@@ -423,7 +421,6 @@ export default function Profilemain() {
         </form>
       </Box>
 
-      {/* Footer */}
       <Box
         sx={{
           display: "flex",

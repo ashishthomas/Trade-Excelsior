@@ -57,7 +57,7 @@ const UserMenu = ({ anchorEl, setAnchorEl }) => {
   const handleSwitchToAdmin = () => {
     setAnchorEl(null);
     localStorage.setItem("role", "admin");
-    window.location.reload(); 
+    window.location.reload();
   };
 
   return (
@@ -89,7 +89,6 @@ const Navbar = ({ toggleSidebar }) => {
     <StyledAppbar>
       <StyledToolbar>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          
           {!isMobile && (
             <MenuIcon
               onClick={toggleSidebar}
@@ -104,7 +103,7 @@ const Navbar = ({ toggleSidebar }) => {
             variant="h6"
             sx={{
               fontSize: isExtraSmall ? "14px" : isMobile ? "18px" : "24px",
-              mr: isMobile ? 2 : 0, // Added margin-right for mobile view
+              mr: isMobile ? 2 : 0,
             }}
           >
             Excelsior

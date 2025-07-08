@@ -43,7 +43,7 @@ const Sidebar = ({ isCollapsed }) => {
         p: 1,
         mt: 9,
         ml: 1,
-        borderRadius: "10px", 
+        borderRadius: "10px",
       }}
     >
       <List>
@@ -68,7 +68,7 @@ const Sidebar = ({ isCollapsed }) => {
               arrow
               componentsProps={{
                 tooltip: {
-                  sx: { fontSize: "14px", bgcolor: "#3A86FF", color: "#fff" }, 
+                  sx: { fontSize: "14px", bgcolor: "#3A86FF", color: "#fff" },
                 },
               }}
             >
@@ -83,7 +83,7 @@ const Sidebar = ({ isCollapsed }) => {
                   "&:hover": {
                     bgcolor: "#3A86FF",
                     color: "#fff",
-                    transform: "scale(1.02)", 
+                    transform: "scale(1.02)",
                   },
                   transition: "all 0.3s ease-in-out",
                   borderRadius: "8px",
@@ -97,7 +97,7 @@ const Sidebar = ({ isCollapsed }) => {
                     color: location.pathname === path ? "#fff" : "inherit",
                     transition: "transform 0.3s ease-in-out",
                     "&:hover": {
-                      transform: "scale(1.1)", // Slight scale effect on icon hover
+                      transform: "scale(1.1)",
                     },
                   }}
                 >
