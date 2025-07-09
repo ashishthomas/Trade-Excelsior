@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "jest"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -21,7 +22,7 @@
     "bootstrap": "^5.3.3",
     "formik": "^2.4.6",
     "prop-types": "^15.8.1",
-    "react": "^19.0.0",
+    "react": "^19.1.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
     "react-infinite-scroll-component": "^6.1.0",
@@ -38,6 +39,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
+    "jest": "^30.0.4",
     "vite": "^6.1.0"
   }
 }

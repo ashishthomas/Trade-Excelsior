@@ -56,7 +56,7 @@ const Sidebar = ({ isCollapsed }) => {
     >
       <List>
         {menuItems.map(({ text, icon, path }) => {
-          const isActive = location.pathname === path; 
+          const isActive = location.pathname === path;
 
           return (
             <ListItem disablePadding key={path}>
@@ -91,14 +91,16 @@ const Sidebar = ({ isCollapsed }) => {
                 >
                   <ListItemIcon
                     sx={{
-                      minWidth: isMobile ? "30px" : "35px", 
-                      fontSize: isMobile ? "20px" : "24px", 
+                      minWidth: isMobile ? "30px" : "35px",
+                      fontSize: isMobile ? "20px" : "24px",
                       color: isActive ? "#fff" : "inherit",
                       transition: "transform 0.3s ease-in-out",
                       "&:hover": { transform: "scale(1.1)" },
                     }}
                   >
-                    {React.cloneElement(icon, { fontSize: isMobile ? "small" : "medium" })}
+                    {React.cloneElement(icon, {
+                      fontSize: isMobile ? "small" : "medium",
+                    })}
                   </ListItemIcon>
 
                   <ListItemText
@@ -108,7 +110,8 @@ const Sidebar = ({ isCollapsed }) => {
                       overflow: "hidden",
                       whiteSpace: "nowrap",
                       opacity: hovered === text || !isCollapsed ? 1 : 0,
-                      transition: "opacity 0.2s ease-in-out, width 0.2s ease-in-out",
+                      transition:
+                        "opacity 0.2s ease-in-out, width 0.2s ease-in-out",
                       "& .MuiTypography-root": {
                         fontSize: "14px",
                         fontWeight: isActive ? "bold" : "normal",
@@ -132,7 +135,8 @@ const Sidebar = ({ isCollapsed }) => {
             color: "#555",
           }}
         >
-          <CopyrightSharp fontSize="small" /> Trade Excelsior all rights reserved
+          <CopyrightSharp fontSize="small" /> Trade Excelsior all rights
+          reserved
         </Typography>
       )}
     </Box>
