@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import AppBarComponent from "./UserAppbar";
 import UserTable from "./Table";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Drawer,
   Box,
@@ -21,9 +21,12 @@ const LibraryDrawer = ({
   const validateForm = () => {
     let tempErrors = {};
     if (!libraryUser.license) tempErrors.license = "License is required";
-    if (!libraryUser.yearsOfMembership) tempErrors.yearsOfMembership = "Number of Years License is required";
-    if (!libraryUser.subscriptionStart) tempErrors.subscriptionStart = "Subscription Start is required";
-    if (!libraryUser.subscriptionEnd) tempErrors.subscriptionEnd = "Subscription End is required";
+    if (!libraryUser.yearsOfMembership)
+      tempErrors.yearsOfMembership = "Number of Years License is required";
+    if (!libraryUser.subscriptionStart)
+      tempErrors.subscriptionStart = "Subscription Start is required";
+    if (!libraryUser.subscriptionEnd)
+      tempErrors.subscriptionEnd = "Subscription End is required";
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
@@ -44,7 +47,9 @@ const LibraryDrawer = ({
         "& .MuiDrawer-paper": { width: 400, zIndex: 1301 },
       }}
     >
-      <Box sx={{ padding: 2, display: "flex", flexDirection: "column", gap: 2 }}>
+      <Box
+        sx={{ padding: 2, display: "flex", flexDirection: "column", gap: 2 }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -65,12 +70,20 @@ const LibraryDrawer = ({
 
         {libraryUser && (
           <>
-            {["license", "yearsOfMembership", "subscriptionStart", "subscriptionEnd"].map((field, index) => (
+            {[
+              "license",
+              "yearsOfMembership",
+              "subscriptionStart",
+              "subscriptionEnd",
+            ].map((field, index) => (
               <TextField
                 key={index}
                 label={
                   <>
-                    {field.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())} <span style={{ color: "red" }}>*</span>
+                    {field
+                      .replace(/([A-Z])/g, " $1")
+                      .replace(/^./, (str) => str.toUpperCase())}{" "}
+                    <span style={{ color: "red" }}>*</span>
                   </>
                 }
                 value={libraryUser[field] || ""}
@@ -88,7 +101,14 @@ const LibraryDrawer = ({
           </>
         )}
 
-        <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2, marginTop: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            gap: 2,
+            marginTop: 2,
+          }}
+        >
           <Button
             onClick={handleSubmit}
             sx={{
