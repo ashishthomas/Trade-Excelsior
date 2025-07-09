@@ -1,13 +1,10 @@
-import React from "react";
 import { Box, Button, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object({
   fname: Yup.string().required("Checklist description is required"),
-  link: Yup.string()
-  .url("Enter a valid URL")
-  .required("Link is required"),
+  link: Yup.string().url("Enter a valid URL").required("Link is required"),
   button: Yup.string().required("Button name is required"),
 });
 
@@ -20,10 +17,10 @@ function AddCheckList() {
     },
     validationSchema,
     onSubmit: (values) => {
-        console.log("Form Submitted:", values);
-        formik.resetForm(); 
-        alert("checklist added successfully"); 
-      }
+      console.log("Form Submitted:", values);
+      formik.resetForm();
+      alert("checklist added successfully");
+    },
   });
 
   return (
@@ -43,7 +40,11 @@ function AddCheckList() {
         fullWidth
         id="fname"
         name="fname"
-        label={<>Checklist Description <span style={{color:"red"}}>*</span></>}
+        label={
+          <>
+            Checklist Description <span style={{ color: "red" }}>*</span>
+          </>
+        }
         variant="outlined"
         value={formik.values.fname}
         onChange={formik.handleChange}
@@ -56,7 +57,11 @@ function AddCheckList() {
         fullWidth
         id="link"
         name="link"
-        label={<>Link<span style={{color:"red"}}>*</span></>}
+        label={
+          <>
+            Link<span style={{ color: "red" }}>*</span>
+          </>
+        }
         variant="outlined"
         value={formik.values.link}
         onChange={formik.handleChange}
@@ -69,7 +74,11 @@ function AddCheckList() {
         fullWidth
         id="button"
         name="button"
-        label={<>Button Name <span style={{color:"red"}}>*</span></>}
+        label={
+          <>
+            Button Name <span style={{ color: "red" }}>*</span>
+          </>
+        }
         variant="outlined"
         value={formik.values.button}
         onChange={formik.handleChange}
@@ -78,9 +87,17 @@ function AddCheckList() {
         helperText={formik.touched.button && formik.errors.button}
       />
 
-      <Box sx={{ display: "flex", justifyContent: "end",alignItems:"end",height:"50vh", width: "90%" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "end",
+          alignItems: "end",
+          height: "50vh",
+          width: "90%",
+        }}
+      >
         <Button type="submit" sx={{ mr: 2, width: "40%" }} variant="contained">
-         Add
+          Add
         </Button>
         <Button
           type="button"
@@ -96,4 +113,3 @@ function AddCheckList() {
 }
 
 export default AddCheckList;
-

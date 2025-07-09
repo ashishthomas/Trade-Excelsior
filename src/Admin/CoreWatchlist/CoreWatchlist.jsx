@@ -253,39 +253,8 @@ const CoreWatchlistTable = () => {
             flexDirection: { xs: "column", sm: "row" },
             gap: { xs: 2, sm: 0 },
             alignItems: { xs: "flex-start", sm: "center" },
-            // padding: { xs: 1, sm: 2 },
           }}
         >
-          {/* <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-            }}
-          >
-            <Typography
-              variant="h6"
-              width={{ xs: "auto" }}
-              sx={{ color: "black", display: "flex", alignItems: "center" }}
-            >
-              <b>CORE WATCHLIST</b>
-            </Typography>
-            <Badge
-              badgeContent={filteredData.nodes.length}
-              sx={{
-                ml: 3,
-                "& .MuiBadge-badge": {
-                  height: "1.8rem",
-                  width: "1.8rem",
-                  backgroundColor: "#E6E6FA",
-                  color: "#1976d2",
-                  fontSize: "0.8rem",
-                  fontWeight: "bold",
-                },
-              }}
-            />
-          </Box> */}
-
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <Typography
               variant="h6"

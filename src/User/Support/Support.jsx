@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import React from "react";
 
 const validationSchema = Yup.object({
   name: Yup.string().required("Name is required"),
