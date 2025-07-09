@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { CompactTable } from "@table-library/react-table-library/compact";
 import { useTheme } from "@table-library/react-table-library/theme";
 import { getTheme } from "@table-library/react-table-library/baseline";
@@ -6,170 +6,39 @@ import {
   Box,
   AppBar,
   Toolbar,
-  Button,
   InputAdornment,
   TextField,
   Typography,
   useMediaQuery,
-  Avatar,
   Badge,
 } from "@mui/material";
-import { Add, Search } from "@mui/icons-material";
+import { Search } from "@mui/icons-material";
+import watchlistData from "./WatchListData";
 
-const fetchDummyData = async () => {
-  return new Promise((resolve) =>
-    setTimeout(() => {
-      resolve([
-        {
-          id: 1,
-          company: "Reliance",
-          sector: "Energy",
-          marketCap: "Large",
-          trend: "medium",
-        },
-        {
-          id: 2,
-          company: "Tata",
-          sector: "IT",
-          marketCap: "Large",
-          trend: "weak",
-        },
-        {
-          id: 3,
-          company: "HDFC",
-          sector: "Finance",
-          marketCap: "Large",
-          trend: "strong",
-        },
-        {
-          id: 4,
-          company: "Bharti Airtel",
-          sector: "Telecom",
-          marketCap: "Large",
-          trend: "weak",
-        },
-        {
-          id: 5,
-          company: "Adani Ent",
-          sector: "Energy",
-          marketCap: "Large",
-          trend: "strong",
-        },
-        {
-          id: 6,
-          company: "Wipro",
-          sector: "IT",
-          marketCap: "Large",
-          trend: "medium",
-        },
-        {
-          id: 7,
-          company: "Biocon",
-          sector: "Healthcare",
-          marketCap: "Mid",
-          trend: "weak",
-        },
-        {
-          id: 8,
-          company: "GAIL",
-          sector: "Energy",
-          marketCap: "Mid",
-          trend: "strong",
-        },
-        {
-          id: 9,
-          company: "The India Cements",
-          sector: "Cement",
-          marketCap: "Small",
-          trend: "medium",
-        },
-        {
-          id: 10,
-          company: "Infosys",
-          sector: "IT",
-          marketCap: "Large",
-          trend: "strong",
-        },
-        {
-          id: 11,
-          company: "Reliance",
-          sector: "Energy",
-          marketCap: "Large",
-          trend: "medium",
-        },
-        {
-          id: 12,
-          company: "Tata",
-          sector: "IT",
-          marketCap: "Large",
-          trend: "weak",
-        },
-        {
-          id: 13,
-          company: "HDFC",
-          sector: "Finance",
-          marketCap: "Large",
-          trend: "strong",
-        },
-        {
-          id: 14,
-          company: "Bharti Airtel",
-          sector: "Telecom",
-          marketCap: "Large",
-          trend: "weak",
-        },
-        {
-          id: 15,
-          company: "Adani Ent",
-          sector: "Energy",
-          marketCap: "Large",
-          trend: "strong",
-        },
-        {
-          id: 16,
-          company: "Wipro",
-          sector: "IT",
-          marketCap: "Large",
-          trend: "medium",
-        },
-        {
-          id: 17,
-          company: "Biocon",
-          sector: "Healthcare",
-          marketCap: "Mid",
-          trend: "weak",
-        },
-        {
-          id: 18,
-          company: "GAIL",
-          sector: "Energy",
-          marketCap: "Mid",
-          trend: "strong",
-        },
-        {
-          id: 19,
-          company: "The India Cements",
-          sector: "Cement",
-          marketCap: "Small",
-          trend: "medium",
-        },
-        {
-          id: 20,
-          company: "Infosys",
-          sector: "IT",
-          marketCap: "Large",
-          trend: "strong",
-        },
-      ]);
-    }, 1000)
+const trendColors = { strong: "green", medium: "blue", weak: "red" };
+const months = Array.from({ length: 24 }, (_, index) => {
+  const date = new Date();
+  date.setMonth(date.getMonth() - index);
+  return date.toLocaleString("default", { month: "short", year: "numeric" });
+});
+
+const highlightText = (text, highlight) => {
+  if (!highlight.trim()) return text;
+
+  const regex = new RegExp(`(${highlight})`, "gi");
+  return text.split(regex).map((part, index) =>
+    regex.test(part) ? (
+      <span key={index} style={{ backgroundColor: "yellow" }}>
+        {part}
+      </span>
+    ) : (
+      part
+    )
   );
 };
 
-const trendColors = { strong: "green", medium: "blue", weak: "red" };
-
 const CoreWatchlistTable = () => {
   const [data, setData] = useState({ nodes: [] });
-  const [openUser, setOpenUser] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const isMobile = useMediaQuery("(max-width: 600px)");
 
@@ -242,48 +111,34 @@ const CoreWatchlistTable = () => {
     },
   ]);
 
+  // useEffect(() => {
+  //   fetchDummyData().then((response) => setData({ nodes: response }));
+  // }, []);
+
   useEffect(() => {
-    fetchDummyData().then((response) => setData({ nodes: response }));
+    setData({ nodes: watchlistData });
   }, []);
 
-  const months = Array.from({ length: 24 }, (_, index) => {
-    const date = new Date();
-    date.setMonth(date.getMonth() - index);
-    return date.toLocaleString("default", { month: "short", year: "numeric" });
-  });
-
-  const highlightText = (text, highlight) => {
-    if (!highlight.trim()) return text;
-
-    const regex = new RegExp(`(${highlight})`, "gi");
-    return text.split(regex).map((part, index) =>
-      regex.test(part) ? (
-        <span key={index} style={{ backgroundColor: "yellow" }}>
-          {part}
-        </span>
-      ) : (
-        part
-      )
-    );
-  };
-
-  const filteredData = {
-    nodes: data.nodes
-      .filter((item) =>
-        item.company.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-      .sort((a, b) => {
-        const aMatch = a.company
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase());
-        const bMatch = b.company
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase());
-        if (aMatch && !bMatch) return -1;
-        if (!aMatch && bMatch) return 1;
-        return 0;
-      }),
-  };
+  const filteredData = useMemo(
+    () => ({
+      nodes: data.nodes
+        .filter((item) =>
+          item.company.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        .sort((a, b) => {
+          const aMatch = a.company
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase());
+          const bMatch = b.company
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase());
+          if (aMatch && !bMatch) return -1;
+          if (!aMatch && bMatch) return 1;
+          return 0;
+        }),
+    }),
+    [data.nodes, searchQuery]
+  );
 
   const COLUMNS = [
     {

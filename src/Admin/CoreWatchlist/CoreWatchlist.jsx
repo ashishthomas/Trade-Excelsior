@@ -253,10 +253,10 @@ const CoreWatchlistTable = () => {
             flexDirection: { xs: "column", sm: "row" },
             gap: { xs: 2, sm: 0 },
             alignItems: { xs: "flex-start", sm: "center" },
-            padding: { xs: 1, sm: 2 },
+            // padding: { xs: 1, sm: 2 },
           }}
         >
-          <Box
+          {/* <Box
             sx={{
               display: "flex",
               alignItems: "center",
@@ -284,12 +284,38 @@ const CoreWatchlistTable = () => {
                 },
               }}
             />
+          </Box> */}
+
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            <Typography
+              variant="h6"
+              sx={{ color: "black", fontWeight: "bold" }}
+            >
+              CORE WATCHLIST
+            </Typography>
+
+            <Badge
+              badgeContent={filteredData.nodes.length}
+              sx={{
+                ml: { xs: 0, sm: 0, md: 1 },
+                "& .MuiBadge-badge": {
+                  height: "1.8rem",
+                  width: "1.8rem",
+                  backgroundColor: "#E6E6FA",
+                  color: "#1976d2",
+                  fontSize: "0.8rem",
+                  fontWeight: "bold",
+                },
+              }}
+            />
           </Box>
+
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               gap: { xs: 1, sm: 2 },
+              width: { xs: "100%", sm: "auto" },
               flexDirection: { xs: "column", sm: "row" },
             }}
           >
@@ -352,11 +378,11 @@ const CoreWatchlistTable = () => {
         sx={{
           mt: 2,
           mb: 2,
-          width: { xs: "10%", sx: "20%", md: "30%", lg: "40%" },
+          width: "50%",
           display: "flex",
           flexDirection: { xs: "column", sm: "row" },
           alignItems: { xs: "flex-start", sm: "center" },
-          justifyContent: "space-between",
+          justifyContent: "space-evenly",
           gap: { xs: 1, sm: 2 },
         }}
       >

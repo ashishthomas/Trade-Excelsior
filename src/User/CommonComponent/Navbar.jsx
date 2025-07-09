@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   AppBar,
   Avatar,
@@ -88,7 +88,7 @@ const Navbar = ({ toggleSidebar }) => {
   return (
     <StyledAppbar>
       <StyledToolbar>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        {/* <Box sx={{ display: "flex", alignItems: "center" }}>
           {!isMobile && (
             <MenuIcon
               onClick={toggleSidebar}
@@ -108,6 +108,16 @@ const Navbar = ({ toggleSidebar }) => {
           >
             Excelsior
           </Typography>
+        </Box> */}
+
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          {!isMobile && (
+            <MenuIcon
+              onClick={toggleSidebar}
+              sx={{ mr: 4, cursor: "pointer" }}
+            />
+          )}
+          <Typography variant="h6">Excelsior</Typography>
         </Box>
 
         <Box
@@ -142,7 +152,7 @@ const Navbar = ({ toggleSidebar }) => {
           </Button>
 
           {/* User Avatar and Settings */}
-          <StyledBox onClick={(e) => setAnchorEl(e.currentTarget)}>
+          {/* <StyledBox onClick={(e) => setAnchorEl(e.currentTarget)}>
             <Avatar
               sx={{
                 fontSize: isExtraSmall ? "12px" : isMobile ? "14px" : "16px",
@@ -159,6 +169,13 @@ const Navbar = ({ toggleSidebar }) => {
                   fontSize: isExtraSmall ? "14px" : isMobile ? "16px" : "20px",
                 }}
               />
+            </Badge>
+          </StyledBox> */}
+
+          <StyledBox onClick={(e) => setAnchorEl(e.currentTarget)}>
+            <Avatar sx={{ fontSize: "15px" }}>M</Avatar>
+            <Badge color="error">
+              <SettingsIcon color="primary" />
             </Badge>
           </StyledBox>
 
