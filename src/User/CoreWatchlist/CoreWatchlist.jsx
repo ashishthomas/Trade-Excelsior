@@ -111,9 +111,6 @@ const CoreWatchlistTable = () => {
     },
   ]);
 
-  // useEffect(() => {
-  //   fetchDummyData().then((response) => setData({ nodes: response }));
-  // }, []);
 
   useEffect(() => {
     setData({ nodes: watchlistData });

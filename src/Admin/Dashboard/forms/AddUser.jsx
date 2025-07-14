@@ -1,4 +1,3 @@
-
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Box, Button, TextField, MenuItem } from "@mui/material";
@@ -33,13 +32,13 @@ const validationSchema = Yup.object({
     .typeError("Invalid date")
     .required("Subscription Start Date is required"),
 
-    SubScriptionEndDate: Yup.date()
-      .required("Subscription End Date is required")
-      .nullable()
-      .min(
-        Yup.ref("SubScriptionStartDate"),
-        "Subscription End Date must be after Start Date"
-      ),
+  SubScriptionEndDate: Yup.date()
+    .required("Subscription End Date is required")
+    .nullable()
+    .min(
+      Yup.ref("SubScriptionStartDate"),
+      "Subscription End Date must be after Start Date"
+    ),
 });
 
 function AddUser() {
@@ -63,7 +62,7 @@ function AddUser() {
     validationSchema,
     onSubmit: (values) => {
       console.log("Form Submitted:", values);
-      setSubmittedData(values); // ⬅️ display in UI
+      setSubmittedData(values);
       formik.resetForm();
       alert("User registered successfully");
     },
