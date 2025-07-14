@@ -11,7 +11,7 @@
 3. [Features](#-features)
 4. [Quick Start](#-quick-start)
 5. [Installation](#-installation)
-6. [Contributing](#-contributing)
+6. [Contributiion Guidlenes](#-Contributiion-Guidlenes)
 
 ---
 
@@ -59,7 +59,7 @@ Trade Excelsior is a modern, user-friendly web application for managing books, o
 - Node.js 18+
 - npm 9+
 
-### Installation
+## Installation
 
 ```bash
 # Install dependencies
@@ -72,7 +72,7 @@ npm run dev
 
 ---
 
-### Contribution guidelines
+## 👨‍💻 Contributiion Guidlenes
 
 - Open issues for bugs or feature requests
 - Submit pull requests for improvements
