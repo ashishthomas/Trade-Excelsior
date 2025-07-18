@@ -89,8 +89,7 @@ const CoreWatchlistTable = () => {
         color: white !important;
         font-weight: bold !important;
         white-space: normal;
-        word-wrap: break-word;
-        paynext and newzealand project -- experiment jaydevakudumbam 
+        word-wrap: break-word; 
         text-align: center;
       `,
       HeaderCell: `
@@ -111,7 +110,6 @@ const CoreWatchlistTable = () => {
       `,
     },
   ]);
-
 
   useEffect(() => {
     setData({ nodes: watchlistData });
