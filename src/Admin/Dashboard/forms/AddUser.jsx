@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Box, Button, TextField, MenuItem } from "@mui/material";
@@ -42,7 +43,7 @@ const validationSchema = Yup.object({
 });
 
 function AddUser() {
-  const [submittedData, setSubmittedData] = React.useState(null);
+  const [submittedData, setSubmittedData] = useState(null);
 
   const formik = useFormik({
     initialValues: {
