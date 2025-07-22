@@ -197,4 +197,13 @@ const config = {
   // watchman: true,
 };
 
+module.exports = {
+  testEnvironment: "jsdom", // ✅ This is crucial for React DOM rendering
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+  transform: {
+    "^.+\\.(js|jsx)$": "babel-jest", // ✅ ensure babel is used for JSX
+  },
+  moduleFileExtensions: ["js", "jsx"],
+};
+
 export default config;

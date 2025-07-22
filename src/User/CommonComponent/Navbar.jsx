@@ -88,28 +88,6 @@ const Navbar = ({ toggleSidebar }) => {
   return (
     <StyledAppbar>
       <StyledToolbar>
-        {/* <Box sx={{ display: "flex", alignItems: "center" }}>
-          {!isMobile && (
-            <MenuIcon
-              onClick={toggleSidebar}
-              sx={{
-                cursor: "pointer",
-                mr: 2,
-                fontSize: isExtraSmall ? "18px" : "24px",
-              }}
-            />
-          )}
-          <Typography
-            variant="h6"
-            sx={{
-              fontSize: isExtraSmall ? "14px" : isMobile ? "18px" : "24px",
-              mr: isMobile ? 2 : 0,
-            }}
-          >
-            Excelsior
-          </Typography>
-        </Box> */}
-
         <Box sx={{ display: "flex", alignItems: "center" }}>
           {!isMobile && (
             <MenuIcon
@@ -152,26 +130,6 @@ const Navbar = ({ toggleSidebar }) => {
           </Button>
 
           {/* User Avatar and Settings */}
-          {/* <StyledBox onClick={(e) => setAnchorEl(e.currentTarget)}>
-            <Avatar
-              sx={{
-                fontSize: isExtraSmall ? "12px" : isMobile ? "14px" : "16px",
-                width: isExtraSmall ? 24 : isMobile ? 30 : 32,
-                height: isExtraSmall ? 24 : isMobile ? 30 : 32,
-              }}
-            >
-              M
-            </Avatar>
-            <Badge color="error">
-              <SettingsIcon
-                color="primary"
-                sx={{
-                  fontSize: isExtraSmall ? "14px" : isMobile ? "16px" : "20px",
-                }}
-              />
-            </Badge>
-          </StyledBox> */}
-
           <StyledBox onClick={(e) => setAnchorEl(e.currentTarget)}>
             <Avatar sx={{ fontSize: "15px" }}>M</Avatar>
             <Badge color="error">
