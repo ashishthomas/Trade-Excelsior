@@ -9,6 +9,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import PropTypes from "prop-types";
 import CloseIcon from "@mui/icons-material/Close";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -21,8 +22,8 @@ const validationSchema = Yup.object({
     .required("Reference Link is required"),
 });
 
-const FormTextField = React.memo(
-  ({ label, name, multiline = false, rows = 1 }) => (
+function FormTextFieldComponent({ label, name, multiline = false, rows = 1 }) {
+  return (
     <Field name={name}>
       {({ field, meta }) => (
         <TextField
@@ -42,9 +43,24 @@ const FormTextField = React.memo(
         />
       )}
     </Field>
-  )
-);
+  );
+}
 
+// ✅ Attach propTypes to the actual component
+FormTextFieldComponent.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  multiline: PropTypes.bool,
+  rows: PropTypes.number,
+};
+
+// ✅ Memoize
+const FormTextField = React.memo(FormTextFieldComponent);
+
+// ✅ Add displayName for ESLint happiness
+FormTextField.displayName = "FormTextField";
+
+// ✅ AddReferenceForm Component
 const AddReferenceForm = ({ open, onClose, handleAdd }) => {
   const fileInputRef = useRef(null);
   const theme = useTheme();
@@ -198,5 +214,14 @@ const AddReferenceForm = ({ open, onClose, handleAdd }) => {
     </Drawer>
   );
 };
+
+// ✅ PropTypes for AddReferenceForm
+AddReferenceForm.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  handleAdd: PropTypes.func.isRequired,
+};
+
+AddReferenceForm.displayName = "AddReferenceForm";
 
 export default AddReferenceForm;

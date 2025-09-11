@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Modal,
   Box,
@@ -9,6 +8,7 @@ import {
   Divider,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import PropTypes from "prop-types";
 
 function DeleteConfirmationModal({
   open,
@@ -39,7 +39,7 @@ function DeleteConfirmationModal({
           alignItems: "center",
         }}
       >
-        {/* Close Button in the top-right corner */}
+        {/* Close Button */}
         <IconButton
           sx={{ position: "absolute", top: 17, right: 8 }}
           onClick={handleClose}
@@ -65,7 +65,7 @@ function DeleteConfirmationModal({
 
         <Typography variant="body1" sx={{ mb: 5, px: 1 }}>
           {message ||
-            "Are you sure you want to delete this book?  This action cannot be undone!"}
+            "Are you sure you want to delete this book? This action cannot be undone!"}
         </Typography>
 
         <Divider
@@ -76,7 +76,8 @@ function DeleteConfirmationModal({
             mb: 3,
           }}
         />
-        {/* Buttons Section */}
+
+        {/* Buttons */}
         <Box
           display="flex"
           flexDirection={isSmallScreen ? "column" : "row"}
@@ -115,5 +116,13 @@ function DeleteConfirmationModal({
     </Modal>
   );
 }
+
+DeleteConfirmationModal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  message: PropTypes.string,
+};
 
 export default DeleteConfirmationModal;

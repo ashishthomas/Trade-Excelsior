@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import {
   AppBar,
   Box,
@@ -12,7 +12,6 @@ import {
   useTheme,
   useMediaQuery,
   Badge,
-  Avatar,
   IconButton,
   Menu,
   MenuItem,
@@ -188,7 +187,12 @@ function References() {
               minHeight: "120px",
               display: "flex",
               alignItems: "center",
-              padding: isSmallLaptop || isSmallMobile ? "15px" : "10px",
+              padding:
+                isSmallLaptop || isSmallMobile
+                  ? "15px"
+                  : isTablet
+                  ? "12px"
+                  : "10px",
               borderRadius: "10px",
               position: "relative",
               cursor: "pointer",
@@ -197,9 +201,14 @@ function References() {
             <CardMedia
               component="img"
               sx={{
-                width: isSmallMobile ? 40 : 50,
-                height: isSmallMobile ? 40 : 50,
-                marginLeft: isSmallLaptop || isSmallMobile ? "10px" : "15px",
+                width: isSmallMobile ? 40 : isTablet ? 45 : 50, // 👈 tweak for tablet
+                height: isSmallMobile ? 40 : isTablet ? 45 : 50,
+                marginLeft:
+                  isSmallLaptop || isSmallMobile
+                    ? "10px"
+                    : isTablet
+                    ? "12px"
+                    : "15px",
                 marginRight: "10px",
               }}
               image={ref.image}
@@ -254,7 +263,7 @@ function References() {
         </a>
       </Grid>
     ),
-    [isSmallLaptop, isSmallMobile, isMobile, handleMenuOpen]
+    [isSmallLaptop, isSmallMobile, isTablet, isMobile, handleMenuOpen]
   );
 
   return (

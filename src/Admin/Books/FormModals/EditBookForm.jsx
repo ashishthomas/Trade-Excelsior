@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useState } from "react";
+import { useRef, useCallback, useState } from "react";
 import {
   Drawer,
   Box,
@@ -12,6 +12,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import PropTypes from "prop-types";
 
 const validationSchema = Yup.object({
   bookTagline: Yup.string().required("Book Tagline is required"),
@@ -44,6 +45,13 @@ const FormTextField = ({ label, name, multiline = false, rows = 1 }) => (
     )}
   </Field>
 );
+
+FormTextField.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  multiline: PropTypes.bool,
+  rows: PropTypes.number,
+};
 
 const EditBookForm = ({ open, onClose, bookData, handleUpdate }) => {
   const fileInputRef = useRef(null);
@@ -214,6 +222,21 @@ const EditBookForm = ({ open, onClose, bookData, handleUpdate }) => {
       </Box>
     </Drawer>
   );
+};
+
+// ✅ PropTypes for ESLint
+EditBookForm.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  bookData: PropTypes.shape({
+    bookTagline: PropTypes.string,
+    bookName: PropTypes.string,
+    bookDescription: PropTypes.string,
+    bookLink: PropTypes.string,
+    buttonName: PropTypes.string,
+    image: PropTypes.string,
+  }),
+  handleUpdate: PropTypes.func.isRequired,
 };
 
 export default EditBookForm;

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import { Box } from "@mui/material";
@@ -8,7 +9,7 @@ const Layout = ({ unresolvedCount, setUnresolvedCount }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+    setIsSidebarOpen((prev) => !prev);
   };
 
   return (
@@ -33,6 +34,11 @@ const Layout = ({ unresolvedCount, setUnresolvedCount }) => {
       </Box>
     </Box>
   );
+};
+
+Layout.propTypes = {
+  unresolvedCount: PropTypes.number.isRequired,
+  setUnresolvedCount: PropTypes.func.isRequired,
 };
 
 export default Layout;

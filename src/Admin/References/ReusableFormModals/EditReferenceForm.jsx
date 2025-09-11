@@ -1,4 +1,5 @@
 import React, { useRef, useCallback, useState } from "react";
+import PropTypes from "prop-types";
 import {
   Drawer,
   Box,
@@ -21,29 +22,42 @@ const validationSchema = Yup.object({
     .required("Reference Link is required"),
 });
 
-const FormTextField = React.memo(
-  ({ label, name, multiline = false, rows = 1 }) => (
-    <Field name={name}>
-      {({ field, meta }) => (
-        <TextField
-          fullWidth
-          label={
-            <>
-              {label} <span style={{ color: "red" }}>*</span>
-            </>
-          }
-          variant="outlined"
-          size="small"
-          multiline={multiline}
-          rows={rows}
-          error={meta.touched && Boolean(meta.error)}
-          helperText={meta.touched && meta.error}
-          {...field}
-        />
-      )}
-    </Field>
-  )
+const FormTextFieldComponent = ({
+  label,
+  name,
+  multiline = false,
+  rows = 1,
+}) => (
+  <Field name={name}>
+    {({ field, meta }) => (
+      <TextField
+        fullWidth
+        label={
+          <>
+            {label} <span style={{ color: "red" }}>*</span>
+          </>
+        }
+        variant="outlined"
+        size="small"
+        multiline={multiline}
+        rows={rows}
+        error={meta.touched && Boolean(meta.error)}
+        helperText={meta.touched && meta.error}
+        {...field}
+      />
+    )}
+  </Field>
 );
+
+FormTextFieldComponent.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  multiline: PropTypes.bool,
+  rows: PropTypes.number,
+};
+
+const FormTextField = React.memo(FormTextFieldComponent);
+FormTextField.displayName = "FormTextField";
 
 const EditReferenceForm = ({ open, onClose, reference, handleUpdate }) => {
   const fileInputRef = useRef(null);
@@ -128,7 +142,6 @@ const EditReferenceForm = ({ open, onClose, reference, handleUpdate }) => {
                   pr: { xs: 2, sm: 5 },
                 }}
               >
-                {/* File Upload Input */}
                 <input
                   type="file"
                   ref={fileInputRef}
@@ -202,6 +215,18 @@ const EditReferenceForm = ({ open, onClose, reference, handleUpdate }) => {
       </Box>
     </Drawer>
   );
+};
+
+EditReferenceForm.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  reference: PropTypes.shape({
+    title: PropTypes.string,
+    category: PropTypes.string,
+    referenceLink: PropTypes.string,
+    image: PropTypes.string,
+  }),
+  handleUpdate: PropTypes.func,
 };
 
 export default EditReferenceForm;

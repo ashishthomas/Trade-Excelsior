@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Dialog, Box, Button, Typography, useMediaQuery } from "@mui/material";
+import { useState } from "react";
+import PropTypes from "prop-types";
+import { Dialog, Box, Button, Typography } from "@mui/material";
 
 const trendColors = { strong: "green", medium: "blue", weak: "red" };
 
@@ -18,12 +19,19 @@ const EditTrendDialog = ({
       handleEditTrend(selectedTrend);
       handleClose();
     } else {
+      // eslint-disable-next-line no-alert
       alert("Please select a trend before saving.");
     }
   };
 
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="xs">
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      fullWidth
+      maxWidth="xs"
+      aria-labelledby="edit-trend-title"
+    >
       <Box
         sx={{
           padding: { xs: 2, sm: 3 },
@@ -31,10 +39,12 @@ const EditTrendDialog = ({
           textAlign: "center",
         }}
       >
-        <Typography variant="h6" sx={{ mb: 3 }}>
+        <Typography id="edit-trend-title" variant="h6" sx={{ mb: 3 }}>
           Update trend for <strong>{company}</strong> for{" "}
           <strong>{month}</strong>
         </Typography>
+
+        {/* Trend selection circles */}
         <Box
           sx={{
             display: "flex",
@@ -53,6 +63,9 @@ const EditTrendDialog = ({
               }}
             >
               <Box
+                role="button"
+                tabIndex={0}
+                aria-label={`Select ${trend} trend`}
                 sx={{
                   width: { xs: 20, sm: 24 },
                   height: { xs: 20, sm: 24 },
@@ -62,10 +75,17 @@ const EditTrendDialog = ({
                   border: selectedTrend === trend ? "3px solid black" : "none",
                 }}
                 onClick={() => setSelectedTrend(trend)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    setSelectedTrend(trend);
+                  }
+                }}
               />
             </Box>
           ))}
         </Box>
+
+        {/* Action buttons */}
         <Box
           sx={{
             display: "flex",
@@ -88,6 +108,19 @@ const EditTrendDialog = ({
       </Box>
     </Dialog>
   );
+};
+
+EditTrendDialog.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  company: PropTypes.string.isRequired,
+  month: PropTypes.string.isRequired,
+  handleEditTrend: PropTypes.func.isRequired,
+  initialTrend: PropTypes.oneOf(["strong", "medium", "weak", null]),
+};
+
+EditTrendDialog.defaultProps = {
+  initialTrend: null,
 };
 
 export default EditTrendDialog;

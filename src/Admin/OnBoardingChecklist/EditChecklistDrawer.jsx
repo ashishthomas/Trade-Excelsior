@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   Box,
   Drawer,
@@ -6,7 +7,7 @@ import {
   TextField,
   Button,
 } from "@mui/material";
-import { Close } from "@mui/icons-material";
+import { Close as CloseIcon } from "@mui/icons-material";
 
 const EditChecklistDrawer = ({ open, onClose, formik, editItem }) => {
   return (
@@ -20,8 +21,8 @@ const EditChecklistDrawer = ({ open, onClose, formik, editItem }) => {
           <Typography variant="h6" sx={{ p: 1 }}>
             {editItem ? "Edit Checklist" : "Add Checklist"}
           </Typography>
-          <IconButton onClick={onClose}>
-            <Close />
+          <IconButton onClick={onClose} aria-label="Close drawer">
+            <CloseIcon />
           </IconButton>
         </Box>
 
@@ -109,6 +110,28 @@ const EditChecklistDrawer = ({ open, onClose, formik, editItem }) => {
       </Box>
     </Drawer>
   );
+};
+
+EditChecklistDrawer.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  formik: PropTypes.shape({
+    values: PropTypes.shape({
+      title: PropTypes.string,
+      link: PropTypes.string,
+      buttonName: PropTypes.string,
+    }).isRequired,
+    touched: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    handleBlur: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+  }).isRequired,
+  editItem: PropTypes.bool,
+};
+
+EditChecklistDrawer.defaultProps = {
+  editItem: false,
 };
 
 export default EditChecklistDrawer;

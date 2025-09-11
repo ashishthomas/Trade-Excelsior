@@ -1,5 +1,14 @@
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, IconButton, Divider } from "@mui/material";
-import { Close } from "@mui/icons-material";
+import PropTypes from "prop-types";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  IconButton,
+  Divider,
+} from "@mui/material";
+import { Close as CloseIcon } from "@mui/icons-material";
 
 const DeleteConfirmationDialog = ({ open, onClose, onConfirm }) => {
   return (
@@ -16,22 +25,37 @@ const DeleteConfirmationDialog = ({ open, onClose, onConfirm }) => {
       }}
     >
       {/* Title with Close Button */}
-      <DialogTitle sx={{ textAlign: "center", fontWeight: "bold", fontSize: "18px", position: "relative", pt: 0 }}>
+      <DialogTitle
+        sx={{
+          textAlign: "center",
+          fontWeight: "bold",
+          fontSize: "18px",
+          position: "relative",
+          pt: 0,
+        }}
+      >
         Confirmation Required
-        <IconButton onClick={onClose} sx={{ position: "absolute", right: 0, pt: 0 }}>
-          <Close sx={{ color: "black" }} />
+        <IconButton
+          onClick={onClose}
+          aria-label="Close confirmation dialog"
+          sx={{ position: "absolute", right: 0, pt: 0 }}
+        >
+          <CloseIcon sx={{ color: "black" }} />
         </IconButton>
       </DialogTitle>
       <Divider />
 
       {/* Content */}
       <DialogContent sx={{ textAlign: "center", padding: "40px 20px" }}>
-        Are you sure you want to delete this checklist? This action cannot be undone!
+        Are you sure you want to delete this checklist? This action cannot be
+        undone!
       </DialogContent>
       <Divider />
 
       {/* Buttons */}
-      <DialogActions sx={{ display: "flex", justifyContent: "center", gap: "10px", pt: 2 }}>
+      <DialogActions
+        sx={{ display: "flex", justifyContent: "center", gap: "10px", pt: 2 }}
+      >
         <Button
           onClick={onConfirm}
           variant="contained"
@@ -65,6 +89,12 @@ const DeleteConfirmationDialog = ({ open, onClose, onConfirm }) => {
       </DialogActions>
     </Dialog>
   );
+};
+
+DeleteConfirmationDialog.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
 };
 
 export default DeleteConfirmationDialog;
