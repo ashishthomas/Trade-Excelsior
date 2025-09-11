@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import { useState, useCallback } from "react";
 import {
   AppBar,
   Box,
@@ -12,6 +12,8 @@ import {
   useMediaQuery,
   Badge,
   IconButton,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 
 const initialReferences = [
@@ -39,79 +41,42 @@ const initialReferences = [
     image:
       "https://duzycfafl38re.cloudfront.net/Website/Images/stockedgelogoimage28102022144458.png",
   },
-  {
-    id: 4,
-    title: "Tijori",
-    category: "TOOLS",
-    referenceLink: "https://www.tijorifinance.com/ideas-dashboard/",
-    image:
-      "https://cdn.brandfetch.io/idvH5w3ipU/w/400/h/400/theme/dark/icon.png?c=1bxid64Mup7aczewSAYMX&t=1740026151276",
-  },
-  {
-    id: 5,
-    title: "Stockedge",
-    category: "TOOLS",
-    referenceLink: "https://stockedge.com/",
-    image:
-      "https://duzycfafl38re.cloudfront.net/Website/Images/stockedgelogoimage28102022144458.png",
-  },
-  {
-    id: 6,
-    title: "Community Store",
-    category: "TOOLS",
-    referenceLink: "http://www.communityfinance.in/",
-    image:
-      "https://images.crunchbase.com/image/upload/c_pad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_2/v1483514228/j6kp5kzapwqvn4ekffy3.jpg",
-  },
-  {
-    id: 7,
-    title: "Chartink",
-    category: "TOOLS",
-    referenceLink: "https://chartink.com/",
-    image:
-      "https://images.crunchbase.com/image/upload/c_pad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_2/v1483514228/j6kp5kzapwqvn4ekffy3.jpg",
-  },
-  {
-    id: 8,
-    title: "Zerodha",
-    category: "TOOLS",
-    referenceLink: "https://zerodha.com/",
-    image:
-      "https://images.crunchbase.com/image/upload/c_pad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_2/v1483514228/j6kp5kzapwqvn4ekffy3.jpg",
-  },
-  {
-    id: 9,
-    title: "Highradius",
-    category: "TOOLS",
-    referenceLink: "https://highradius.com/",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFZxastKq-pxeETlwLybvxu5p6FsB8krxrAg&s",
-  },
 ];
 
 function References() {
   const [referenceList, setReferenceList] = useState(initialReferences);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-
   const isSmallLaptop = useMediaQuery("(max-width:1024px)");
   const isSmallMobile = useMediaQuery("(max-width:320px)");
 
+  // Open Menu
   const handleMenuOpen = useCallback((event, index) => {
     setAnchorEl(event.currentTarget);
     setSelectedIndex(index);
   }, []);
 
+  // Close Menu
   const handleMenuClose = useCallback(() => {
     setAnchorEl(null);
     setSelectedIndex(null);
   }, []);
 
+  // Example: Remove a reference
+  const handleDelete = useCallback(() => {
+    if (selectedIndex !== null) {
+      setReferenceList((prev) => prev.filter((_, i) => i !== selectedIndex));
+    }
+    handleMenuClose();
+  }, [selectedIndex, handleMenuClose]);
+
   const renderReferenceCard = useCallback(
     (ref, i) => (
-      <Grid item xs={12} sm={6} md={3} key={ref.id}>
+      <Grid item xs={12} sm={6} md={isTablet ? 4 : 3} key={ref.id}>
         <a
           href={ref.referenceLink}
           target="_blank"
@@ -180,12 +145,14 @@ function References() {
                 event.stopPropagation();
                 handleMenuOpen(event, i);
               }}
-            ></IconButton>
+            >
+              ⋮
+            </IconButton>
           </Card>
         </a>
       </Grid>
     ),
-    [isSmallLaptop, isSmallMobile, isMobile, handleMenuOpen]
+    [isSmallLaptop, isSmallMobile, isMobile, isTablet, handleMenuOpen]
   );
 
   return (
@@ -254,6 +221,16 @@ function References() {
       >
         {referenceList.map((ref, i) => renderReferenceCard(ref, i))}
       </Grid>
+
+      {/* Menu for Actions */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleDelete}>Delete</MenuItem>
+        <MenuItem onClick={handleMenuClose}>Close</MenuItem>
+      </Menu>
     </Box>
   );
 }

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { useMediaQuery } from "@mui/material";
+import { useState } from "react";
+import PropTypes from "prop-types";
 
 import {
+  useMediaQuery,
   AppBar,
   Box,
   Toolbar,
@@ -39,8 +40,13 @@ const BookDescription = ({ text }) => {
   );
 };
 
+// ✅ Added PropTypes validation
+BookDescription.propTypes = {
+  text: PropTypes.string.isRequired,
+};
+
 function MyBooks() {
-  const [books, setBooks] = useState([
+  const [books] = useState([
     {
       id: 1,
       bookTagline:
@@ -166,20 +172,19 @@ function MyBooks() {
                     fontWeight: "bold",
                     fontSize: { xs: "16px", sm: "26px", lg: "28px" },
                     textAlign: isTablet ? "center" : "left",
-                    
+
                     mb: { sm: 2 },
                   }}
                 >
                   {book.bookTagline}
                 </Typography>
 
-                
                 {isTablet && (
                   <CardMedia
                     component="img"
                     sx={{
-                      maxWidth: { xs: "100%", sm: "100%", md: "80%" }, 
-                      maxHeight: { xs: "auto", sm: "500px", md: "450px" }, 
+                      maxWidth: { xs: "100%", sm: "100%", md: "80%" },
+                      maxHeight: { xs: "auto", sm: "500px", md: "450px" },
                       height: "auto",
                       borderRadius: "5px",
                       objectFit: "contain",
@@ -200,7 +205,6 @@ function MyBooks() {
                     fontWeight: "bold",
                   }}
                 >
-                  
                   {book.bookName}
                 </Typography>
                 <Typography
@@ -218,12 +222,10 @@ function MyBooks() {
                       cursor: "pointer",
                     }}
                   >
-                   
                     <BookDescription text={book.bookDescription} />
                   </Typography>
                 </Typography>
 
-                
                 <Box sx={{ mt: 2 }}>
                   <Button
                     variant="contained"
@@ -235,17 +237,15 @@ function MyBooks() {
                       mb: 2,
                       mr: { xs: 0, sm: 2 },
                     }}
-                    href="https://www.amazon.in/Price-Action-Trading-Technical-Simplified/dp/8195261612"
+                    href={book.bookLink} // ✅ fixed hardcoded link
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    
                     {book.buttonName}
                   </Button>
                 </Box>
               </CardContent>
 
-             
               {!isMobile && !isTablet && (
                 <CardMedia
                   component="img"

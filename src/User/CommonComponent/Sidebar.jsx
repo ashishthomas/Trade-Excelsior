@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import {
   Box,
   List,
@@ -141,6 +142,10 @@ const Sidebar = ({ isCollapsed }) => {
       )}
     </Box>
   );
+};
+
+Sidebar.propTypes = {
+  isCollapsed: PropTypes.bool.isRequired,
 };
 
 export default Sidebar;

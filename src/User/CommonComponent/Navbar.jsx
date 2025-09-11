@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import {
   AppBar,
   Avatar,
@@ -79,6 +80,11 @@ const UserMenu = ({ anchorEl, setAnchorEl }) => {
   );
 };
 
+UserMenu.propTypes = {
+  anchorEl: PropTypes.any,
+  setAnchorEl: PropTypes.func.isRequired,
+};
+
 const Navbar = ({ toggleSidebar }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const theme = useTheme();
@@ -98,14 +104,7 @@ const Navbar = ({ toggleSidebar }) => {
           <Typography variant="h6">Excelsior</Typography>
         </Box>
 
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: isExtraSmall ? "5px" : isMobile ? "6px" : "10px",
-          }}
-        >
-          {/* Subscription Button - Responsive */}
+        <Icons>
           <Button
             variant="outlined"
             color="primary"
@@ -129,7 +128,6 @@ const Navbar = ({ toggleSidebar }) => {
             Subscription ends in 365 days
           </Button>
 
-          {/* User Avatar and Settings */}
           <StyledBox onClick={(e) => setAnchorEl(e.currentTarget)}>
             <Avatar sx={{ fontSize: "15px" }}>M</Avatar>
             <Badge color="error">
@@ -138,10 +136,14 @@ const Navbar = ({ toggleSidebar }) => {
           </StyledBox>
 
           <UserMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
-        </Box>
+        </Icons>
       </StyledToolbar>
     </StyledAppbar>
   );
+};
+
+Navbar.propTypes = {
+  toggleSidebar: PropTypes.func.isRequired,
 };
 
 export default Navbar;

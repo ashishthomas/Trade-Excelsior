@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Paper,
   Typography,
-  IconButton,
   Button,
   Box,
   AppBar,
   Toolbar,
   useTheme,
   useMediaQuery,
-  Divider,
   Badge,
 } from "@mui/material";
 
 function Onboarding() {
-  const [items, setItems] = useState([
+  const [items] = useState([
     {
       id: 1,
       title: "An extra layer of security to your trading account",

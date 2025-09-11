@@ -28,7 +28,7 @@ function Support() {
     initialValues: {
       name: "",
       email: "",
-      contact: "",
+      contact: "", 
       message: "",
     },
     validationSchema: validationSchema,

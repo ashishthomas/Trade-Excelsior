@@ -1,4 +1,3 @@
-import React from "react";
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { Box, CircularProgress } from "@mui/material";
