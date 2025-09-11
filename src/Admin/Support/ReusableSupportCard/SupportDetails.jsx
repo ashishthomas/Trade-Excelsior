@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import PropTypes from "prop-types";
 import {
   Box,
   Card,
@@ -161,5 +162,18 @@ function SupportDetails({ ticket, onClose, updateTicketStatus }) {
     </Card>
   );
 }
+
+// PropTypes validation
+SupportDetails.propTypes = {
+  ticket: PropTypes.shape({
+    status: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    query: PropTypes.string.isRequired,
+    email: PropTypes.string,
+    phone: PropTypes.string,
+  }).isRequired,
+  onClose: PropTypes.func.isRequired,
+  updateTicketStatus: PropTypes.func.isRequired,
+};
 
 export default React.memo(SupportDetails);

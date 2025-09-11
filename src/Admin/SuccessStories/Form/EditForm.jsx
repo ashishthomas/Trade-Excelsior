@@ -1,4 +1,4 @@
-
+import PropTypes from "prop-types";
 import {
   Drawer,
   Box,
@@ -200,6 +200,21 @@ const SuccessStoryForm = ({ open, onClose, onSubmit, selectedStory }) => {
       </Box>
     </Drawer>
   );
+};
+
+// ✅ PropTypes validation
+SuccessStoryForm.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  selectedStory: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    name: PropTypes.string,
+    feedback: PropTypes.string,
+    video: PropTypes.string,
+    tagline: PropTypes.string,
+    image: PropTypes.string,
+  }),
 };
 
 export default SuccessStoryForm;

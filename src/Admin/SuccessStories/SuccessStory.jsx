@@ -11,7 +11,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import DeletePopup from "./Form/DeletePopup";
 import SuccessStoryForm from "./Form/EditForm";
 

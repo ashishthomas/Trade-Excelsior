@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import {
   AppBar,
   Box,
@@ -64,7 +64,6 @@ function Support() {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   const { setUnresolvedCount } = useOutletContext();
 
@@ -172,7 +171,6 @@ function Support() {
               borderRadius: "25px",
               padding: "4px",
               width: isMobile ? "100%" : "auto",
-              justifyContent: "center",
               mt: { xs: 1, sm: 0 },
               gap: { xs: 1, sm: 2 },
             }}

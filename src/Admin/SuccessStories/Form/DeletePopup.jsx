@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   Dialog,
   DialogTitle,
@@ -87,6 +88,13 @@ const DeletePopup = ({ open, onClose, onConfirm }) => {
       </DialogActions>
     </Dialog>
   );
+};
+
+// ✅ Add prop types validation
+DeletePopup.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
 };
 
 export default DeletePopup;
