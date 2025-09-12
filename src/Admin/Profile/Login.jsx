@@ -129,9 +129,9 @@ export default function Login() {
                   variant="outlined"
                   sx={{ mb: 2 }}
                   value={values.email}
-                  onChange={handleChange}
+                  onChange={handleChange}   
                   error={Boolean(errors.email)}
-                  helperText={errors.email}
+                  helperText={errors.email}  
                 />
 
                 <Box sx={{ position: "relative", mb: 2 }}>
