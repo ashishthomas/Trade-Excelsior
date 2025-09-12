@@ -26,8 +26,9 @@ export default function Profilemain() {
   const navigateone = useNavigate();
 
   const [isEditing, setIsEditing] = useState(false);
+  const storedProfile = JSON.parse(localStorage.getItem("profileData"));
   const formik = useFormik({
-    initialValues: {
+    initialValues: storedProfile || {
       firstName: "Aakas",
       lastName: "W",
       occupation: "Developer",
@@ -92,6 +93,7 @@ export default function Profilemain() {
     onSubmit: (values) => {
       console.log("Form Submitted ✅", values);
       alert("Profile updated successfully!");
+      localStorage.setItem("profileData", JSON.stringify(values));
       setIsEditing(false);
     },
   });
@@ -292,7 +294,7 @@ export default function Profilemain() {
                     gutterBottom
                     sx={{ fontSize: "1.0rem" }}
                   >
-                    <b>Note:</b> Don't have a link, enter NA and save it.
+                    <b>Note:</b> Don&apos;t have a link, enter NA and save it.
                   </Typography>
                   <Box sx={{ height: 18 }} />
                 </CardContent>

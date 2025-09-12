@@ -16,6 +16,7 @@ const SuccessStory = lazy(() => import("../Admin/SuccessStories/SuccessStory"));
 const Support = lazy(() => import("../Admin/Support/Support"));
 const References = lazy(() => import("../Admin/References/References"));
 const Profilemain = lazy(() => import("../Admin/Profile/Profilemain"));
+const Login = lazy(() => import("../Admin/Profile/Login"));
 const ChangePassword = lazy(() => import("../Admin/Profile/ChangePassword"));
 
 const MuiLoader = () => (
@@ -113,6 +114,14 @@ export const Adminapproute = createBrowserRouter([
     element: (
       <Suspense fallback={<MuiLoader />}>
         <Profilemain />
+      </Suspense>
+    ),
+  },
+  {
+    path: "login",
+    element: (
+      <Suspense fallback={<MuiLoader />}>
+        <Login />
       </Suspense>
     ),
   },

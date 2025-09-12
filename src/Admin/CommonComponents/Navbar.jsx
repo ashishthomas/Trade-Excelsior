@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import PropTypes from "prop-types";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Logout, PersonTwoTone } from "@mui/icons-material";
@@ -64,7 +65,12 @@ const UserMenu = ({ anchorEl, setAnchorEl }) => {
   const handleLogout = () => {
     setAnchorEl(null);
     localStorage.clear();
-    navigate("/Profilemain");
+    navigate("/login");
+  };
+
+  const handleLogin = () => {
+    setAnchorEl(null);
+    navigate("/login"); // Navigate to login page
   };
 
   return (
@@ -73,9 +79,13 @@ const UserMenu = ({ anchorEl, setAnchorEl }) => {
       open={Boolean(anchorEl)}
       onClose={() => setAnchorEl(null)}
     >
-      <MenuItem onClick={handleProfileClick} sx={{ mb: 1.5 }}>
-        <PersonTwoTone sx={{ mr: 1 }} /> My Profile
+      <MenuItem onClick={handleLogin} sx={{ mb: 1.5 }}>
+        <PersonTwoTone sx={{ mr: 1 }} /> Login
       </MenuItem>
+      <MenuItem onClick={handleProfileClick} sx={{ mb: 1.5 }}>
+        <AccountCircle sx={{ mr: 1 }} /> My Profile
+      </MenuItem>
+
       <MenuItem onClick={handleSwitchToUser} sx={{ mb: 1.5 }}>
         <SwapHorizIcon sx={{ mr: 1 }} /> Switch to User
       </MenuItem>

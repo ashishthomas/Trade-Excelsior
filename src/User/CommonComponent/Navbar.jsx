@@ -16,7 +16,8 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { Info, Logout, PersonTwoTone } from "@mui/icons-material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import { Info, Logout } from "@mui/icons-material";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 
 const StyledToolbar = styled(Toolbar)({
@@ -68,7 +69,7 @@ const UserMenu = ({ anchorEl, setAnchorEl }) => {
       onClose={() => setAnchorEl(null)}
     >
       <MenuItem onClick={() => setAnchorEl(null)} sx={{ mb: 1.5 }}>
-        <PersonTwoTone sx={{ mr: 1 }} /> My Profile
+        <AccountCircle sx={{ mr: 1 }} /> My Profile
       </MenuItem>
       <MenuItem onClick={handleSwitchToAdmin} sx={{ mb: 1.5 }}>
         <SwapHorizIcon sx={{ mr: 1 }} /> Switch to Admin
