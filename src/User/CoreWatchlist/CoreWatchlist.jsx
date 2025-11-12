@@ -26,9 +26,9 @@ const highlightText = (text, highlight) => {
   if (!highlight.trim()) return text;
 
   const regex = new RegExp(`(${highlight})`, "gi");
-  return text.split(regex).map((part, index) =>
+  return text.split(regex).map((part) =>
     regex.test(part) ? (
-      <span key={index} style={{ backgroundColor: "yellow" }}>
+      <span key={part} style={{ backgroundColor: "yellow" }}>
         {part}
       </span>
     ) : (
@@ -67,8 +67,9 @@ const CoreWatchlistTable = () => {
         }
 
         ${
-          !isMobile
-            ? `
+          isMobile
+            ? ""
+            : `
           &:nth-of-type(3) {
             left: 150px;
             background-color: #fff;
@@ -81,7 +82,6 @@ const CoreWatchlistTable = () => {
             z-index: 2;
           }
         `
-            : ""
         }
       `,
       HeaderRow: `
