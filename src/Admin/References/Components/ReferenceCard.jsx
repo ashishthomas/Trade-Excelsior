@@ -18,6 +18,47 @@ const ReferenceCard = ({
   isTablet,
   isMobile,
 }) => {
+  // ✅ Replace nested ternaries with explicit conditional statements
+  let padding;
+  if (isSmallLaptop || isSmallMobile) padding = "15px";
+  else if (isTablet) padding = "12px";
+  else padding = "10px";
+
+  let imageSize;
+  if (isSmallMobile) imageSize = 40;
+  else if (isTablet) imageSize = 45;
+  else imageSize = 50;
+
+  let marginLeft;
+  if (isSmallLaptop || isSmallMobile) marginLeft = "10px";
+  else if (isTablet) marginLeft = "12px";
+  else marginLeft = "15px";
+
+  let titleVariant;
+  if (isSmallMobile) titleVariant = "body2";
+  else if (isMobile) titleVariant = "body1";
+  else titleVariant = "h6";
+
+  let titleFontSize;
+  if (isSmallLaptop || isSmallMobile) titleFontSize = "0.85rem";
+  else titleFontSize = "1rem";
+
+  let categoryFontSize;
+  if (isSmallLaptop || isSmallMobile) categoryFontSize = "0.75rem";
+  else categoryFontSize = "0.875rem";
+
+  let rightPosition;
+  if (isSmallLaptop || isSmallMobile) rightPosition = 2;
+  else rightPosition = 5;
+
+  let iconFontSize;
+  if (isSmallMobile) iconFontSize = "1rem";
+  else iconFontSize = "1.25rem";
+
+  let minWidthValue;
+  if (isSmallLaptop || isSmallMobile) minWidthValue = "60%";
+  else minWidthValue = "auto";
+
   return (
     <Grid item xs={12} sm={6} md={3} key={refData.id}>
       <a
@@ -31,12 +72,7 @@ const ReferenceCard = ({
             minHeight: "120px",
             display: "flex",
             alignItems: "center",
-            padding:
-              isSmallLaptop || isSmallMobile
-                ? "15px"
-                : isTablet
-                ? "12px"
-                : "10px",
+            padding,
             borderRadius: "10px",
             position: "relative",
             cursor: "pointer",
@@ -45,14 +81,9 @@ const ReferenceCard = ({
           <CardMedia
             component="img"
             sx={{
-              width: isSmallMobile ? 40 : isTablet ? 45 : 50,
-              height: isSmallMobile ? 40 : isTablet ? 45 : 50,
-              marginLeft:
-                isSmallLaptop || isSmallMobile
-                  ? "10px"
-                  : isTablet
-                  ? "12px"
-                  : "15px",
+              width: imageSize,
+              height: imageSize,
+              marginLeft,
               marginRight: "10px",
             }}
             image={refData.image}
@@ -64,24 +95,19 @@ const ReferenceCard = ({
           <CardContent
             sx={{
               flexGrow: 1,
-              minWidth: isSmallLaptop || isSmallMobile ? "60%" : "auto",
+              minWidth: minWidthValue,
             }}
           >
             <Typography
-              variant={isSmallMobile ? "body2" : isMobile ? "body1" : "h6"}
-              sx={{
-                fontSize: isSmallLaptop || isSmallMobile ? "0.85rem" : "1rem",
-              }}
+              variant={titleVariant}
+              sx={{ fontSize: titleFontSize }}
             >
               {refData.title}
             </Typography>
             <Typography
               variant="body2"
               color="textSecondary"
-              sx={{
-                fontSize:
-                  isSmallLaptop || isSmallMobile ? "0.75rem" : "0.875rem",
-              }}
+              sx={{ fontSize: categoryFontSize }}
             >
               {refData.category}
             </Typography>
@@ -90,7 +116,7 @@ const ReferenceCard = ({
           <IconButton
             sx={{
               position: "absolute",
-              right: isSmallLaptop || isSmallMobile ? 2 : 5,
+              right: rightPosition,
               color: "#0280FF",
             }}
             onClick={(event) => {
@@ -99,9 +125,7 @@ const ReferenceCard = ({
               handleMenuOpen(event, index);
             }}
           >
-            <MoreVertIcon
-              sx={{ fontSize: isSmallMobile ? "1rem" : "1.25rem" }}
-            />
+            <MoreVertIcon sx={{ fontSize: iconFontSize }} />
           </IconButton>
         </Card>
       </a>
