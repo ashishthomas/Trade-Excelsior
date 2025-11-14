@@ -59,7 +59,7 @@ const UserMenu = ({ anchorEl, setAnchorEl }) => {
   const handleSwitchToUser = () => {
     setAnchorEl(null);
     localStorage.setItem("role", "user");
-    window.location.reload();
+    globalThis.location.reload();
   };
 
   const handleLogout = () => {

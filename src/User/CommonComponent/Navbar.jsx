@@ -59,7 +59,7 @@ const UserMenu = ({ anchorEl, setAnchorEl }) => {
   const handleSwitchToAdmin = () => {
     setAnchorEl(null);
     localStorage.setItem("role", "admin");
-    window.location.reload();
+    globalThis.location.reload();
   };
 
   return (
