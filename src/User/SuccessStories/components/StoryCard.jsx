@@ -1,0 +1,222 @@
+import PropTypes from "prop-types";
+import {
+  Box,
+  Grid,
+  Typography,
+  Button,
+  Card,
+  CardContent,
+  useMediaQuery,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+
+export default function StoryCard({ story, index, expandedId, toggleExpand }) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const isExtraSmall = useMediaQuery("(max-width:417px)");
+
+  return (
+    <Card
+      key={story.id}
+      sx={{
+        display: "flex",
+        flexDirection: isMobile || isExtraSmall ? "column" : "row",
+        alignItems: isMobile || isExtraSmall ? "center" : "flex-start",
+        padding: isExtraSmall ? "5px" : "10px",
+        borderRadius: "10px",
+        backgroundColor: "white",
+        maxWidth: "100%",
+        overflow: "hidden",
+        mb: 0,
+      }}
+    >
+      <CardContent sx={{ position: "relative", width: "100%" }}>
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="space-between"
+          spacing={isExtraSmall ? 0.5 : isMobile || isTablet ? 1 : 3}
+        >
+          {(isMobile || isTablet) && (
+            <Grid
+              item
+              xs={12}
+              sx={{ display: "flex", justifyContent: "center" }}
+            >
+              <Box
+                component="img"
+                src={story.image}
+                alt={story.name}
+                sx={{
+                  width: "100%",
+                  maxWidth: isExtraSmall ? "150px" : "200px",
+                  borderRadius: "8px",
+                  height: "auto",
+                }}
+              />
+            </Grid>
+          )}
+
+          <Grid
+            item
+            xs={12}
+            md={8}
+            sx={{
+              textAlign: { xs: "center", md: "left" },
+              order: index % 2 !== 0 ? 2 : 1,
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: "bold",
+                fontSize: isExtraSmall
+                  ? "0.9rem"
+                  : isMobile || isTablet
+                  ? "1rem"
+                  : "28px",
+              }}
+            >
+              {story.tagline}
+            </Typography>
+
+            <Typography
+              variant="h4"
+              color="primary"
+              sx={{
+                mt: isExtraSmall ? 0.4 : isMobile || isTablet ? 0.5 : 1,
+                fontSize: isExtraSmall
+                  ? "0.9rem"
+                  : isMobile || isTablet
+                  ? "1rem"
+                  : "28px",
+              }}
+            >
+              {story.name}
+            </Typography>
+
+            <Typography
+              variant="h6"
+              paragraph
+              sx={{
+                mt: isExtraSmall ? 0.8 : isMobile || isTablet ? 1 : 2,
+                color: "grey",
+                fontSize: isExtraSmall
+                  ? "10px"
+                  : isMobile || isTablet
+                  ? "12px"
+                  : "20px",
+              }}
+            >
+              {expandedId === story.id
+                ? story.feedback
+                : `${story.feedback.substring(0, 80)}...`}
+            </Typography>
+
+            {story.feedback.length > 80 && (
+              <Button
+                onClick={() => toggleExpand(story.id)}
+                sx={{
+                  textTransform: "none",
+                  fontSize: isExtraSmall
+                    ? "0.7rem"
+                    : isMobile || isTablet
+                    ? "0.8rem"
+                    : "1rem",
+                  color: "#3A86FF",
+                  fontWeight: "bold",
+                }}
+              >
+                {expandedId === story.id ? "Read Less" : "Read More"}
+              </Button>
+            )}
+
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: isMobile || isTablet ? "center" : "flex-start",
+                mt: isExtraSmall ? 0.8 : isMobile || isTablet ? 1 : 2,
+              }}
+            >
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{
+                  textTransform: "none",
+                  width: isExtraSmall
+                    ? "auto"
+                    : isMobile || isTablet
+                    ? "auto"
+                    : "100px",
+                  minWidth: isExtraSmall
+                    ? "70px"
+                    : isMobile || isTablet
+                    ? "80px"
+                    : "100px",
+                  fontSize: isExtraSmall
+                    ? "0.7rem"
+                    : isMobile || isTablet
+                    ? "0.8rem"
+                    : "1rem",
+                  whiteSpace: "nowrap",
+                  padding: isExtraSmall
+                    ? "4px 8px"
+                    : isMobile || isTablet
+                    ? "6px 12px"
+                    : "8px 16px",
+                }}
+                onClick={() => window.open(story.video, "_blank")}
+              >
+                See Video
+              </Button>
+            </Box>
+          </Grid>
+
+          {!isMobile && !isTablet && (
+            <Grid
+              item
+              xs={12}
+              md={4}
+              sx={{
+                display: "flex",
+                justifyContent: index % 2 !== 0 ? "flex-start" : "center",
+                order: index % 2 !== 0 ? 1 : 2,
+              }}
+            >
+              <Box
+                component="img"
+                src={story.image}
+                alt={story.name}
+                sx={{
+                  width: "100%",
+                  maxWidth: "300px",
+                  borderRadius: "8px",
+                  height: "auto",
+                  position: "static",
+                  zIndex: 1,
+                }}
+              />
+            </Grid>
+          )}
+        </Grid>
+      </CardContent>
+    </Card>
+  );
+}
+
+StoryCard.propTypes = {
+  story: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    feedback: PropTypes.string.isRequired,
+    tagline: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    video: PropTypes.string.isRequired,
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+  isMobile: PropTypes.bool.isRequired,
+  isTablet: PropTypes.bool.isRequired,
+  expandedId: PropTypes.number,
+  toggleExpand: PropTypes.func.isRequired,
+};
