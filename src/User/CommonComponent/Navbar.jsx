@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import {
   AppBar,
@@ -92,6 +92,32 @@ const Navbar = ({ toggleSidebar }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isExtraSmall = useMediaQuery(theme.breakpoints.down(320));
 
+  // ✔ Fix nested ternaries using useMemo
+  const { padding, fontSize, minWidth, iconFontSize } = useMemo(() => {
+    const paddingValue = isExtraSmall
+      ? "4px 4px"
+      : isMobile
+      ? "6px 6px"
+      : "12px 24px";
+
+    const fontSizeValue = isExtraSmall ? "10px" : isMobile ? "12px" : "16px";
+
+    const minWidthValue = isExtraSmall ? "100px" : isMobile ? "140px" : "260px";
+
+    const iconFontSizeValue = isExtraSmall
+      ? "12px"
+      : isMobile
+      ? "14px"
+      : "16px";
+
+    return {
+      padding: paddingValue,
+      fontSize: fontSizeValue,
+      minWidth: minWidthValue,
+      iconFontSize: iconFontSizeValue,
+    };
+  }, [isMobile, isExtraSmall]);
+
   return (
     <StyledAppbar>
       <StyledToolbar>
@@ -110,22 +136,13 @@ const Navbar = ({ toggleSidebar }) => {
             variant="outlined"
             color="primary"
             sx={{
-              padding: isExtraSmall
-                ? "4px 4px"
-                : isMobile
-                ? "6px 6px"
-                : "12px 24px",
-              fontSize: isExtraSmall ? "10px" : isMobile ? "12px" : "16px",
-              minWidth: isExtraSmall ? "100px" : isMobile ? "140px" : "260px",
+              padding,
+              fontSize,
+              minWidth,
               textTransform: "none",
             }}
           >
-            <Info
-              sx={{
-                mr: 1,
-                fontSize: isExtraSmall ? "12px" : isMobile ? "14px" : "16px",
-              }}
-            />
+            <Info sx={{ mr: 1, fontSize: iconFontSize }} />
             Subscription ends in 365 days
           </Button>
 
