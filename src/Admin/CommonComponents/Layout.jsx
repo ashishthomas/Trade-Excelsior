@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { Box } from "@mui/material";
+import { Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
-import { Box } from "@mui/material";
-import { Outlet } from "react-router-dom";
 
 const Layout = ({ unresolvedCount, setUnresolvedCount }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

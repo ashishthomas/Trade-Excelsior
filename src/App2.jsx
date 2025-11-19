@@ -1,6 +1,6 @@
-import Layout from "./User/CommonComponent/Layout";
 import "./App.css";
 import { Box } from "@mui/material";
+import Layout from "./User/CommonComponent/Layout";
 
 function App2() {
   return (
