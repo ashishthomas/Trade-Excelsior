@@ -30,6 +30,9 @@ Trade Excelsior is a modern, user-friendly web application for managing books, o
 - **Vite:** Fast build tool and development server for modern web projects.
 - **React:** Component-based JavaScript library for building user interfaces.
 - **React Router v6+:** Declarative routing for React applications, supporting nested routes and dynamic navigation.
+- **Formik:** Form management library for React.
+- **Yup:** Schema validation library for Formik.
+- **React Table Library:** React component library for building complex tables.
 - **Bootstrap:** Popular CSS framework for responsive and mobile-first design.
 - **Material-UI (MUI):** React UI framework for fast, beautiful, and accessible components.
 - **ESLint:** Code quality tool to enforce best practices and maintain code consistency.
