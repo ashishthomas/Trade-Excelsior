@@ -92,23 +92,48 @@ const Navbar = ({ toggleSidebar }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isExtraSmall = useMediaQuery(theme.breakpoints.down(320));
 
-  // ✔ Fix nested ternaries using useMemo
+  // ✔ SonarQube fix – no nested ternary operations
   const { padding, fontSize, minWidth, iconFontSize } = useMemo(() => {
-    const paddingValue = isExtraSmall
-      ? "4px 4px"
-      : isMobile
-      ? "6px 6px"
-      : "12px 24px";
+    let paddingValue;
+    let fontSizeValue;
+    let minWidthValue;
+    let iconFontSizeValue;
 
-    const fontSizeValue = isExtraSmall ? "10px" : isMobile ? "12px" : "16px";
+    // Padding
+    if (isExtraSmall) {
+      paddingValue = "4px 4px";
+    } else if (isMobile) {
+      paddingValue = "6px 6px";
+    } else {
+      paddingValue = "12px 24px";
+    }
 
-    const minWidthValue = isExtraSmall ? "100px" : isMobile ? "140px" : "260px";
+    // Font size
+    if (isExtraSmall) {
+      fontSizeValue = "10px";
+    } else if (isMobile) {
+      fontSizeValue = "12px";
+    } else {
+      fontSizeValue = "16px";
+    }
 
-    const iconFontSizeValue = isExtraSmall
-      ? "12px"
-      : isMobile
-      ? "14px"
-      : "16px";
+    // Min width
+    if (isExtraSmall) {
+      minWidthValue = "100px";
+    } else if (isMobile) {
+      minWidthValue = "140px";
+    } else {
+      minWidthValue = "260px";
+    }
+
+    // Icon font size
+    if (isExtraSmall) {
+      iconFontSizeValue = "12px";
+    } else if (isMobile) {
+      iconFontSizeValue = "14px";
+    } else {
+      iconFontSizeValue = "16px";
+    }
 
     return {
       padding: paddingValue,

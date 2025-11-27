@@ -65,7 +65,7 @@ const Sidebar = ({ isCollapsed }) => {
                 title={isCollapsed || isMobile ? text : ""}
                 placement="right"
                 arrow
-                componentsProps={{
+                slotProps={{
                   tooltip: {
                     sx: { fontSize: "14px", bgcolor: "#3A86FF", color: "#fff" },
                   },
