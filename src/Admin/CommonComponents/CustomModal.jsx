@@ -14,16 +14,20 @@ const CustomModal = ({ open, handleClose, title, children }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
+  let drawerWidth;
+  if (isMobile) {
+    drawerWidth = "80vw";
+  } else if (isTablet) {
+    drawerWidth = "60vw";
+  } else {
+    drawerWidth = "400px";
+  }
+
   return (
-    <Drawer
-      anchor="right"
-      open={open}
-      onClose={handleClose}
-      sx={{ zIndex: 1300 }}
-    >
+    <Drawer anchor="right" open={open} onClose={handleClose}>
       <Box
         sx={{
-          width: isMobile ? "80vw" : isTablet ? "60vw" : "400px",
+          width: drawerWidth,
           p: 0,
         }}
       >

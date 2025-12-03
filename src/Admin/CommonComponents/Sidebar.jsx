@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import {
   Box,
   List,
@@ -135,12 +136,15 @@ const Sidebar = ({ isCollapsed }) => {
             color: "#555",
           }}
         >
-          <CopyrightSharp fontSize="small" /> Trade Excelsior all rights
+          <CopyrightSharp fontSize="small" /> 2025 Trade Excelsior all rights
           reserved
         </Typography>
       )}
     </Box>
   );
+};
+Sidebar.propTypes = {
+  isCollapsed: PropTypes.bool.isRequired,
 };
 
 export default Sidebar;
